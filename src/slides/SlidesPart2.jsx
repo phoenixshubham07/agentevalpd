@@ -10,11 +10,17 @@ import {
   Server,
   Code,
   Cpu,
-  BarChart3
+  BarChart3,
+  Briefcase,
+  Rocket,
+  Award,
+  GraduationCap
 } from 'lucide-react';
 import { Slide, SlideHeader } from '../components/SlideComponents';
 import TraceTreeMRI from '../components/demos/TraceTreeMRI';
 import DashboardDemo from '../components/demos/DashboardDemo';
+import praveenQr from '../assets/sai_uncle-1024.jpeg';
+import saiQr from '../assets/sai-1024.svg';
 
 export const slidesPart2 = [
     // Slide 8: Market Opportunity (REDESIGNED: High-Impact Cards)
@@ -296,8 +302,105 @@ export const slidesPart2 = [
        </div>
     </Slide>,
 
-    // Slide 13: Ask & Vision
-    <Slide key="13">
+    // Slide 13: Team
+    <Slide key="13" className="flex flex-col">
+      <SlideHeader title="The Team" subtitle="Veterans & Visionaries" />
+      
+      <div className="flex-1 flex gap-8 items-stretch justify-center relative z-10 mt-4">
+         
+         {/* Praveen */}
+         <div className="flex-1 flex flex-col bg-slate-900/40 border border-slate-800 p-8 rounded-3xl backdrop-blur-sm relative group overflow-hidden hover:border-blue-500/30 transition-all duration-500">
+             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Briefcase size={100} className="text-blue-400" />
+             </div>
+             
+             <div className="relative z-10 flex-1 flex flex-col">
+                 <h3 className="text-4xl font-heading font-bold text-white mb-2 tracking-tight">Praveen Tumma</h3>
+                 <div className="text-blue-400 font-tech uppercase tracking-widest text-xs mb-8 font-bold">Product & Data Lead</div>
+                 
+                 <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                        <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 mt-1">
+                            <Activity size={18} />
+                        </div>
+                        <div>
+                            <div className="text-slate-200 font-heading font-bold text-lg">20+ Years Experience</div>
+                            <div className="text-slate-400 font-body text-sm leading-relaxed">M.Tech • Product Management • Data Science</div>
+                        </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                        <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 mt-1">
+                            <Rocket size={18} />
+                        </div>
+                        <div>
+                            <div className="text-slate-200 font-heading font-bold text-lg">Startup Founder</div>
+                            <div className="text-slate-400 font-body text-sm leading-relaxed">Medicine Delivery eCommerce Marketplace</div>
+                        </div>
+                    </div>
+                 </div>
+                 
+                 {/* QR Code */}
+                 <div className="mt-auto pt-8 flex justify-center">
+                    <img src={praveenQr} alt="LinkedIn QR" className="w-32 h-32 rounded-xl border-2 border-slate-700/50 shadow-lg" />
+                 </div>
+             </div>
+         </div>
+
+         {/* Sai */}
+         <div className="flex-1 flex flex-col bg-slate-900/40 border border-slate-800 p-8 rounded-3xl backdrop-blur-sm relative group overflow-hidden hover:border-purple-500/30 transition-all duration-500">
+             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Zap size={100} className="text-purple-400" />
+             </div>
+             
+             <div className="relative z-10 flex-1 flex flex-col">
+                 <h3 className="text-4xl font-heading font-bold text-white mb-2 tracking-tight">Sai Praneeth</h3>
+                 <div className="text-purple-400 font-tech uppercase tracking-widest text-xs mb-8 font-bold">GenAI & Strategy</div>
+                 
+                 <div className="space-y-5">
+                    <div className="flex items-start gap-4">
+                        <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 mt-1">
+                            <Award size={18} />
+                        </div>
+                        <div>
+                            <div className="text-slate-200 font-heading font-bold text-lg">2x YC-Interviewed Founder</div>
+                            <div className="text-slate-400 font-body text-sm leading-relaxed">Founding Partner @ Brightcone.ai</div>
+                        </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                        <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 mt-1">
+                            <Briefcase size={18} />
+                        </div>
+                        <div>
+                            <div className="text-slate-200 font-heading font-bold text-lg">VC & Consulting</div>
+                            <div className="text-slate-400 font-body text-sm leading-relaxed">GenAI Sr. Consultant @ EXL • VC Industry Exp.</div>
+                        </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                        <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 mt-1">
+                            <GraduationCap size={18} />
+                        </div>
+                        <div>
+                            <div className="text-slate-200 font-heading font-bold text-lg">IIT Guwahati</div>
+                            <div className="text-slate-400 font-body text-sm leading-relaxed">Founding Member of IITG-YC Community</div>
+                        </div>
+                    </div>
+                 </div>
+
+                 {/* QR Code */}
+                 <div className="mt-auto pt-8 flex justify-center">
+                    <img src={saiQr} alt="LinkedIn QR" className="w-32 h-32 rounded-xl border-2 border-slate-700/50 shadow-lg bg-white p-1" />
+                 </div>
+             </div>
+         </div>
+
+      </div>
+    </Slide>,
+
+    // Slide 14: Ask & Vision
+    <Slide key="14">
       <SlideHeader title="The Ask & Vision" subtitle="The Standard for Safe AI" />
       
       <div className="flex gap-20 mt-12">
@@ -323,8 +426,8 @@ export const slidesPart2 = [
       </div>
     </Slide>,
 
-    // Slide 14: Impact (FINAL EYE CANDY)
-    <Slide key="14" className="flex items-center justify-center text-center">
+    // Slide 15: Impact (FINAL EYE CANDY)
+    <Slide key="15" className="flex items-center justify-center text-center">
        <div className="max-w-4xl relative z-10 flex flex-col items-center">
          {/* Animated Background Glow */}
          <div className="absolute -inset-32 bg-gradient-to-tr from-blue-500/10 via-purple-500/10 to-green-500/10 blur-[100px] opacity-60 rounded-full pointer-events-none animate-pulse"></div>
