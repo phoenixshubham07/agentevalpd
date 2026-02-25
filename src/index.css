@@ -8,3 +8,23 @@ html, body, #root {
   padding: 0;
   background-color: #050505; /* Match app background */
 }
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+  
+  html, body, #root {
+    height: auto !important;
+    overflow: visible !important;
+    background-color: #050505 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide UI elements during print */
+  .no-print {
+    display: none !important;
+  }
+}
