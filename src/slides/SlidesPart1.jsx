@@ -17,8 +17,8 @@ import {
 } from 'lucide-react';
 import { Slide, SlideHeader, ScaleIcon } from '../components/SlideComponents';
 import KillSwitchDemo from '../components/demos/KillSwitchDemo';
-import praveenQr from '../assets/sai_uncle-1024.jpeg';
-import saiQr from '../assets/sai-1024.svg';
+import praveenQr from '../assets/praveen.png';
+import saiQr from '../assets/sai.png';
 
 export const slidesPart1 = [
   // Slide 1: Title
