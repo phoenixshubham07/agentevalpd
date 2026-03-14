@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useInView, animate } from 'framer-motion';
 
 const PowerIcon = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -7,21 +8,43 @@ const PowerIcon = ({ className }) => (
   </svg>
 );
 
-const KillSwitchDemo = () => {
+const AnimatedNumber = ({ value }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(displayValue, value, {
+        duration: 1.5,
+        ease: "easeOut",
+        onUpdate(v) {
+          setDisplayValue(Math.floor(v));
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [value, isInView]);
+
+  return <span ref={ref}>{displayValue.toLocaleString()}</span>;
+};
+
+const KillSwitchDemo = ({ onToggle }) => {
   const [locked, setLocked] = useState(false);
 
+  const handleToggle = () => {
+    const newState = !locked;
+    setLocked(newState);
+    if (onToggle) onToggle(newState);
+  };
+
   return (
-    <div className="w-full h-full bg-[#050505] rounded-xl border border-slate-800 flex flex-col overflow-hidden relative font-body shadow-2xl">
-      {/* Background Grid */}
-      <div className="absolute inset-0 opacity-20" 
-           style={{ backgroundImage: 'linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-      </div>
+    <div className="w-full flex flex-col relative font-body px-4 pb-8 pt-4 bg-transparent">
 
       {/* Top Bar */}
-      <div className="h-16 border-b border-slate-800 flex items-center justify-between px-6 bg-slate-900/90 backdrop-blur z-10">
-        <div className="text-lg font-bold tracking-tight text-white flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center font-heading font-bold text-white shadow-[0_0_15px_rgba(147,51,234,0.5)]">A</div>
-          <span className="font-heading tracking-tight">AgentEval Console</span>
+      <div className="h-16 border-b border-white/5 flex items-center justify-between px-6 z-10">
+        <div className="text-lg font-bold tracking-tight text-slate-300 flex items-center gap-3">
+          <span className="font-heading tracking-tight">AgentEval</span>
         </div>
         <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold border flex items-center gap-2 transition-all duration-500 tracking-widest uppercase font-tech ${locked ? 'bg-red-950/30 border-red-500/50 text-red-500 shadow-[0_0_20px_rgba(220,38,38,0.2)]' : 'bg-green-950/30 border-green-500/50 text-green-500 shadow-[0_0_20px_rgba(34,197,94,0.2)]'}`}>
           <div className={`w-1.5 h-1.5 rounded-full ${locked ? 'bg-red-500 animate-[ping_1s_infinite]' : 'bg-green-500'}`}></div>
@@ -30,16 +53,20 @@ const KillSwitchDemo = () => {
       </div>
 
       {/* Main Dashboard Content */}
-      <div className="flex-1 p-8 relative z-10 flex gap-8">
+      <div className="flex-1 p-8 relative z-10 flex flex-col md:flex-row gap-8">
         {/* Left Metrics */}
         <div className="flex-1 space-y-4">
           <div className="p-5 bg-slate-900/40 border border-slate-800 rounded-xl backdrop-blur-sm hover:border-slate-600 transition-colors group">
              <div className="text-slate-500 text-[10px] uppercase tracking-widest font-tech mb-1">Active Agents</div>
-             <div className="text-4xl font-heading font-bold text-white group-hover:text-purple-400 transition-colors">{locked ? '0' : '1,248'}</div>
+             <div className="text-4xl font-heading font-bold text-white group-hover:text-purple-400 transition-colors">
+               <AnimatedNumber value={locked ? 0 : 1248} />
+             </div>
           </div>
           <div className="p-5 bg-slate-900/40 border border-slate-800 rounded-xl backdrop-blur-sm hover:border-slate-600 transition-colors group">
              <div className="text-slate-500 text-[10px] uppercase tracking-widest font-tech mb-1">Requests / Sec</div>
-             <div className="text-4xl font-heading font-bold text-blue-400 font-mono group-hover:text-blue-300 transition-colors">{locked ? '0' : '842'}</div>
+             <div className="text-4xl font-heading font-bold text-blue-400 font-mono group-hover:text-blue-300 transition-colors">
+               <AnimatedNumber value={locked ? 0 : 842} />
+             </div>
           </div>
           <div className="p-5 bg-slate-900/40 border border-slate-800 rounded-xl backdrop-blur-sm hover:border-slate-600 transition-colors">
              <div className="text-slate-500 text-[10px] uppercase tracking-widest font-tech mb-1">Risk Score</div>
@@ -59,7 +86,7 @@ const KillSwitchDemo = () => {
           </div>
           
           <button 
-            onClick={() => setLocked(!locked)}
+            onClick={handleToggle}
             className={`
               w-40 h-40 rounded-full border-[6px] shadow-[0_0_60px_rgba(0,0,0,0.8)] 
               flex flex-col items-center justify-center transition-all duration-300 relative z-10
