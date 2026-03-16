@@ -54,7 +54,7 @@ export default function ProblemAgitation() {
   });
 
   return (
-    <section ref={sectionRef} id="problem" className="py-32 relative bg-transparent border-t border-white/5 overflow-hidden">
+    <section ref={sectionRef} id="problem" className="py-32 relative bg-transparent overflow-hidden">
       {/* Background Cyber-grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none -z-20 opacity-20 mask-image:linear-gradient(to_bottom,transparent,black,transparent)"></div>
 
@@ -107,7 +107,7 @@ export default function ProblemAgitation() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: 0.1 * index, type: "spring", stiffness: 100 }}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className={`relative h-full group p-8 rounded-2xl bg-[#0a0f1e]/80 backdrop-blur-md border border-white/[0.05] transition-all duration-300 overflow-hidden ${problem.glowColor} ${problem.borderColor}`}
+                  className={`relative h-full group p-8 rounded-2xl bg-[#0a0f1e] border border-white/[0.05] transition-all duration-300 overflow-hidden ${problem.glowColor} ${problem.borderColor}`}
                 >
                   {/* Top Gradient Glow */}
                   <div className={`absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b ${problem.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
@@ -127,8 +127,7 @@ export default function ProblemAgitation() {
                       transition={{ duration: 0.5 }}
                     >
                       <motion.div
-                        animate={{ y: [0, -4, 0], scale: [1, 1.05, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
+                        className="group-hover:animate-[iconBounce_3s_ease-in-out_infinite]"
                       >
                         {problem.icon}
                       </motion.div>

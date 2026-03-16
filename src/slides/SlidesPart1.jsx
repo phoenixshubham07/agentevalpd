@@ -16,9 +16,11 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { Slide, SlideHeader, ScaleIcon } from '../components/SlideComponents';
-import KillSwitchDemo from '../components/demos/KillSwitchDemo';
 import praveenQr from '../assets/praveen.png';
 import saiQr from '../assets/sai.png';
+import { Suspense } from 'react';
+
+const KillSwitchDemo = React.lazy(() => import('../components/demos/KillSwitchDemo'));
 
 export const slidesPart1 = [
   // Slide 1: Title
@@ -403,7 +405,9 @@ export const slidesPart1 = [
         </div>
       </div>
       <div className="w-2/3 h-full pt-8 pb-8">
-        <KillSwitchDemo />
+        <Suspense fallback={<div className="w-full h-full bg-slate-900/50 rounded-2xl animate-pulse flex items-center justify-center text-slate-500 font-tech">Loading Demo System...</div>}>
+          <KillSwitchDemo />
+        </Suspense>
       </div>
     </div>
   </Slide>,

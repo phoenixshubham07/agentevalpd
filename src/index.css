@@ -35,3 +35,51 @@ html, body, #root {
     display: none !important;
   }
 }
+
+/* Performance: hover-only icon bounce animation */
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.05); }
+}
+
+/* Caution tape animation */
+@keyframes slideCaution {
+  from { background-position: 0 0; }
+  to { background-position: 28.28px 0; }
+}
+
+.bg-caution-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #eab308,
+    #eab308 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  background-size: 28.28px 28.28px;
+  animation: slideCaution 1s linear infinite;
+}
+
+/* Left to right ticker animation */
+@keyframes ticker-ltr {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Right to left ticker animation */
+@keyframes ticker-rtl {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker-ltr {
+  animation: ticker-ltr 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.animate-ticker-rtl {
+  animation: ticker-rtl 30s linear infinite;
+  display: flex;
+  width: max-content;
+}

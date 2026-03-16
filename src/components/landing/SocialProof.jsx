@@ -54,72 +54,64 @@ export default function SocialProof() {
       <div className="absolute inset-x-0 top-0 h-full max-w-7xl mx-auto pointer-events-none hidden md:block z-0">
         <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
           <defs>
-            <filter id="glow-amber-social" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-            <filter id="glow-red-social" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-            <filter id="glow-blue-social" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
+            <filter id="glow-white-social" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
           </defs>
-          {/* Left Line */}
-          <motion.path 
-            d="M 166 0 L 166.01 1000" 
-            fill="none" stroke="#f59e0b" strokeWidth="3" filter="url(#glow-amber-social)"
-            vectorEffect="non-scaling-stroke"
-            style={{ pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]) }}
-          />
-          {/* Center Line */}
+          {/* Center Core Line */}
           <motion.path 
             d="M 500 0 L 500.01 1000" 
-            fill="none" stroke="#ef4444" strokeWidth="3" filter="url(#glow-red-social)"
+            fill="none" stroke="#ffffff" strokeWidth="6" filter="url(#glow-white-social)"
             vectorEffect="non-scaling-stroke"
-            style={{ pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]) }}
-          />
-          {/* Right Line */}
-          <motion.path 
-            d="M 833 0 L 833.01 1000" 
-            fill="none" stroke="#3b82f6" strokeWidth="3" filter="url(#glow-blue-social)"
-            vectorEffect="non-scaling-stroke"
-            style={{ pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]) }}
+            style={{ 
+              pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]),
+              opacity: 0.6
+            }}
           />
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-slate-800/50 border border-slate-700 text-slate-300 text-xs font-tech tracking-widest uppercase mb-6 shadow-[0_0_15px_rgba(255,255,255,0.05)]"
-          >
-            <span>Enterprise Security</span>
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold font-heading mb-6 tracking-tight text-white"
-          >
-            Engineered for the{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">Enterprise Perimeter.</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg text-slate-400 font-light"
-          >
-            Built from day one for the most security-conscious organizations. Your data stays yours—always.
-          </motion.p>
+      {/* Background glow for Social Proof Section */}
+      <div className="absolute top-1/2 left-1/4 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] -translate-y-1/2 -z-10 pointer-events-none"></div>
+      <div className="absolute top-1/2 right-1/4 w-[800px] h-[800px] bg-cyan-600/20 rounded-full blur-[120px] -translate-y-1/2 -z-10 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 pt-16">
+        {/* Full Width News Ticker */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden bg-[#0a192f] py-4 z-20 shadow-[0_0_20px_rgba(59,130,246,0.2)] flex">
+          <div className="animate-ticker-rtl">
+            {/* Generate duplicate items to ensure a seamless loop */}
+            {[...Array(20)].map((_, i) => (
+              <div key={i} className="flex items-center gap-4 px-10 whitespace-nowrap">
+                <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,1)] animate-[ping_2s_infinite]"></span>
+                <span className="text-blue-400 font-bold font-tech text-lg tracking-widest uppercase">Enterprise Security</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center max-w-3xl mx-auto mb-20 relative flex flex-col items-center">
+          <div className="relative inline-block z-20 bg-[#020617]/80 backdrop-blur-md px-8 py-4 rounded-2xl shadow-[0_0_40px_rgba(2,6,23,0.9)]">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold font-heading mb-6 tracking-tight text-white leading-tight"
+            >
+              Engineered for the <br className="hidden md:block"/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 drop-shadow-[0_0_15px_rgba(56,189,248,0.4)]">Enterprise Perimeter.</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-lg text-slate-300 font-body max-w-2xl mx-auto leading-relaxed"
+            >
+              Built from day one for the most security-conscious organizations. <span className="text-white font-medium">Your data stays yours—always.</span>
+            </motion.p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-10">
@@ -131,7 +123,7 @@ export default function SocialProof() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.1 * index, type: "spring", stiffness: 100 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className={`relative h-full group p-8 rounded-2xl bg-[#0a0f1e]/80 backdrop-blur-md border border-white/[0.05] transition-all duration-300 overflow-hidden ${feature.glowColor} ${feature.borderColor}`}
+                className={`relative h-full group p-8 rounded-2xl bg-[#0a0f1e] border border-white/[0.05] transition-all duration-300 overflow-hidden ${feature.glowColor} ${feature.borderColor}`}
               >
                 {/* Top Gradient Glow */}
                 <div className={`absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b ${feature.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
@@ -151,8 +143,7 @@ export default function SocialProof() {
                     transition={{ duration: 0.5 }}
                   >
                     <motion.div
-                      animate={{ y: [0, -4, 0], scale: [1, 1.05, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+                      className="group-hover:animate-[iconBounce_3s_ease-in-out_infinite]"
                     >
                       {feature.icon}
                     </motion.div>
@@ -175,15 +166,7 @@ export default function SocialProof() {
                 <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/10 group-hover:border-white/50 transition-colors duration-300 rounded-bl-xl" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/10 group-hover:border-white/50 transition-colors duration-300 rounded-br-xl" />
 
-                {/* Connecting dot to roadmap line */}
-                <motion.div 
-                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full z-30"
-                  style={{ backgroundColor: feature.lineColor }}
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
-                  viewport={{ once: true }}
-                />
+
               </motion.div>
             </div>
           ))}

@@ -1,14 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, Suspense, lazy } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Navbar from './Navbar';
 import HeroSection from './HeroSection';
 import ProblemAgitation from './ProblemAgitation';
 import FeatureHighlights from './FeatureHighlights';
 import SocialProof from './SocialProof';
 import Footer from './Footer';
 import AnimatedTracesBackground from './AnimatedTracesBackground';
-import TraceTreeMRI from './TraceTreeMRI';
-import KillSwitchDemo from '../demos/KillSwitchDemo';
+
+// Lazy load heavy 3D/demo components to code-split Three.js (~200KB+)
+const TraceTree3D = lazy(() => import('./TraceTree3D'));
+const KillSwitchDemo = lazy(() => import('../demos/KillSwitchDemo'));
 
 export default function LandingPage() {
   const roadmapRef = useRef(null);
@@ -44,7 +45,7 @@ export default function LandingPage() {
         <HeroSection />
         <ProblemAgitation />
         
-        <section ref={roadmapRef} className="pt-48 md:pt-64 pb-24 w-full relative z-10 border-t border-white/5 overflow-visible">
+        <section ref={roadmapRef} className="pt-48 md:pt-64 pb-24 w-full relative z-10 overflow-visible">
           
           {/* Incoming Roadmap Lines from ProblemAgitation */}
           <div className="absolute inset-x-0 -top-32 h-[450px] md:h-[550px] max-w-7xl mx-auto pointer-events-none hidden md:block z-0">
@@ -124,11 +125,11 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-col gap-8 w-full relative"
+                className="flex flex-col gap-4 w-full relative -mt-8"
               >
                 {/* Background Edge Highlight when in view */}
                 <motion.div 
-                  className="absolute -inset-4 md:-inset-8 border border-purple-500/30 shadow-[0_0_80px_rgba(168,85,247,0.15),inset_0_0_80px_rgba(168,85,247,0.1)] rounded-3xl pointer-events-none -z-10"
+                  className="absolute -inset-4 md:-inset-8 shadow-[0_0_80px_rgba(168,85,247,0.15),inset_0_0_80px_rgba(168,85,247,0.1)] rounded-3xl pointer-events-none -z-10"
                   initial={{ opacity: 0, scale: 0.98 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1.0 }}
@@ -143,8 +144,10 @@ export default function LandingPage() {
                   <p className="text-slate-400 max-w-2xl mx-auto">Visualize agent decision branches instantly. Our unified telemetry tracks LLM calls, deterministic workers, and system guardrails in one tree.</p>
                 </div>
                 {/* Full width container for TraceTree */}
-                <div className="w-full max-w-5xl mx-auto px-2 sm:px-6">
-                  <TraceTreeMRI />
+                <div className="w-full max-w-6xl mx-auto px-2 sm:px-6">
+                  <Suspense fallback={<div className="w-full h-[540px] bg-slate-900/50 rounded-2xl animate-pulse" />}>
+                    <TraceTree3D />
+                  </Suspense>
                 </div>
               </motion.div>
               
@@ -158,7 +161,7 @@ export default function LandingPage() {
               >
                 {/* Background Edge Highlight when in view */}
                 <motion.div 
-                  className="absolute -inset-4 md:-inset-8 border border-cyan-500/30 shadow-[0_0_80px_rgba(6,182,212,0.15),inset_0_0_80px_rgba(6,182,212,0.1)] rounded-3xl pointer-events-none -z-10"
+                  className="absolute -inset-4 md:-inset-8 shadow-[0_0_80px_rgba(6,182,212,0.15),inset_0_0_80px_rgba(6,182,212,0.1)] rounded-3xl pointer-events-none -z-10"
                   initial={{ opacity: 0, scale: 0.98 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1.0 }}
@@ -174,7 +177,9 @@ export default function LandingPage() {
                 </div>
                 {/* Full width container for KillSwitch */}
                 <div className="w-full max-w-5xl mx-auto px-2 sm:px-6 h-[60vh] min-h-[500px]">
-                  <KillSwitchDemo onToggle={setKillSwitchActive} />
+                  <Suspense fallback={<div className="w-full h-full bg-slate-900/50 rounded-2xl animate-pulse" />}>
+                    <KillSwitchDemo onToggle={setKillSwitchActive} />
+                  </Suspense>
                 </div>
               </motion.div>
             </div>

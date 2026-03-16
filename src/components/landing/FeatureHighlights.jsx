@@ -51,66 +51,54 @@ export default function FeatureHighlights() {
       <div className="absolute inset-x-0 top-0 h-full max-w-7xl mx-auto pointer-events-none hidden md:block z-0">
         <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
           <defs>
-            <filter id="glow-amber-feature" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-            <filter id="glow-red-feature" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-            <filter id="glow-blue-feature" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
+            <filter id="glow-white-feature" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
           </defs>
-          {/* Left Line */}
-          <motion.path 
-            d="M 166 0 L 166.01 1000" 
-            fill="none" stroke="#f59e0b" strokeWidth="3" filter="url(#glow-amber-feature)"
-            vectorEffect="non-scaling-stroke"
-            style={{ pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]) }}
-          />
-          {/* Center Line */}
+          {/* Center Core Line */}
           <motion.path 
             d="M 500 0 L 500.01 1000" 
-            fill="none" stroke="#ef4444" strokeWidth="3" filter="url(#glow-red-feature)"
+            fill="none" stroke="#ffffff" strokeWidth="6" filter="url(#glow-white-feature)"
             vectorEffect="non-scaling-stroke"
-            style={{ pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]) }}
-          />
-          {/* Right Line */}
-          <motion.path 
-            d="M 833 0 L 833.01 1000" 
-            fill="none" stroke="#3b82f6" strokeWidth="3" filter="url(#glow-blue-feature)"
-            vectorEffect="non-scaling-stroke"
-            style={{ pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]) }}
+            style={{ 
+              pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]),
+              opacity: 0.6
+            }}
           />
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-10 pt-16">
+        {/* Full Width News Ticker */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden bg-[#450a0a] py-4 z-20 shadow-[0_0_20px_rgba(239,68,68,0.2)] flex">
+          <div className="animate-ticker-rtl">
+            {/* Generate duplicate items to ensure a seamless loop */}
+            {[...Array(20)].map((_, i) => (
+              <div key={i} className="flex items-center gap-4 px-10 whitespace-nowrap">
+                <span className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)] animate-[ping_2s_infinite]"></span>
+                <span className="text-red-400 font-bold font-tech text-lg tracking-widest uppercase">Active Governance</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="text-center flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-slate-800/50 border border-slate-700 text-slate-300 text-xs font-tech tracking-widest uppercase mb-6 shadow-[0_0_15px_rgba(255,255,255,0.05)]"
-          >
-            <span>Active Governance</span>
-          </motion.div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold font-heading tracking-tight text-white max-w-4xl leading-tight"
-          >
-            Engineered for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-400 to-slate-200">Paranoid Enterprise.</span>
-          </motion.h2>
+          <div className="relative inline-block z-20 bg-[#020617]/80 backdrop-blur-md px-6 py-2 rounded-2xl shadow-[0_0_40px_rgba(2,6,23,0.9)]">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-6xl font-bold font-heading tracking-tight text-white max-w-4xl leading-tight"
+            >
+              Engineered for the <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-200">Paranoid Enterprise.</span>
+            </motion.h2>
+          </div>
         </div>
       </div>
 
-      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen">
+      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen -mt-16">
         <ScrollStack 
           useWindowScroll={true} 
           stackPosition="20%"
@@ -130,10 +118,9 @@ export default function FeatureHighlights() {
                 {/* Animated gradient border on hover */}
                 <div className="absolute inset-0 rounded-[2rem] p-[1px] overflow-hidden pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div 
-                    className="absolute inset-[-200%] animate-spin pointer-events-none"
+                    className="absolute inset-[-200%] pointer-events-none [animation:spin_6s_linear_infinite] [animation-play-state:paused] group-hover:[animation-play-state:running]"
                     style={{ 
-                      background: `conic-gradient(from 0deg, transparent 0%, ${feature.accent.color} 10%, transparent 30%, ${feature.accent.color}80 60%, transparent 80%)`,
-                      animationDuration: '6s'
+                      background: `conic-gradient(from 0deg, transparent 0%, ${feature.accent.color} 10%, transparent 30%, ${feature.accent.color}80 60%, transparent 80%)`
                     }}
                   ></div>
                 </div>

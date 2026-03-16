@@ -15,8 +15,10 @@ import {
    GraduationCap
 } from 'lucide-react';
 import { Slide, SlideHeader } from '../components/SlideComponents';
-import TraceTreeMRI from '../components/demos/TraceTreeMRI';
 import DashboardDemo from '../components/demos/DashboardDemo';
+import { Suspense } from 'react';
+
+const TraceTree3D = React.lazy(() => import('../components/landing/TraceTree3D'));
 
 export const slidesPart2 = [
    // Slide 8: Market Opportunity (REDESIGNED: High-Impact Cards)
@@ -279,7 +281,9 @@ export const slidesPart2 = [
                </div>
 
                {/* UI Component */}
-               <TraceTreeMRI />
+               <Suspense fallback={<div className="flex-1 bg-slate-900/50 animate-pulse flex items-center justify-center text-slate-500 font-tech">Initializing Three.js Context...</div>}>
+                 <TraceTree3D />
+               </Suspense>
             </div>
          </div>
       </div>

@@ -35,6 +35,8 @@ const ScrollStack = ({
   const cardsRef = useRef([]);
   const lastTransformsRef = useRef(new Map());
   const isUpdatingRef = useRef(false);
+  const offsetCacheRef = useRef([]);
+  const endOffsetRef = useRef(0);
 
   const calculateProgress = useCallback((scrollTop, start, end) => {
     if (scrollTop < start) return 0;
@@ -88,16 +90,12 @@ const ScrollStack = ({
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
 
-    const endElement = useWindowScroll
-      ? document.querySelector('.scroll-stack-end')
-      : scrollerRef.current?.querySelector('.scroll-stack-end');
-
-    const endElementTop = endElement ? getElementOffset(endElement) : 0;
+    const endElementTop = endOffsetRef.current;
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
 
-      const cardTop = getElementOffset(card);
+      const cardTop = offsetCacheRef.current[i] || 0;
       const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
       const triggerEnd = cardTop - scaleEndPositionPx;
       const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
@@ -112,7 +110,7 @@ const ScrollStack = ({
       if (blurAmount) {
         let topCardIndex = 0;
         for (let j = 0; j < cardsRef.current.length; j++) {
-          const jCardTop = getElementOffset(cardsRef.current[j]);
+          const jCardTop = offsetCacheRef.current[j] || 0;
           const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
           if (scrollTop >= jTriggerStart) {
             topCardIndex = j;
@@ -272,6 +270,20 @@ const ScrollStack = ({
       card.style.webkitPerspective = '1000px';
     });
 
+    // Cache DOM offsets once (avoids walking offsetParent chain every frame)
+    const cacheOffsets = () => {
+      offsetCacheRef.current = cards.map(card => getElementOffset(card));
+      const endElement = useWindowScroll
+        ? document.querySelector('.scroll-stack-end')
+        : scroller.querySelector('.scroll-stack-end');
+      endOffsetRef.current = endElement ? getElementOffset(endElement) : 0;
+    };
+    cacheOffsets();
+
+    // Recalculate offsets on resize
+    const onResize = () => { cacheOffsets(); updateCardTransforms(); };
+    window.addEventListener('resize', onResize);
+
     setupLenis();
 
     updateCardTransforms();
@@ -285,8 +297,10 @@ const ScrollStack = ({
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];
+      offsetCacheRef.current = [];
       transformsCache.clear();
       isUpdatingRef.current = false;
+      window.removeEventListener('resize', onResize);
     };
   }, [
     itemDistance,
