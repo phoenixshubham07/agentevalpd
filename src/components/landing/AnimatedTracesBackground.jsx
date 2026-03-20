@@ -43,9 +43,9 @@ export default function AnimatedTracesBackground() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { margin: "200px" });
   
-  // U-shaped visibility: visible at top, fades/blurs in middle, visible again at bottom
-  const opacity = useTransform(scrollY, [0, 600, 2000, 4000, 5500], [1, 0.25, 0.2, 0.25, 0.7]);
-  const filter = useTransform(scrollY, [0, 600, 2000, 4000, 5500], ["blur(0px)", "blur(3px)", "blur(4px)", "blur(3px)", "blur(0px)"]);
+  // Keep traces blurred and dim at the bottom to preserve content legibility
+  const opacity = useTransform(scrollY, [0, 600, 2000, 4000, 5500], [1, 0.25, 0.2, 0.2, 0.25]);
+  const filter = useTransform(scrollY, [0, 600, 2000, 4000, 5500], ["blur(0px)", "blur(3px)", "blur(4px)", "blur(4px)", "blur(6px)"]);
 
   useEffect(() => {
     // Pause animations when off-screen

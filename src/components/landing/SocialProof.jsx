@@ -6,7 +6,11 @@ const securityFeatures = [
   {
     icon: <Lock className="w-6 h-6 text-blue-500" />,
     title: "VPC-Native Deployments",
-    description: "Run AgentEval entirely within your firewall. Your proprietary data never leaves the premise.",
+    description: (
+      <>
+        Run AgentEval <span className="text-white font-medium">entirely within your firewall</span>. Your proprietary data never leaves the premise.
+      </>
+    ),
     color: "from-blue-500/20",
     glowColor: "group-hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]",
     borderColor: "group-hover:border-blue-500/50",
@@ -17,7 +21,11 @@ const securityFeatures = [
   {
     icon: <ServerCrash className="w-6 h-6 text-purple-500" />,
     title: "Emergency Controls",
-    description: "Instantly freeze a rogue agent or an entire fleet across the globe with a single action.",
+    description: (
+      <>
+        Instantly <span className="text-white font-medium">freeze a rogue agent</span> or an entire fleet across the globe with a single action.
+      </>
+    ),
     color: "from-purple-500/20",
     glowColor: "group-hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]",
     borderColor: "group-hover:border-purple-500/50",
@@ -28,7 +36,11 @@ const securityFeatures = [
   {
     icon: <Zap className="w-6 h-6 text-cyan-500" />,
     title: "Zero-Latency Operations",
-    description: "Intercept PII and \"Poison Prompts\" with sub-20ms latency scaling horizontally.",
+    description: (
+      <>
+        Intercept PII and "Poison Prompts" with <span className="text-white font-medium">sub-20ms latency</span> scaling horizontally.
+      </>
+    ),
     color: "from-cyan-500/20",
     glowColor: "group-hover:shadow-[0_0_30px_rgba(6,182,212,0.2)]",
     borderColor: "group-hover:border-cyan-500/50",
@@ -46,7 +58,7 @@ export default function SocialProof() {
   });
 
   return (
-    <section ref={sectionRef} className="py-32 relative bg-transparent border-y border-white/5 overflow-hidden">
+    <section ref={sectionRef} className="py-32 relative bg-transparent overflow-hidden">
       {/* Background Cyber-grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none -z-20 opacity-20"></div>
 
@@ -155,7 +167,7 @@ export default function SocialProof() {
                     <span className="animate-pulse opacity-0 group-hover:opacity-100 text-cyan-400 select-none">_</span>
                   </h3>
                   
-                  <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
+                  <p className="text-slate-400 text-base leading-relaxed group-hover:text-slate-300 transition-colors duration-300 block">
                     {feature.description}
                   </p>
                 </div>

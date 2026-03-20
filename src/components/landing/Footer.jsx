@@ -50,7 +50,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={sectionRef} className="relative pt-32 pb-12 overflow-hidden bg-transparent">
+    <footer ref={sectionRef} className="relative pt-32 pb-12 overflow-hidden bg-[#020617]/50 backdrop-blur-2xl border-t border-white/5">
 
 
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
@@ -120,7 +120,7 @@ export default function Footer() {
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-red-400 to-blue-500">AI Governance.</span>
                   </h2>
                   <p className="text-slate-300 text-lg md:text-xl mb-10 text-center leading-relaxed font-body font-light">
-                    Spots for our private beta are <span className="text-red-400 font-bold drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">strictly limited</span>. Secure your organization's place in the future of autonomous AI safety.
+                    Spots for our private beta are <span className="text-red-400 font-bold drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">strictly limited</span>. Secure your organization's place in the future of <span className="text-white font-medium">autonomous AI safety</span>.
                   </p>
 
                   <a href="#" className="group inline-flex items-center justify-center px-10 py-5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full transition-all hover:from-blue-500 hover:to-blue-400 hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] hover:scale-105 duration-300 relative overflow-hidden">
@@ -153,10 +153,10 @@ export default function Footer() {
 
       {/* ASCII Art Embed and Splitting Lines Container */}
       <div className="w-full relative mt-24 pb-10 flex flex-col items-center">
-
-        {/* Animated Split Lines Below Footer */}
-        <div className="w-full max-w-4xl h-[120px] relative pointer-events-none hidden md:block">
-          <svg viewBox="0 0 1000 150" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
+        
+        {/* Animated TV-Frame HUD framing the ASCII Art */}
+        <div className="w-full max-w-5xl h-[950px] absolute top-0 pointer-events-none hidden md:block z-20">
+          <svg viewBox="0 0 1000 950" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
             <defs>
               <filter id="glow-amber-split" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
                 <feGaussianBlur stdDeviation="3" result="blur" />
@@ -174,82 +174,115 @@ export default function Footer() {
 
             {/* Continuing White Stub */}
             <motion.path
-              d="M 500 0 L 500 60"
-              fill="none" stroke="#ffffff" strokeWidth="6"
+              d="M 500 0 L 500 80"
+              fill="none" stroke="#ffffff" strokeWidth="4"
               vectorEffect="non-scaling-stroke"
               style={{
                 pathLength: useTransform(scrollYProgress, [0.8, 0.85], [0, 1]),
-                opacity: 0.6
+                opacity: 0.8
               }}
             />
 
-            {/* Left Branch Split (Amber) */}
+            {/* Left Branch Split (Amber) - TV Frame Left Loop */}
             <motion.path
-              d="M 500 60 L 166 110 L 166 150"
+              d="M 500 80 L 50 120 L 50 820 L 500 860"
               fill="none" stroke="#f59e0b" strokeWidth="3" filter="url(#glow-amber-split)"
               vectorEffect="non-scaling-stroke"
-              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.95], [0, 1]) }}
+              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.98], [0, 1]) }}
             />
 
-            {/* Center Branch Split (Red) */}
+            {/* Center Branch Split (Red) - Drops down into "System Core Accessed" */}
             <motion.path
-              d="M 500 60 L 500 150"
-              fill="none" stroke="#ef4444" strokeWidth="3" filter="url(#glow-red-split)"
+              d="M 500 80 L 500 150"
+              fill="none" stroke="#ef4444" strokeWidth="4" filter="url(#glow-red-split)"
               vectorEffect="non-scaling-stroke"
-              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.95], [0, 1]) }}
+              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.90], [0, 1]) }}
             />
 
-            {/* Right Branch Split (Blue) */}
+            {/* Right Branch Split (Blue) - TV Frame Right Loop */}
             <motion.path
-              d="M 500 60 L 833 110 L 833 150"
+              d="M 500 80 L 950 120 L 950 820 L 500 860"
               fill="none" stroke="#3b82f6" strokeWidth="3" filter="url(#glow-blue-split)"
               vectorEffect="non-scaling-stroke"
-              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.95], [0, 1]) }}
+              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.98], [0, 1]) }}
+            />
+            
+            {/* Bottom Stem powering the Developer Console Quote */}
+            <motion.path
+              d="M 500 860 L 500 910"
+              fill="none" stroke="#ef4444" strokeWidth="4" filter="url(#glow-red-split)"
+              vectorEffect="non-scaling-stroke"
+              style={{ pathLength: useTransform(scrollYProgress, [0.96, 1], [0, 1]) }}
             />
           </svg>
         </div>
-        {/* Speech Bubble - Ballmer Style */}
-        <div className="relative w-full max-w-4xl flex justify-center mb-4 h-16">
-          <AnimatePresence mode="wait">
-            {showBubble && (
-              <motion.div
-                key={phraseIndex}
-                initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -30, scale: 0.6 }}
-                transition={{ duration: 0.15, ease: 'easeOut' }}
-                className="absolute bottom-0 flex flex-col items-center"
-              >
-                <div className="relative px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_0_30px_rgba(255,255,255,0.08)]">
-                  <span
-                    className="font-heading font-black text-lg md:text-2xl tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-rose-400 to-blue-400"
-                    style={{ textShadow: '0 0 20px rgba(244,63,94,0.3)' }}
-                  >
-                    {phrases[phraseIndex]}
-                  </span>
-                  {/* Speech bubble tail */}
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white/10 border-b border-r border-white/20 rotate-45 backdrop-blur-md" />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
 
-        <motion.div
-          style={{
-            opacity: useTransform(scrollYProgress, [0.85, 0.98], [0, 1])
-          }}
-          className="w-full max-w-4xl h-[400px] relative z-10 transition-opacity duration-300"
-        >
-          <iframe
-            src="/ascii-art.html"
-            title="AgentEval ASCII Art"
-            className="w-full h-full border-none"
-            sandbox="allow-scripts allow-same-origin"
-            loading="lazy"
-            tabIndex="-1"
-          />
-        </motion.div>
+        {/* Pure Transparent Terminal Zone without Cards */}
+        <div className="w-full max-w-5xl mx-auto md:px-12 mt-16 z-30 relative pt-12">
+          
+          {/* Ambient terminal glow for pure aesthetic, no rigid borders */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-red-900/10 blur-[120px] -z-10 pointer-events-none"></div>
+
+          {/* ASCII Context Message */}
+          <motion.div
+            style={{ opacity: useTransform(scrollYProgress, [0.85, 0.95], [0, 1]) }}
+            className="text-center mb-10 max-w-3xl mx-auto px-4 relative z-10"
+          >
+            <div className="inline-flex items-center justify-center gap-4 mb-6 relative">
+               <span className="w-24 h-[1px] bg-gradient-to-r from-transparent to-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></span>
+               <span className="text-sm font-tech text-slate-200 font-bold tracking-[0.4em] uppercase drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">System Core Accessed</span>
+               <span className="w-24 h-[1px] bg-gradient-to-l from-transparent to-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></span>
+            </div>
+            <p className="text-base md:text-lg font-mono text-slate-300 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+              Thank you for scrolling into the depths. This raw terminal artifact is dedicated to the paranoid pioneers building the next generation of safe, autonomous technology. We're glad you're here.
+            </p>
+          </motion.div>
+
+          <motion.div
+            style={{
+              opacity: useTransform(scrollYProgress, [0.85, 0.98], [0, 1])
+            }}
+            className="w-full max-w-4xl mx-auto h-[400px] relative z-10 transition-opacity duration-300"
+          >
+            {/* Soft scanline overlay over the iframe to blend it perfectly */}
+            <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.02)_2px,rgba(255,255,255,0.02)_4px)] pointer-events-none z-20"></div>
+            
+            <iframe
+              src="/ascii-art.html"
+              title="AgentEval ASCII Art"
+              className="w-full h-full border-none mix-blend-screen opacity-90"
+              sandbox="allow-scripts allow-same-origin"
+              loading="lazy"
+              tabIndex="-1"
+            />
+          </motion.div>
+          
+          {/* Output Terminal Console Quote - Powered by the TV Frame Base Stem */}
+          <div className="relative w-full max-w-4xl mx-auto flex justify-center mt-12 mb-8 h-16 z-40">
+            <AnimatePresence mode="wait">
+              {showBubble && (
+                <motion.div
+                  key={phraseIndex}
+                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 20, scale: 0.8 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className="absolute bottom-0 flex flex-col items-center"
+                >
+                  <div className="relative px-8 py-3 bg-[#050505]/90 backdrop-blur-md border border-red-500/80 rounded-sm shadow-[0_0_20px_rgba(239,68,68,0.4)]">
+                    <span
+                      className="font-mono font-bold text-lg md:text-2xl tracking-[0.2em] text-red-500"
+                    >
+                      {phrases[phraseIndex]}
+                    </span>
+                    {/* Brutalist terminal tail pointing to base stem */}
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[12px] border-b-red-500/80" />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </footer>
   );

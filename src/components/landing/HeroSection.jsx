@@ -75,7 +75,7 @@ export default function HeroSection() {
           <ScrambleText text="Autonomous AI." delay={0.6} className="text-blue-400 font-medium font-tech" />
         </div>
 
-        <div className="text-base md:text-lg text-slate-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed font-body">
+        <div className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-12 font-light leading-relaxed font-body">
           <ScrambleText text="Real-time observability, cognitive safety, and asynchronous evaluation for enterprise multi-agent systems. Control the uncontrollable." delay={1.0} />
         </div>
 

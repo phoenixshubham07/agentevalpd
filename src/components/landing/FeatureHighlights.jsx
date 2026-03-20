@@ -6,28 +6,44 @@ import ScrollStack, { ScrollStackItem } from './ScrollStack';
 const features = [
   {
     title: "Dynamic Topology Mapping",
-    description: "See the invisible. Our engines map complex, multi-agent interactions in real-time. Automatically detect execution bottlenecks, unroll infinite logic loops, and visualize complex agent handoffs before they cause catastrophic failures.",
+    description: (
+      <>
+        See the invisible. Our engines map complex, multi-agent interactions in real-time. Automatically <span className="text-white font-medium">detect execution bottlenecks</span>, unroll infinite logic loops, and <span className="text-white font-medium">visualize agent handoffs</span> before they cause catastrophic failures.
+      </>
+    ),
     icon: <Network className="w-6 h-6" />,
     accent: { color: '#3b82f6', gradient: 'from-blue-500/20 to-cyan-500/10', border: 'border-blue-500/50', glow: 'rgba(59,130,246,0.4)', text: 'text-blue-400', hoverText: 'text-blue-200', tag: '01' },
     delay: 0.1
   },
   {
     title: "Autonomous Data Redaction",
-    description: "Zero-trust by default. Our in-stream redaction layer scans and shields sensitive enterprise entities on the fly. Guarantee data compliance without sacrificing agent context.",
+    description: (
+      <>
+        Zero-trust by default. Our in-stream redaction layer scans and <span className="text-white font-medium">shields sensitive enterprise entities</span> on the fly. Guarantee data compliance without sacrificing agent context.
+      </>
+    ),
     icon: <EyeOff className="w-6 h-6" />,
     accent: { color: '#8b5cf6', gradient: 'from-purple-500/20 to-indigo-500/10', border: 'border-purple-500/50', glow: 'rgba(139,92,246,0.4)', text: 'text-purple-400', hoverText: 'text-purple-200', tag: '02' },
     delay: 0.3
   },
   {
     title: "Asynchronous Truth-Grounding",
-    description: "Don't trust; verify. We asynchronously judge agent outputs against dynamic organizational contexts to detect deviations, tool-usage bypasses, and hallucinations with deterministic precision.",
+    description: (
+      <>
+        Don't trust; verify. We asynchronously judge agent outputs against dynamic organizational contexts to <span className="text-white font-medium">detect deviations</span>, tool-usage bypasses, and <span className="text-white font-medium">hallucinations</span> with deterministic precision.
+      </>
+    ),
     icon: <CheckCircle2 className="w-6 h-6" />,
     accent: { color: '#f43f5e', gradient: 'from-rose-500/20 to-pink-500/10', border: 'border-rose-500/50', glow: 'rgba(244,63,94,0.4)', text: 'text-rose-400', hoverText: 'text-rose-200', tag: '03' },
     delay: 0.2
   },
   {
     title: "High-IOPS Hybrid Telemetry",
-    description: "Built for planetary scale. Process thousands of semantic traces simultaneously with our dual-engine architecture, combining extremely low-latency stream processing with deep OLAP analytics.",
+    description: (
+      <>
+        Built for planetary scale. Process <span className="text-white font-medium">thousands of semantic traces simultaneously</span> with our dual-engine architecture, combining extremely low-latency stream processing with deep OLAP analytics.
+      </>
+    ),
     icon: <Database className="w-6 h-6" />,
     accent: { color: '#f59e0b', gradient: 'from-amber-500/20 to-orange-500/10', border: 'border-amber-500/50', glow: 'rgba(245,158,11,0.4)', text: 'text-amber-400', hoverText: 'text-amber-200', tag: '04' },
     delay: 0.4
@@ -42,7 +58,7 @@ export default function FeatureHighlights() {
   });
 
   return (
-    <section ref={sectionRef} id="solution" className="py-24 relative overflow-hidden">
+    <section ref={sectionRef} id="solution" className="py-24 relative bg-[#020617]/50 backdrop-blur-3xl overflow-hidden">
       {/* Background glow for features */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 -z-10"></div>
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] -translate-y-1/2 -z-10"></div>
@@ -69,7 +85,7 @@ export default function FeatureHighlights() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-10 pt-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-16">
         {/* Full Width News Ticker */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden bg-[#450a0a] py-4 z-20 shadow-[0_0_20px_rgba(239,68,68,0.2)] flex">
           <div className="animate-ticker-rtl">
@@ -102,7 +118,7 @@ export default function FeatureHighlights() {
         <ScrollStack 
           useWindowScroll={true} 
           stackPosition="20%"
-          itemDistance={50}
+          itemDistance={0}
           itemScale={0.03}
           blurAmount={2}
         >
@@ -220,7 +236,9 @@ export default function FeatureHighlights() {
                   >
                     {feature.title}
                   </h3>
-                  <p className="text-slate-400 text-sm md:text-base lg:text-lg leading-relaxed flex-grow font-body max-w-4xl group-hover:text-slate-300 transition-colors duration-500 line-clamp-3 md:line-clamp-none">{feature.description}</p>
+                  <p className="text-slate-400 text-base lg:text-lg leading-relaxed md:leading-loose flex-grow font-body max-w-4xl group-hover:text-slate-300 transition-colors duration-500 line-clamp-3 md:line-clamp-none block">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             </ScrollStackItem>

@@ -7,7 +7,11 @@ const problems = [
     id: 1,
     icon: <Cpu className="w-6 h-6 text-amber-500" />,
     title: "Unpredictability",
-    description: "Agents stuck in infinite loops can burn $20,000 in API credits overnight. Silent failures cost time and capital.",
+    description: (
+      <>
+        Agents stuck in infinite loops can <span className="text-white font-medium">burn $20,000 in API credits</span> overnight. Silent failures cost time and capital.
+      </>
+    ),
     color: "from-amber-500/20",
     glowColor: "group-hover:shadow-[0_0_30px_rgba(245,158,11,0.2)]",
     borderColor: "group-hover:border-amber-500/50",
@@ -20,7 +24,11 @@ const problems = [
     id: 2,
     icon: <ShieldAlert className="w-6 h-6 text-red-500" />,
     title: "Security Risks",
-    description: "Multi-agent systems create uncontrollable surfaces. Bad actors can hijack agents to bypass traditional security perimeters.",
+    description: (
+      <>
+        Multi-agent systems create uncontrollable surfaces. Bad actors can <span className="text-white font-medium">hijack agents to bypass</span> traditional security perimeters.
+      </>
+    ),
     color: "from-red-500/20",
     glowColor: "group-hover:shadow-[0_0_30px_rgba(239,68,68,0.2)]",
     borderColor: "group-hover:border-red-500/50",
@@ -33,7 +41,11 @@ const problems = [
     id: 3,
     icon: <Scale className="w-6 h-6 text-blue-500" />,
     title: "Compliance Paralysis",
-    description: "Enterprises cannot deploy agents that might hallucinate regulatory advice or leak PII into public LLM models.",
+    description: (
+      <>
+        Enterprises cannot deploy agents that might <span className="text-white font-medium">hallucinate regulatory advice</span> or <span className="text-white font-medium">leak PII</span> into public LLM models.
+      </>
+    ),
     color: "from-blue-500/20",
     glowColor: "group-hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]",
     borderColor: "group-hover:border-blue-500/50",
@@ -43,8 +55,6 @@ const problems = [
     glowId: "glow-blue"
   }
 ];
-
-
 
 export default function ProblemAgitation() {
   const sectionRef = useRef(null);
@@ -83,9 +93,9 @@ export default function ProblemAgitation() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg text-slate-400 font-light"
+            className="text-lg md:text-xl text-slate-300 font-light leading-relaxed"
           >
-            The Trust Gap is blocking adoption. Enterprises want the efficiency of autonomous AI, but the risks of deploying stochastic systems at scale are paralyzing.
+            The Trust Gap is blocking adoption. Enterprises want the efficiency of autonomous AI, but the risks of deploying <span className="text-white font-medium">stochastic systems at scale</span> are paralyzing.
           </motion.p>
         </div>
 
@@ -139,7 +149,7 @@ export default function ProblemAgitation() {
                       <span className="animate-pulse opacity-0 group-hover:opacity-100 text-amber-400 select-none">_</span>
                     </h3>
                     
-                    <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors duration-300 flex flex-wrap gap-[4px]">
+                    <p className="text-slate-400 text-base leading-relaxed group-hover:text-slate-300 transition-colors duration-300 block">
                       {problem.description}
                     </p>
                   </div>

@@ -303,10 +303,19 @@ export default function TraceTree3D() {
   return (
     <div
       ref={containerRef}
-      className={`w-full relative transition-all duration-500 rounded-xl overflow-hidden`}
-      style={{ height: '750px' }}
-      data-lenis-prevent="true"
+      className={`w-full relative transition-all duration-500 rounded-xl overflow-hidden group/canvas`}
+      style={{ height: '640px' }}
     >
+      {/* ── Scroll-Safe Interaction Masks ── 
+          These overlays ensure that the edges of the component 
+          always allow for natural page scrolling, especially on mobile.
+          Interaction is restricted to the central 50% width.
+      */}
+      <div className="absolute inset-y-0 left-0 w-[25%] z-30 pointer-events-auto touch-auto cursor-default" title="Scroll Zone" />
+      <div className="absolute inset-y-0 right-0 w-[25%] z-30 pointer-events-auto touch-auto cursor-default" title="Scroll Zone" />
+      <div className="absolute top-0 inset-x-0 h-[15%] z-30 pointer-events-auto touch-auto cursor-default" title="Scroll Zone" />
+      <div className="absolute bottom-0 inset-x-0 h-[15%] z-30 pointer-events-auto touch-auto cursor-default" title="Scroll Zone" />
+      
       {/* ── Header overlay ── */}
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 pt-4 pointer-events-none">
         <div>
@@ -360,7 +369,9 @@ export default function TraceTree3D() {
         {/* Controls */}
         <OrbitControls
           enableZoom={true}
-          enablePan={true}
+          minDistance={5}
+          maxDistance={15}
+          enablePan={false}
           autoRotate
           autoRotateSpeed={0.5}
           maxPolarAngle={Math.PI / 1.7}
@@ -370,7 +381,7 @@ export default function TraceTree3D() {
 
       {/* ── Footer overlays ── */}
       <div className="absolute bottom-3 right-4 z-20 text-[10px] font-mono text-slate-400 bg-slate-900/80 px-2 py-1 rounded backdrop-blur-md border border-white/10 pointer-events-none shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
-        ↔ Scroll & Drag to explore
+        ↔ Drag to rotate • Scroll to explore
       </div>
       <div className="absolute bottom-3 left-4 z-20 flex items-center gap-3">
         <div className="text-[10px] font-mono text-slate-300 bg-slate-900/80 px-2 py-1 rounded backdrop-blur-md border border-emerald-500/20 shadow-[0_4px_10px_rgba(0,0,0,0.5)] flex items-center gap-2">

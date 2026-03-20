@@ -113,8 +113,8 @@ export default function LandingPage() {
               <h2 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight text-white font-heading relative inline-block">
                 Trust But <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-400">Verify.</span>
               </h2>
-              <p className="mt-6 max-w-2xl text-lg text-slate-400 mx-auto leading-relaxed">
-                Gain deep observability into your autonomous fleet. Pinpoint PII leaks and instantly sever rogue agents with millisecond latency.
+              <p className="mt-8 max-w-3xl text-xl md:text-2xl font-light text-slate-300 mx-auto leading-relaxed">
+                Gain deep observability into your autonomous fleet. Pinpoint <span className="text-white font-medium">PII leaks</span> and instantly <span className="text-white font-medium">sever rogue agents</span> with millisecond latency.
               </p>
             </div>
             
@@ -141,7 +141,7 @@ export default function LandingPage() {
                     <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 font-bold font-tech relative z-10">01</div>
                     <h3 className="text-2xl font-bold font-heading text-white">Full X-Ray Vision</h3>
                   </div>
-                  <p className="text-slate-400 max-w-2xl mx-auto">Visualize agent decision branches instantly. Our unified telemetry tracks LLM calls, deterministic workers, and system guardrails in one tree.</p>
+                  <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">Visualize agent decision branches instantly. Our unified telemetry tracks <span className="text-white font-medium">LLM calls</span>, <span className="text-white font-medium">deterministic workers</span>, and <span className="text-white font-medium">system guardrails</span> in one tree.</p>
                 </div>
                 {/* Full width container for TraceTree */}
                 <div className="w-full max-w-6xl mx-auto px-2 sm:px-6">
@@ -173,7 +173,7 @@ export default function LandingPage() {
                     <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold font-tech relative z-10">02</div>
                     <h3 className="text-2xl font-bold font-heading text-white">The Global Kill Switch</h3>
                   </div>
-                  <p className="text-slate-400 max-w-2xl mx-auto">Emergency brakes for the autonomous era. Freeze a rogue agent or halt the entire execution fleet across your VPC without a code deploy.</p>
+                  <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">Emergency brakes for the autonomous era. <span className="text-white font-medium">Freeze a rogue agent</span> or halt the <span className="text-white font-medium">entire execution fleet</span> across your VPC without a code deploy.</p>
                 </div>
                 {/* Full width container for KillSwitch */}
                 <div className="w-full max-w-5xl mx-auto px-2 sm:px-6 h-[60vh] min-h-[500px]">
