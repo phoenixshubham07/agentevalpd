@@ -179,7 +179,11 @@ export default function SyntroxWordmark({
       }, nextDelay);
     };
 
-    let glitchTimer = scheduleNextGlitch();
+    // Fire first glitch quickly (2–3 s after reveal), then normal 6–12 s cycle
+    let glitchTimer = setTimeout(() => {
+      runGlitchSequence();
+      glitchTimer = scheduleNextGlitch();
+    }, 2000 + Math.random() * 1000);
     return () => clearTimeout(glitchTimer);
   }, [showSuffix, paused]);
 

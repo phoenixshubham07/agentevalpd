@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import Vara from 'vara';
 
 export default function Footer() {
   const sectionRef = useRef(null);
@@ -31,6 +32,54 @@ export default function Footer() {
     }, 700); // Increased speed
     return () => clearInterval(interval);
   }, [showBubble, phrases.length]);
+
+  // ── Signature writing animation (Vara.js) ──
+  const sigWrapRef = useRef(null);
+  const varaContainerRef = useRef(null);
+  const varaRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && varaContainerRef.current && !varaRef.current) {
+          const id = 'vara-sig-container';
+          varaContainerRef.current.id = id;
+          varaRef.current = new Vara(
+            `#${id}`,
+            '/fonts/vara/Satisfy/SatisfySL.json',
+            [{
+              text: 'Syntrox',
+              fontSize: 68,
+              strokeWidth: 1.2,
+              duration: 3500,
+              color: '#ffffff',
+              delay: 300,
+              queued: false,
+              letterSpacing: 8,
+              x: 0,
+              y: 10,
+            }],
+            {
+              fontSize: 68,
+              strokeWidth: 1.2,
+              color: '#ffffff',
+            }
+          );
+          // Center the SVG Vara injects into the container
+          setTimeout(() => {
+            const svg = varaContainerRef.current?.querySelector('svg');
+            if (svg) {
+              svg.style.display = 'block';
+              svg.style.margin = '0 auto';
+            }
+          }, 100);
+        }
+      },
+      { threshold: 0.3, rootMargin: '-60px' }
+    );
+    if (sigWrapRef.current) observer.observe(sigWrapRef.current);
+    return () => observer.disconnect();
+  }, []);
 
 
   return (
@@ -185,17 +234,66 @@ export default function Footer() {
         <div className="absolute top-[15%] left-[8%] w-[250px] h-[250px] rounded-full bg-violet-500 opacity-[0.12] blur-[60px] pointer-events-none" />
         <div className="absolute bottom-[15%] right-[10%] w-[220px] h-[220px] rounded-full bg-amber-400 opacity-[0.10] blur-[60px] pointer-events-none" />
 
-        {/* ── TWINKLING STARS (8 only, CSS animation, no framer motion) ── */}
+        {/* ── TWINKLING STARS (CSS animation, no framer motion) ── */}
         <div className="absolute inset-0 pointer-events-none">
           {[
-            {top:'6%', left:'10%', d:2,  o:0.8, dur:2.5, color:'#fff'},
-            {top:'12%',left:'55%', d:2,  o:0.9, dur:2.0, color:'#c4b5fd'},
-            {top:'25%',left:'85%', d:1.5,o:0.7, dur:3.2, color:'#fde68a'},
-            {top:'45%',left:'20%', d:2,  o:0.7, dur:3.0, color:'#fff'},
-            {top:'55%',left:'75%', d:2.5,o:0.8, dur:2.2, color:'#93c5fd'},
-            {top:'70%',left:'40%', d:1.5,o:0.6, dur:3.8, color:'#fff'},
-            {top:'80%',left:'90%', d:2,  o:0.8, dur:2.8, color:'#fde68a'},
-            {top:'90%',left:'15%', d:1.5,o:0.7, dur:3.5, color:'#c4b5fd'},
+            // Row 1 — top band
+            {top:'3%',  left:'5%',  d:2.5,o:0.9, dur:2.5, color:'#fff'},
+            {top:'5%',  left:'22%', d:1.5,o:0.7, dur:3.1, color:'#c4b5fd'},
+            {top:'2%',  left:'40%', d:2,  o:0.8, dur:2.0, color:'#fde68a'},
+            {top:'6%',  left:'58%', d:3,  o:0.95,dur:1.8, color:'#fff'},
+            {top:'4%',  left:'75%', d:1.5,o:0.7, dur:3.4, color:'#93c5fd'},
+            {top:'7%',  left:'90%', d:2,  o:0.8, dur:2.6, color:'#fde68a'},
+            // Row 2
+            {top:'12%', left:'8%',  d:2,  o:0.75,dur:3.0, color:'#c4b5fd'},
+            {top:'10%', left:'32%', d:1.5,o:0.6, dur:3.7, color:'#fff'},
+            {top:'14%', left:'50%', d:2,  o:0.85,dur:2.3, color:'#fff'},
+            {top:'11%', left:'68%', d:1.5,o:0.65,dur:4.0, color:'#c4b5fd'},
+            {top:'15%', left:'85%', d:2,  o:0.7, dur:2.9, color:'#fde68a'},
+            // Row 3
+            {top:'20%', left:'15%', d:1.5,o:0.6, dur:3.5, color:'#93c5fd'},
+            {top:'22%', left:'38%', d:2.5,o:0.8, dur:2.1, color:'#fff'},
+            {top:'18%', left:'60%', d:2,  o:0.7, dur:3.3, color:'#fff'},
+            {top:'24%', left:'80%', d:1.5,o:0.65,dur:3.9, color:'#c4b5fd'},
+            {top:'19%', left:'96%', d:2,  o:0.7, dur:2.7, color:'#fde68a'},
+            // Row 4
+            {top:'30%', left:'3%',  d:2,  o:0.75,dur:3.2, color:'#fff'},
+            {top:'28%', left:'28%', d:1.5,o:0.6, dur:4.2, color:'#93c5fd'},
+            {top:'32%', left:'52%', d:2,  o:0.8, dur:2.8, color:'#fff'},
+            {top:'29%', left:'73%', d:3,  o:0.9, dur:2.4, color:'#fde68a'},
+            {top:'33%', left:'92%', d:1.5,o:0.65,dur:3.6, color:'#c4b5fd'},
+            // Row 5
+            {top:'40%', left:'12%', d:2,  o:0.7, dur:2.5, color:'#fff'},
+            {top:'42%', left:'35%', d:1.5,o:0.55,dur:3.8, color:'#fde68a'},
+            {top:'38%', left:'60%', d:2,  o:0.75,dur:3.1, color:'#93c5fd'},
+            {top:'44%', left:'82%', d:2.5,o:0.85,dur:2.2, color:'#fff'},
+            // Row 6
+            {top:'50%', left:'6%',  d:1.5,o:0.65,dur:3.5, color:'#c4b5fd'},
+            {top:'52%', left:'25%', d:2,  o:0.7, dur:2.9, color:'#fff'},
+            {top:'48%', left:'48%', d:2,  o:0.8, dur:3.3, color:'#fde68a'},
+            {top:'54%', left:'70%', d:1.5,o:0.6, dur:4.1, color:'#fff'},
+            {top:'50%', left:'90%', d:2,  o:0.75,dur:2.7, color:'#93c5fd'},
+            // Row 7
+            {top:'60%', left:'18%', d:2,  o:0.7, dur:3.0, color:'#fff'},
+            {top:'62%', left:'42%', d:1.5,o:0.6, dur:2.5, color:'#c4b5fd'},
+            {top:'58%', left:'65%', d:2.5,o:0.8, dur:3.7, color:'#fff'},
+            {top:'64%', left:'88%', d:1.5,o:0.65,dur:2.3, color:'#fde68a'},
+            // Row 8
+            {top:'70%', left:'5%',  d:2,  o:0.75,dur:3.4, color:'#93c5fd'},
+            {top:'72%', left:'30%', d:3,  o:0.9, dur:2.0, color:'#fff'},
+            {top:'68%', left:'55%', d:1.5,o:0.6, dur:3.9, color:'#c4b5fd'},
+            {top:'74%', left:'78%', d:2,  o:0.7, dur:2.8, color:'#fde68a'},
+            // Row 9
+            {top:'80%', left:'15%', d:1.5,o:0.65,dur:3.2, color:'#fff'},
+            {top:'82%', left:'40%', d:2,  o:0.75,dur:2.6, color:'#93c5fd'},
+            {top:'78%', left:'65%', d:2,  o:0.7, dur:4.0, color:'#fff'},
+            {top:'84%', left:'88%', d:2.5,o:0.85,dur:2.4, color:'#c4b5fd'},
+            // Row 10 — bottom band
+            {top:'90%', left:'8%',  d:2,  o:0.7, dur:3.1, color:'#fde68a'},
+            {top:'88%', left:'32%', d:1.5,o:0.6, dur:2.9, color:'#fff'},
+            {top:'92%', left:'55%', d:2,  o:0.8, dur:3.6, color:'#93c5fd'},
+            {top:'89%', left:'78%', d:1.5,o:0.65,dur:2.2, color:'#fff'},
+            {top:'94%', left:'95%', d:2,  o:0.75,dur:3.8, color:'#c4b5fd'},
           ].map((s,i) => (
             <div key={i}
               className="absolute rounded-full"
@@ -335,84 +433,15 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* ── CURSIVE SYNTROX SIGNATURE ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-16 flex flex-col items-center"
-          >
-            {/* Thin top separator */}
-            <div className="flex items-center gap-5 mb-2">
-              <div className="h-px w-24 bg-gradient-to-r from-transparent to-amber-400/30"/>
-              <div className="w-1 h-1 rounded-full bg-amber-400/50"/>
-              <div className="h-px w-24 bg-gradient-to-l from-transparent to-amber-400/30"/>
-            </div>
-
-            {/* Cursive signature with writing animation */}
-            <div className="relative group cursor-default select-none" style={{ padding: '10px 0' }}>
-              {/* Ghost base layer - always visible, faint */}
-              <span
-                style={{
-                  fontFamily: "'Great Vibes', cursive",
-                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
-                  color: 'rgba(255,255,255,0.08)',
-                  lineHeight: 1,
-                  letterSpacing: '0.02em',
-                  display: 'block',
-                  userSelect: 'none',
-                }}
-              >
-                Syntrox
-              </span>
-
-              {/* Animated writing layer — clip-path sweeps left-to-right on scroll */}
-              <motion.span
-                initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-                viewport={{ once: false, margin: '-80px' }}
-                transition={{ duration: 1.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ clipPath: 'inset(0 0% 0 0)' }}
-                style={{
-                  fontFamily: "'Great Vibes', cursive",
-                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
-                  color: '#ffffff',
-                  textShadow: '0 0 15px rgba(255,255,255,0.5), 0 0 50px rgba(255,255,255,0.15)',
-                  lineHeight: 1,
-                  letterSpacing: '0.02em',
-                  display: 'block',
-                  position: 'absolute',
-                  top: '10px',
-                  left: 0,
-                  userSelect: 'none',
-                }}
-              >
-                Syntrox
-              </motion.span>
-
-              {/* On-hover re-write effect */}
-              <motion.span
-                initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                whileHover={{ clipPath: 'inset(0 0% 0 0)', transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }}
-                style={{
-                  fontFamily: "'Great Vibes', cursive",
-                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
-                  color: '#fde68a',
-                  textShadow: '0 0 20px rgba(251,191,36,0.6), 0 0 60px rgba(251,191,36,0.2)',
-                  lineHeight: 1,
-                  letterSpacing: '0.02em',
-                  display: 'block',
-                  position: 'absolute',
-                  top: '10px',
-                  left: 0,
-                  userSelect: 'none',
-                }}
-              >
-                Syntrox
-              </motion.span>
-            </div>
-          </motion.div>
+          {/* ── CURSIVE SYNTROX SIGNATURE (Vara.js handwriting) ── */}
+          <div ref={sigWrapRef} className="mt-16 flex flex-col items-center w-full">
+            {/* Vara.js renders the SVG handwriting animation inside this div */}
+            <div
+              ref={varaContainerRef}
+              className="w-full flex justify-center"
+              style={{ minHeight: 120, overflow: 'visible' }}
+            />
+          </div>
 
 
         </div>

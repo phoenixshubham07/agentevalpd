@@ -129,7 +129,7 @@ export default function HeroSection() {
         }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
       >
-        <SyntroxMark size={36} animate={false} />
+        <SyntroxMark size={56} animate={false} />
       </motion.div>
 
       <div ref={logoRef} className="relative z-[60] w-full flex justify-center mt-12 mb-0">

@@ -5,10 +5,10 @@ import ScrollStack, { ScrollStackItem } from './ScrollStack';
 
 const features = [
   {
-    title: "Dynamic Topology Mapping",
+    title: "Real-Time Agent Visibility",
     description: (
       <>
-        See the invisible. Our engines map complex, multi-agent interactions in real-time. Automatically <span className="text-white font-medium">detect execution bottlenecks</span>, unroll infinite logic loops, and <span className="text-white font-medium">visualize agent handoffs</span> before they cause catastrophic failures.
+        Watch your agents in motion. See exactly how they interact, coordinate, and hand off work to each other. <span className="text-white font-medium">Spot performance bottlenecks</span> instantly, catch infinite loops before they spiral, and <span className="text-white font-medium">track every handoff</span>—all before issues cascade.
       </>
     ),
     icon: <Network className="w-6 h-6" />,
@@ -58,7 +58,7 @@ export default function FeatureHighlights() {
   });
 
   return (
-    <section ref={sectionRef} id="solution" className="pt-0 pb-24 relative bg-[#020617]/50 backdrop-blur-3xl overflow-hidden">
+    <section ref={sectionRef} id="solution" className="pt-0 pb-24 relative bg-[#020617]/50 backdrop-blur-3xl overflow-visible">
       {/* Background glow for features */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[60px] -translate-y-1/2 -z-10"></div>
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[60px] -translate-y-1/2 -z-10"></div>
@@ -109,7 +109,7 @@ export default function FeatureHighlights() {
       {/* Full Width News Ticker - in document flow, not absolute */}
       <div className="w-full overflow-hidden bg-red-950/40 border-y border-red-900/50 py-3 z-20 shadow-[0_0_30px_rgba(220,38,38,0.2)] flex backdrop-blur-sm relative">
         <div className="animate-ticker-rtl">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(24)].map((_, i) => (
             <div key={i} className="flex items-center gap-4 px-10 whitespace-nowrap">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)]"></span>
               <span className="text-red-400 font-bold font-tech text-base tracking-widest uppercase opacity-80">Active Governance</span>
@@ -118,7 +118,7 @@ export default function FeatureHighlights() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-4">
         <div className="text-center flex flex-col items-center">
           <div className="relative inline-block z-20 bg-[#020617]/80 backdrop-blur-md px-6 py-2 rounded-2xl shadow-[0_0_40px_rgba(2,6,23,0.9)]">
             <motion.h2
@@ -134,7 +134,7 @@ export default function FeatureHighlights() {
         </div>
       </div>
 
-      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen pt-16">
+      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto pt-6">
         <ScrollStack 
           useWindowScroll={true} 
           stackPosition="15%"
