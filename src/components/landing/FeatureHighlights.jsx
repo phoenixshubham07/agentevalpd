@@ -106,9 +106,9 @@ export default function FeatureHighlights() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-0">
         {/* Full Width News Ticker */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden bg-red-950/40 border-y border-red-900/50 py-3 z-20 shadow-[0_0_30px_rgba(220,38,38,0.2)] flex backdrop-blur-sm">
+        <div className="w-screen relative left-[calc(-50vw+50%)] overflow-hidden bg-red-950/40 border-y border-red-900/50 py-3 z-20 shadow-[0_0_30px_rgba(220,38,38,0.2)] flex backdrop-blur-sm mb-12">
           <div className="animate-ticker-rtl">
             {/* Generate duplicate items to ensure a seamless loop */}
             {[...Array(8)].map((_, i) => (
@@ -120,9 +120,9 @@ export default function FeatureHighlights() {
           </div>
         </div>
 
-        <div className="text-center flex flex-col items-center">
+        <div className="text-center flex flex-col items-center pt-12">
           <div className="relative inline-block z-20 bg-[#020617]/80 backdrop-blur-md px-6 py-2 rounded-2xl shadow-[0_0_40px_rgba(2,6,23,0.9)]">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -135,7 +135,7 @@ export default function FeatureHighlights() {
         </div>
       </div>
 
-      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen -mt-16">
+      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen pt-24">
         <ScrollStack 
           useWindowScroll={true} 
           stackPosition="15%"

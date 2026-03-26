@@ -350,24 +350,57 @@ export default function Footer() {
               <div className="h-px w-24 bg-gradient-to-l from-transparent to-amber-400/30"/>
             </div>
 
-            {/* Cursive signature */}
-            <motion.p
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                fontFamily: "'Great Vibes', cursive",
-                fontSize: 'clamp(3.5rem, 8vw, 6rem)',
-                color: '#ffffff',
-                textShadow: '0 0 15px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.1)',
-                lineHeight: 1,
-                letterSpacing: '0.02em',
-                padding: '10px 0'
-              }}
+            {/* Cursive signature with writing animation */}
+            <motion.div
+              className="group cursor-pointer relative"
+              onHoverStart={() => {}}
+              onHoverEnd={() => {}}
             >
-              Syntrox
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="relative"
+                style={{
+                  fontFamily: "'Great Vibes', cursive",
+                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
+                  color: '#ffffff',
+                  textShadow: '0 0 15px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.1)',
+                  lineHeight: 1,
+                  letterSpacing: '0.02em',
+                  padding: '10px 0',
+                  margin: 0,
+                  position: 'relative',
+                  zIndex: 1
+                }}
+              >
+                Syntrox
+              </motion.p>
+
+              {/* Writing animation overlay */}
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  fontFamily: "'Great Vibes', cursive",
+                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
+                  color: '#ffffff',
+                  textShadow: '0 0 15px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.1)',
+                  lineHeight: 1,
+                  letterSpacing: '0.02em',
+                  padding: '10px 0',
+                  clipPath: 'inset(0 100% 0 0)',
+                  WebkitClipPath: 'inset(0 100% 0 0)',
+                }}
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
+                viewport={{ once: true, margin: "-50px" }}
+                whileHover={{ clipPath: 'inset(0 0% 0 0)' }}
+                transition={{ duration: 1.8, delay: 1.2, ease: "easeInOut" }}
+              >
+                Syntrox
+              </motion.div>
+            </motion.div>
           </motion.div>
 
 
