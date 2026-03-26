@@ -5,7 +5,7 @@ import ProblemAgitation from './ProblemAgitation';
 import FeatureHighlights from './FeatureHighlights';
 import SocialProof from './SocialProof';
 import Footer from './Footer';
-import AnimatedTracesBackground from './AnimatedTracesBackground';
+import AgentTraceBackground from '../../backgrounds/AgentTraceBackground';
 
 // Lazy load heavy 3D/demo components to code-split Three.js (~200KB+)
 const TraceTree3D = lazy(() => import('./TraceTree3D'));
@@ -40,65 +40,81 @@ export default function LandingPage() {
         <div className="absolute bottom-0 inset-x-0 h-1 bg-red-600 shadow-[0_0_30px_rgba(220,38,38,0.8),0_0_60px_rgba(220,38,38,0.4)]"></div>
       </div>
 
-      <AnimatedTracesBackground />
+      <AgentTraceBackground />
       <main>
         <HeroSection />
         <ProblemAgitation />
         
-        <section ref={roadmapRef} className="pt-48 md:pt-64 pb-24 w-full relative z-10 overflow-visible">
+        <section ref={roadmapRef} className="pt-48 md:pt-64 pb-4 w-full relative z-10 overflow-visible">
           
           {/* Incoming Roadmap Lines from ProblemAgitation */}
-          <div className="absolute inset-x-0 -top-32 h-[450px] md:h-[550px] max-w-7xl mx-auto pointer-events-none hidden md:block z-0">
-            <svg viewBox="0 0 1000 400" className="w-full h-full absolute inset-0 overflow-visible">
-              <defs>
-                <filter id="glow-amber" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <filter id="glow-red" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <filter id="glow-blue" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-                <filter id="glow-white" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-              {/* Left Branch */}
-              <motion.path 
-                d="M 166 0 L 166 120 L 500 240 L 500 400" 
-                fill="none" stroke="#f59e0b" strokeWidth="3" filter="url(#glow-amber)"
-                vectorEffect="non-scaling-stroke"
-                style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1]) }}
+          <div className="absolute inset-x-0 -top-32 bottom-0 max-w-7xl mx-auto pointer-events-none hidden md:block z-0">
+            <svg viewBox="0 0 1000 3500" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
+              {/* ===== BIOLUMINESCENT NEURAL LINKS ===== */}
+              
+              {/* Left Branch - Thick Ambient Aura */}
+              <motion.path d="M 166 0 C 166 150, 250 240, 500 240" fill="none" stroke="#f59e0b" strokeWidth="10"  opacity="0.4"
+                vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1.5]) }} />
+              {/* Left Branch - Inner Photon Filament */}
+              <motion.path d="M 166 0 C 166 150, 250 240, 500 240" fill="none" stroke="#fde68a" strokeWidth="2"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1.5]) }} />
+
+              {/* Center Branch - Thick Ambient Aura */}
+              <motion.path d="M 500 0 C 400 80, 600 160, 500 240" fill="none" stroke="#ef4444" strokeWidth="10"  opacity="0.4"
+                vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1.5]) }} />
+              {/* Center Branch - Inner Photon Filament */}
+              <motion.path d="M 500 0 C 400 80, 600 160, 500 240" fill="none" stroke="#fca5a5" strokeWidth="2"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1.5]) }} />
+
+              {/* Right Branch - Thick Ambient Aura */}
+              <motion.path d="M 833 0 C 833 150, 750 240, 500 240" fill="none" stroke="#3b82f6" strokeWidth="10" opacity="0.4"
+                vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1.5]) }} />
+              {/* Right Branch - Inner Photon Filament */}
+              <motion.path d="M 833 0 C 833 150, 750 240, 500 240" fill="none" stroke="#93c5fd" strokeWidth="2"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1.5]) }} />
+              
+              {/* ===== INTERSECTION NODE (The Synapse Pool) ===== */}
+              <motion.circle cx="500" cy="240" r="5" fill="#ffffff"                 style={{ opacity: useTransform(scrollYProgress, [0.12, 0.15], [0, 1]), scale: useTransform(scrollYProgress, [0.12, 0.15], [0, 1.5]) }}
               />
-              {/* Center Branch */}
-              <motion.path 
-                d="M 500 0 L 500.01 400" 
-                fill="none" stroke="#ef4444" strokeWidth="3" filter="url(#glow-red)"
-                vectorEffect="non-scaling-stroke"
-                style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1]) }}
+              <motion.circle cx="500" cy="240" r="14" fill="transparent" stroke="#06b6d4" strokeWidth="2"                 style={{ opacity: useTransform(scrollYProgress, [0.14, 0.18], [0, 0.6]), scale: useTransform(scrollYProgress, [0.14, 0.20], [0, 2.5]) }}
               />
-              {/* Right Branch */}
-              <motion.path 
-                d="M 833 0 L 833 120 L 500 240 L 500 400" 
-                fill="none" stroke="#3b82f6" strokeWidth="3" filter="url(#glow-blue)"
+
+              {/* ===== BRAIDED CORE NERVE BUNDLE ===== */}
+              {/* Central Power Spine - Thick Ambient Glow (Fades out before the rock) */}
+              <motion.path d="M 500 240 L 500 480" fill="none" stroke="#3b82f6" strokeWidth="16" opacity="0.3"
+                vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.25], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 1]) }} />
+              
+              {/* Central Power Spine - Bright Core */}
+              <motion.path d="M 500 240 L 500 480" fill="none" stroke="#ffffff" strokeWidth="3"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.25], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 1]) }} />
+              
+              {/* ===== TRUST BUT VERIFY: Fiber-Optic Data Conduits ===== */}
+              
+              {/* LEFT CONDUIT — Cyan fiber optic cable */}
+              {/* Outer ambient aura */}
+              <motion.path d="M 500 240 C 530 260, 530 300, 500 320 C 470 340, 470 380, 500 400 C 530 420, 530 460, 500 480 C 500 550, 20 550, 20 850 L 20 3500" fill="none" stroke="#06b6d4" strokeWidth="12"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: 0.15 }} />
+              {/* Mid glow ring */}
+              <motion.path d="M 500 240 C 530 260, 530 300, 500 320 C 470 340, 470 380, 500 400 C 530 420, 530 460, 500 480 C 500 550, 20 550, 20 850 L 20 3500" fill="none" stroke="#06b6d4" strokeWidth="4"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 0.5]) }} />
+              {/* Bright inner core */}
+              <motion.path d="M 500 240 C 530 260, 530 300, 500 320 C 470 340, 470 380, 500 400 C 530 420, 530 460, 500 480 C 500 550, 20 550, 20 850 L 20 3500" fill="none" stroke="#e0f7fa" strokeWidth="1.5"
+                vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 0.9]) }} />
+              {/* Dashed pulse traveling the line — data packet */}
+              <motion.path d="M 500 240 C 530 260, 530 300, 500 320 C 470 340, 470 380, 500 400 C 530 420, 530 460, 500 480 C 500 550, 20 550, 20 850 L 20 3500" fill="none" stroke="#67e8f9" strokeWidth="3" strokeDasharray="6 80"
                 vectorEffect="non-scaling-stroke"
-                style={{ pathLength: useTransform(scrollYProgress, [0, 0.15], [0, 1]) }}
-              />
-              {/* Combined Core Line going into Trust But Verify */}
-              <motion.path 
-                d="M 500 240 L 500 400" 
-                fill="none" stroke="#ffffff" strokeWidth="6" filter="url(#glow-white)"
+                style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 1]) }}
+                animate={{ strokeDashoffset: [-200, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}/>
+
+              {/* RIGHT CONDUIT — Blue fiber optic cable */}
+              {/* Outer ambient aura */}
+              <motion.path d="M 500 240 C 470 260, 470 300, 500 320 C 530 340, 530 380, 500 400 C 470 420, 470 460, 500 480 C 500 550, 980 550, 980 850 L 980 3500" fill="none" stroke="#3b82f6" strokeWidth="12"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: 0.15 }} />
+              {/* Mid glow ring */}
+              <motion.path d="M 500 240 C 470 260, 470 300, 500 320 C 530 340, 530 380, 500 400 C 470 420, 470 460, 500 480 C 500 550, 980 550, 980 850 L 980 3500" fill="none" stroke="#3b82f6" strokeWidth="4"                 vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 0.5]) }} />
+              {/* Bright inner core */}
+              <motion.path d="M 500 240 C 470 260, 470 300, 500 320 C 530 340, 530 380, 500 400 C 470 420, 470 460, 500 480 C 500 550, 980 550, 980 850 L 980 3500" fill="none" stroke="#bfdbfe" strokeWidth="1.5"
+                vectorEffect="non-scaling-stroke" style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 0.9]) }} />
+              {/* Dashed pulse — data packet */}
+              <motion.path d="M 500 240 C 470 260, 470 300, 500 320 C 530 340, 530 380, 500 400 C 470 420, 470 460, 500 480 C 500 550, 980 550, 980 850 L 980 3500" fill="none" stroke="#93c5fd" strokeWidth="3" strokeDasharray="6 80"
                 vectorEffect="non-scaling-stroke"
-                style={{ 
-                  pathLength: useTransform(scrollYProgress, [0.08, 0.18], [0, 1]), 
-                  opacity: useTransform(scrollYProgress, [0.08, 0.12], [0, 1]) 
-                }}
-              />
+                style={{ pathLength: useTransform(scrollYProgress, [0.13, 0.60], [0, 1.5]), opacity: useTransform(scrollYProgress, [0.12, 0.14], [0, 1]) }}
+                animate={{ strokeDashoffset: [-200, 0] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}/>
             </svg>
           </div>
 
@@ -127,14 +143,6 @@ export default function LandingPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex flex-col gap-4 w-full relative -mt-8"
               >
-                {/* Background Edge Highlight when in view */}
-                <motion.div 
-                  className="absolute -inset-4 md:-inset-8 shadow-[0_0_80px_rgba(168,85,247,0.15),inset_0_0_80px_rgba(168,85,247,0.1)] rounded-3xl pointer-events-none -z-10"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.0 }}
-                  viewport={{ margin: "-200px" }}
-                />
 
                 <div className="text-center px-4">
                   <div className="inline-flex items-center justify-center gap-3 mb-4">
@@ -144,10 +152,22 @@ export default function LandingPage() {
                   <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">Visualize agent decision branches instantly. Our unified telemetry tracks <span className="text-white font-medium">LLM calls</span>, <span className="text-white font-medium">deterministic workers</span>, and <span className="text-white font-medium">system guardrails</span> in one tree.</p>
                 </div>
                 {/* Full width container for TraceTree */}
-                <div className="w-full max-w-6xl mx-auto px-2 sm:px-6">
-                  <Suspense fallback={<div className="w-full h-[540px] bg-slate-900/50 rounded-2xl animate-pulse" />}>
-                    <TraceTree3D />
-                  </Suspense>
+                <div className="relative w-full">
+                  <div className="hidden md:block absolute top-1/2 left-[2%] w-16 lg:w-32 h-[2px] bg-gradient-to-r from-cyan-500 to-transparent z-0 -translate-y-1/2">
+                    <div className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#020617] border-2 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.8)] flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-[ping_3s_infinite]" />
+                    </div>
+                  </div>
+                  <div className="hidden md:block absolute top-1/2 right-[2%] w-16 lg:w-32 h-[2px] bg-gradient-to-l from-blue-500 to-transparent z-0 -translate-y-1/2">
+                    <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#020617] border-2 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.8)] flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-[ping_3s_infinite_1s]" />
+                    </div>
+                  </div>
+                  <div className="w-full max-w-6xl mx-auto px-2 sm:px-6 relative z-10">
+                    <Suspense fallback={<div className="w-full h-[540px] bg-slate-900/50 rounded-2xl animate-pulse" />}>
+                      <TraceTree3D />
+                    </Suspense>
+                  </div>
                 </div>
               </motion.div>
               
@@ -159,14 +179,6 @@ export default function LandingPage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="flex flex-col gap-8 w-full relative"
               >
-                {/* Background Edge Highlight when in view */}
-                <motion.div 
-                  className="absolute -inset-4 md:-inset-8 shadow-[0_0_80px_rgba(6,182,212,0.15),inset_0_0_80px_rgba(6,182,212,0.1)] rounded-3xl pointer-events-none -z-10"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.0 }}
-                  viewport={{ margin: "-200px" }}
-                />
 
                 <div className="text-center px-4">
                   <div className="inline-flex items-center justify-center gap-3 mb-4">
@@ -176,10 +188,22 @@ export default function LandingPage() {
                   <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">Emergency brakes for the autonomous era. <span className="text-white font-medium">Freeze a rogue agent</span> or halt the <span className="text-white font-medium">entire execution fleet</span> across your VPC without a code deploy.</p>
                 </div>
                 {/* Full width container for KillSwitch */}
-                <div className="w-full max-w-5xl mx-auto px-2 sm:px-6 h-[60vh] min-h-[500px]">
-                  <Suspense fallback={<div className="w-full h-full bg-slate-900/50 rounded-2xl animate-pulse" />}>
-                    <KillSwitchDemo onToggle={setKillSwitchActive} />
-                  </Suspense>
+                <div className="relative w-full">
+                  <div className="hidden md:block absolute top-1/2 left-[2%] w-16 lg:w-32 h-[2px] bg-gradient-to-r from-cyan-500 to-transparent z-0 -translate-y-1/2">
+                    <div className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#020617] border-2 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.8)] flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-[ping_3s_infinite_0.5s]" />
+                    </div>
+                  </div>
+                  <div className="hidden md:block absolute top-1/2 right-[2%] w-16 lg:w-32 h-[2px] bg-gradient-to-l from-blue-500 to-transparent z-0 -translate-y-1/2">
+                    <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#020617] border-2 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.8)] flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-[ping_3s_infinite_1.5s]" />
+                    </div>
+                  </div>
+                  <div className="w-full max-w-5xl mx-auto px-2 sm:px-6 h-[60vh] min-h-[500px] relative z-10">
+                    <Suspense fallback={<div className="w-full h-full bg-slate-900/30 rounded-2xl border border-slate-800/50" />}>
+                      <KillSwitchDemo active={killSwitchActive} onToggle={() => setKillSwitchActive(!killSwitchActive)} />
+                    </Suspense>
+                  </div>
                 </div>
               </motion.div>
             </div>

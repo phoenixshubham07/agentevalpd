@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Shield } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 export default function Footer() {
@@ -33,55 +32,82 @@ export default function Footer() {
     return () => clearInterval(interval);
   }, [showBubble, phrases.length]);
 
-  // Forward scroll events from ASCII art iframe to maintain smooth scrolling
-  useEffect(() => {
-    const handleMessage = (e) => {
-      if (e.data && e.data.type === 'iframeWheel') {
-        window.dispatchEvent(new WheelEvent('wheel', {
-          deltaY: e.data.deltaY,
-          deltaX: e.data.deltaX,
-          bubbles: true,
-          cancelable: true
-        }));
-      }
-    };
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
 
   return (
-    <footer ref={sectionRef} className="relative pt-32 pb-12 overflow-hidden bg-[#020617]/50 backdrop-blur-2xl border-t border-white/5">
+    <footer ref={sectionRef} className="relative pt-12 pb-12 overflow-hidden">
+
+      {/* === BACKGROUND === */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#04071a] to-[#010408]" />
+      {/* Very subtle blue tint — doesn't fight the card */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(59,130,246,0.06),transparent_70%)]" />
+      {/* Fine dot grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:28px_28px] opacity-60 pointer-events-none" />
 
 
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div className="absolute bottom-[-200px] left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/30 rounded-full blur-[150px]"></div>
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 text-center">
 
         {/* Wrapper for CTA Card to securely bind the white line */}
         <div className="relative mb-24">
 
-          {/* White Line Behind CTA Only (Stops exactly at the CTA bottom, before the text links) */}
-          <div className="absolute left-0 right-0 -top-32 bottom-0 pointer-events-none hidden md:block z-0">
-            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
-              <defs>
-                <filter id="glow-white-cta" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-              <motion.path
-                d="M 50 0 L 50 100"
-                fill="none" stroke="#ffffff" strokeWidth="6" filter="url(#glow-white-cta)"
-                vectorEffect="non-scaling-stroke"
-                style={{
-                  pathLength: useTransform(scrollYProgress, [0, 0.5], [0, 1]),
-                  opacity: 0.6
-                }}
-              />
+          {/* LEFT panel — lightweight circuit lines (no SVG blur filters) */}
+          <div className="absolute left-0 top-0 bottom-0 w-56 pointer-events-none z-0 hidden lg:block">
+            <svg viewBox="0 0 220 500" preserveAspectRatio="none" className="w-full h-full">
+              {/* VERTICAL RAILS */}
+              <line x1="8"  y1="0" x2="8"  y2="500" stroke="#06b6d4" strokeWidth="1.5" opacity="0.4"/>
+              <line x1="40" y1="0" x2="40" y2="500" stroke="#06b6d4" strokeWidth="1"   opacity="0.2"/>
+              <line x1="75" y1="40" x2="75" y2="460" stroke="#0e7490" strokeWidth="1"  opacity="0.15"/>
+              {/* HORIZONTAL BRANCHES */}
+              <line x1="8" y1="40"  x2="120" y2="40"  stroke="#06b6d4" strokeWidth="1" opacity="0.3"/>
+              <line x1="8" y1="80"  x2="160" y2="80"  stroke="#06b6d4" strokeWidth="1" opacity="0.45"/>
+              <line x1="8" y1="150" x2="140" y2="150" stroke="#06b6d4" strokeWidth="1" opacity="0.35"/>
+              <line x1="8" y1="190" x2="100" y2="190" stroke="#22d3ee" strokeWidth="1" opacity="0.30"/>
+              <line x1="8" y1="260" x2="180" y2="260" stroke="#06b6d4" strokeWidth="1" opacity="0.35"/>
+              <line x1="8" y1="370" x2="155" y2="370" stroke="#06b6d4" strokeWidth="1" opacity="0.30"/>
+              <line x1="8" y1="455" x2="130" y2="455" stroke="#06b6d4" strokeWidth="1" opacity="0.25"/>
+              {/* JUNCTION DOTS (static, no animation) */}
+              {[{cx:8,cy:40},{cx:8,cy:80},{cx:8,cy:150},{cx:8,cy:260},{cx:8,cy:370},
+                {cx:40,cy:80},{cx:40,cy:150},{cx:40,cy:260},
+                {cx:75,cy:115},{cx:75,cy:220}
+              ].map((n,i) => (
+                <circle key={i} cx={n.cx} cy={n.cy} r="2.5" fill="#06b6d4" opacity="0.5"/>
+              ))}
+              {/* 1 signal pulse (CSS animateMotion only) */}
+              <circle r="2.5" fill="#67e8f9" opacity="0.8">
+                <animateMotion dur="4s" repeatCount="indefinite" path="M 8 0 L 8 500"/>
+              </circle>
             </svg>
           </div>
+
+          {/* RIGHT panel — lightweight circuit lines (no SVG blur filters) */}
+          <div className="absolute right-0 top-0 bottom-0 w-56 pointer-events-none z-0 hidden lg:block">
+            <svg viewBox="0 0 220 500" preserveAspectRatio="none" className="w-full h-full">
+              {/* VERTICAL RAILS */}
+              <line x1="212" y1="0" x2="212" y2="500" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4"/>
+              <line x1="180" y1="0" x2="180" y2="500" stroke="#3b82f6" strokeWidth="1"   opacity="0.2"/>
+              <line x1="145" y1="40" x2="145" y2="460" stroke="#1d4ed8" strokeWidth="1"  opacity="0.15"/>
+              {/* HORIZONTAL BRANCHES */}
+              <line x1="212" y1="40"  x2="100" y2="40"  stroke="#3b82f6" strokeWidth="1" opacity="0.3"/>
+              <line x1="212" y1="80"  x2="60"  y2="80"  stroke="#3b82f6" strokeWidth="1" opacity="0.45"/>
+              <line x1="212" y1="150" x2="80"  y2="150" stroke="#3b82f6" strokeWidth="1" opacity="0.35"/>
+              <line x1="212" y1="190" x2="120" y2="190" stroke="#60a5fa" strokeWidth="1" opacity="0.30"/>
+              <line x1="212" y1="260" x2="40"  y2="260" stroke="#3b82f6" strokeWidth="1" opacity="0.35"/>
+              <line x1="212" y1="370" x2="65"  y2="370" stroke="#3b82f6" strokeWidth="1" opacity="0.30"/>
+              <line x1="212" y1="455" x2="90"  y2="455" stroke="#3b82f6" strokeWidth="1" opacity="0.25"/>
+              {/* JUNCTION DOTS (static) */}
+              {[{cx:212,cy:40},{cx:212,cy:80},{cx:212,cy:150},{cx:212,cy:260},{cx:212,cy:370},
+                {cx:180,cy:80},{cx:180,cy:150},{cx:180,cy:260},
+                {cx:145,cy:115},{cx:145,cy:220}
+              ].map((n,i) => (
+                <circle key={i} cx={n.cx} cy={n.cy} r="2.5" fill="#3b82f6" opacity="0.5"/>
+              ))}
+              {/* 1 signal pulse */}
+              <circle r="2.5" fill="#93c5fd" opacity="0.8">
+                <animateMotion dur="4.5s" repeatCount="indefinite" begin="0.5s" path="M 212 0 L 212 500"/>
+              </circle>
+            </svg>
+          </div>
+
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -133,154 +159,239 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        <div className="pt-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      </div>
+
+
+
+      {/* === GRATITUDE SECTION — THE MOST BEAUTIFUL SECTION === */}
+      <div className="relative w-full overflow-hidden pt-28 pb-10">
+
+        {/* ── COSMOS BACKGROUND ── */}
+        {/* Pure black void */}
+        <div className="absolute inset-0 bg-black" />
+
+        {/* ── NEBULA CLOUDS (reduced blur, fewer elements) ── */}
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-violet-700 opacity-[0.15] blur-[80px] pointer-events-none" />
+        <div className="absolute top-0 -left-32 w-[500px] h-[350px] rounded-full bg-purple-900 opacity-[0.20] blur-[70px] pointer-events-none" />
+        <div className="absolute top-[35%] -right-20 w-[400px] h-[300px] rounded-full bg-amber-600 opacity-[0.10] blur-[70px] pointer-events-none" />
+        <div className="absolute -bottom-20 left-1/3 w-[500px] h-[300px] rounded-full bg-blue-900 opacity-[0.15] blur-[70px] pointer-events-none" />
+
+        {/* ── Galaxy center line (no blur filter, just gradient) ── */}
+        <div className="absolute top-[50%] left-[10%] right-[10%] h-px pointer-events-none"
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 30%, rgba(255,240,180,0.10) 50%, rgba(255,255,255,0.06) 70%, transparent)' }}
+        />
+
+        {/* ── 2 static nebula accents (no animation, CSS only) ── */}
+        <div className="absolute top-[15%] left-[8%] w-[250px] h-[250px] rounded-full bg-violet-500 opacity-[0.12] blur-[60px] pointer-events-none" />
+        <div className="absolute bottom-[15%] right-[10%] w-[220px] h-[220px] rounded-full bg-amber-400 opacity-[0.10] blur-[60px] pointer-events-none" />
+
+        {/* ── TWINKLING STARS (8 only, CSS animation, no framer motion) ── */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[
+            {top:'6%', left:'10%', d:2,  o:0.8, dur:2.5, color:'#fff'},
+            {top:'12%',left:'55%', d:2,  o:0.9, dur:2.0, color:'#c4b5fd'},
+            {top:'25%',left:'85%', d:1.5,o:0.7, dur:3.2, color:'#fde68a'},
+            {top:'45%',left:'20%', d:2,  o:0.7, dur:3.0, color:'#fff'},
+            {top:'55%',left:'75%', d:2.5,o:0.8, dur:2.2, color:'#93c5fd'},
+            {top:'70%',left:'40%', d:1.5,o:0.6, dur:3.8, color:'#fff'},
+            {top:'80%',left:'90%', d:2,  o:0.8, dur:2.8, color:'#fde68a'},
+            {top:'90%',left:'15%', d:1.5,o:0.7, dur:3.5, color:'#c4b5fd'},
+          ].map((s,i) => (
+            <div key={i}
+              className="absolute rounded-full"
+              style={{
+                top: s.top, left: s.left,
+                width: s.d, height: s.d,
+                backgroundColor: s.color,
+                boxShadow: `0 0 ${s.d * 2}px ${s.color}`,
+                animation: `twinkle ${s.dur}s ease-in-out infinite`,
+                animationDelay: `${i * 0.3}s`,
+              }}
+            />
+          ))}
+          <style>{`@keyframes twinkle { 0%,100%{opacity:0.8;transform:scale(1)} 50%{opacity:0.15;transform:scale(0.5)} }`}</style>
+        </div>
+
+
+
+
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6 flex flex-col items-center">
+
+          {/* ── HEADING ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center mb-6"
+          >
+            {/* Cinematic golden divider line */}
+            <div className="flex items-center gap-4 justify-center mb-8">
+              <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-400/50"/>
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,1)]"/>
+              <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-400/50"/>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-bold font-heading tracking-tight leading-tight mb-5">
+              <span className="text-white">Built by those who </span>
+              <br className="hidden md:block"/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 drop-shadow-[0_0_30px_rgba(251,191,36,0.4)]">
+                refuse to trust blindly.
+              </span>
+            </h2>
+
+            <p className="text-slate-200 text-lg md:text-xl max-w-2xl mx-auto font-body leading-relaxed font-light">
+              This artifact is dedicated to the{' '}
+              <span className="text-amber-300 font-semibold">paranoid pioneers</span>{' '}
+              building the next generation of safe, autonomous technology.{' '}
+              <span className="text-white font-medium">The machine sees all. The machine answers to you.</span>
+            </p>
+          </motion.div>
+
+          {/* ── COMIC SPEECH BUBBLE — DEVELOPERS dialogue ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4, type: 'spring', stiffness: 300, damping: 18 }}
+            className="relative mb-10"
+          >
+            {/* Comic bubble body */}
+            <div className="relative px-10 py-5 rounded-2xl border-4 border-red-400/90 bg-[#1a0000]/80 backdrop-blur-md shadow-[0_0_40px_rgba(239,68,68,0.3),inset_0_0_20px_rgba(239,68,68,0.05)]">
+              {/* Halftone dots texture inside bubble */}
+              <div className="absolute inset-0 rounded-xl opacity-10 pointer-events-none"
+                style={{ backgroundImage: 'radial-gradient(circle, rgba(239,68,68,0.8) 1px, transparent 1px)', backgroundSize: '8px 8px' }}/>
+
+              <AnimatePresence mode="wait">
+                {showBubble && (
+                  <motion.span
+                    key={phraseIndex}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.1 }}
+                    transition={{ duration: 0.15, ease: 'easeOut' }}
+                    className="relative z-10 font-mono font-black text-2xl md:text-3xl tracking-[0.1em] text-red-300 drop-shadow-[0_0_16px_rgba(239,68,68,1)]"
+                  >
+                    {phrases[phraseIndex]}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Comic bubble tail pointing DOWN (toward the terminal below) */}
+            <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-0 h-0"
+              style={{
+                borderLeft: '14px solid transparent',
+                borderRight: '14px solid transparent',
+                borderTop: '22px solid rgba(248,113,113,0.9)',
+                filter: 'drop-shadow(0 4px 12px rgba(239,68,68,0.5))'
+              }}
+            />
+          </motion.div>
+
+          {/* ── CINEMATIC TERMINAL WINDOW ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full"
+          >
+            {/* Outer golden glow halo */}
+            <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-amber-500/20 via-transparent to-violet-500/20 blur-sm pointer-events-none"/>
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-amber-400/30 via-transparent via-50% to-blue-500/20 pointer-events-none"/>
+
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_0_120px_rgba(251,191,36,0.08),0_0_60px_rgba(120,80,255,0.08),0_40px_80px_rgba(0,0,0,0.9)] border border-amber-400/10">
+
+              {/* Terminal chrome header — gold-tinted */}
+              <div className="flex items-center gap-2 px-5 py-3.5 bg-[#0a0800]/95 backdrop-blur-xl border-b border-amber-400/10">
+                <div className="w-3 h-3 rounded-full bg-red-500/90 shadow-[0_0_8px_rgba(239,68,68,0.8)]"/>
+                <div className="w-3 h-3 rounded-full bg-yellow-500/90 shadow-[0_0_8px_rgba(234,179,8,0.8)]"/>
+                <div className="w-3 h-3 rounded-full bg-green-500/90 shadow-[0_0_8px_rgba(34,197,94,0.8)]"/>
+                <div className="ml-4 flex-1 text-center">
+                  <span className="text-xs font-mono text-amber-600/70 tracking-widest">syntrox@neural-core — bash — 80×24</span>
+                </div>
+              </div>
+
+              {/* Terminal body */}
+              <div className="relative bg-[#020608]/98 backdrop-blur-xl">
+                {/* Amber scan lines */}
+                <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(251,191,36,0.008)_2px,rgba(251,191,36,0.008)_4px)] pointer-events-none z-10"/>
+                {/* Vignette */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.6))] pointer-events-none z-10"/>
+
+                <div className="relative h-[420px] z-20">
+                  <iframe
+                    src="/ascii-art.html"
+                    title="Syntrox ASCII Art"
+                    className="w-full h-full border-none mix-blend-screen"
+                    sandbox="allow-scripts allow-same-origin"
+                    loading="lazy"
+                    tabIndex="-1"
+                    style={{ pointerEvents: 'none' }}
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── CURSIVE SYNTROX SIGNATURE ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-16 flex flex-col items-center"
+          >
+            {/* Thin top separator */}
+            <div className="flex items-center gap-5 mb-2">
+              <div className="h-px w-24 bg-gradient-to-r from-transparent to-amber-400/30"/>
+              <div className="w-1 h-1 rounded-full bg-amber-400/50"/>
+              <div className="h-px w-24 bg-gradient-to-l from-transparent to-amber-400/30"/>
+            </div>
+
+            {/* Cursive signature */}
+            <motion.p
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                fontFamily: "'Great Vibes', cursive",
+                fontSize: 'clamp(3.5rem, 8vw, 6rem)',
+                color: '#ffffff',
+                textShadow: '0 0 15px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.1)',
+                lineHeight: 1,
+                letterSpacing: '0.02em',
+                padding: '10px 0'
+              }}
+            >
+              Syntrox
+            </motion.p>
+          </motion.div>
+
+
+        </div>
+      </div>
+
+
+
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 text-center mt-12 border-t border-white/5 pt-8 mb-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <Shield className="w-5 h-5 text-blue-500" />
-            <span className="font-heading font-semibold text-lg tracking-tight text-white">AgentEval</span>
+            <span className="text-sm text-slate-300 font-tech tracking-widest">Syntrox.ai</span>
           </div>
 
           <div className="flex gap-8 text-sm text-slate-500 hover:text-slate-300 transition-colors">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="mailto:founders@agenteval.ai" className="hover:text-white transition-colors">Contact</a>
+            <a href="mailto:founders@syntrox.ai" className="hover:text-white transition-colors">Contact</a>
           </div>
 
           <div className="text-sm text-slate-500">
-            © {new Date().getFullYear()} AgentEval.ai
-          </div>
-        </div>
-      </div>
-
-      {/* ASCII Art Embed and Splitting Lines Container */}
-      <div className="w-full relative mt-24 pb-10 flex flex-col items-center">
-        
-        {/* Animated TV-Frame HUD framing the ASCII Art */}
-        <div className="w-full max-w-5xl h-[950px] absolute top-0 pointer-events-none hidden md:block z-20">
-          <svg viewBox="0 0 1000 950" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
-            <defs>
-              <filter id="glow-amber-split" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-              <filter id="glow-red-split" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-              <filter id="glow-blue-split" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-
-            {/* Continuing White Stub */}
-            <motion.path
-              d="M 500 0 L 500 80"
-              fill="none" stroke="#ffffff" strokeWidth="4"
-              vectorEffect="non-scaling-stroke"
-              style={{
-                pathLength: useTransform(scrollYProgress, [0.8, 0.85], [0, 1]),
-                opacity: 0.8
-              }}
-            />
-
-            {/* Left Branch Split (Amber) - TV Frame Left Loop */}
-            <motion.path
-              d="M 500 80 L 50 120 L 50 820 L 500 860"
-              fill="none" stroke="#f59e0b" strokeWidth="3" filter="url(#glow-amber-split)"
-              vectorEffect="non-scaling-stroke"
-              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.98], [0, 1]) }}
-            />
-
-            {/* Center Branch Split (Red) - Drops down into "System Core Accessed" */}
-            <motion.path
-              d="M 500 80 L 500 150"
-              fill="none" stroke="#ef4444" strokeWidth="4" filter="url(#glow-red-split)"
-              vectorEffect="non-scaling-stroke"
-              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.90], [0, 1]) }}
-            />
-
-            {/* Right Branch Split (Blue) - TV Frame Right Loop */}
-            <motion.path
-              d="M 500 80 L 950 120 L 950 820 L 500 860"
-              fill="none" stroke="#3b82f6" strokeWidth="3" filter="url(#glow-blue-split)"
-              vectorEffect="non-scaling-stroke"
-              style={{ pathLength: useTransform(scrollYProgress, [0.85, 0.98], [0, 1]) }}
-            />
-            
-            {/* Bottom Stem powering the Developer Console Quote */}
-            <motion.path
-              d="M 500 860 L 500 910"
-              fill="none" stroke="#ef4444" strokeWidth="4" filter="url(#glow-red-split)"
-              vectorEffect="non-scaling-stroke"
-              style={{ pathLength: useTransform(scrollYProgress, [0.96, 1], [0, 1]) }}
-            />
-          </svg>
-        </div>
-
-        {/* Pure Transparent Terminal Zone without Cards */}
-        <div className="w-full max-w-5xl mx-auto md:px-12 mt-16 z-30 relative pt-12">
-          
-          {/* Ambient terminal glow for pure aesthetic, no rigid borders */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-red-900/10 blur-[120px] -z-10 pointer-events-none"></div>
-
-          {/* ASCII Context Message */}
-          <motion.div
-            style={{ opacity: useTransform(scrollYProgress, [0.85, 0.95], [0, 1]) }}
-            className="text-center mb-10 max-w-3xl mx-auto px-4 relative z-10"
-          >
-            <div className="inline-flex items-center justify-center gap-4 mb-6 relative">
-               <span className="w-24 h-[1px] bg-gradient-to-r from-transparent to-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></span>
-               <span className="text-sm font-tech text-slate-200 font-bold tracking-[0.4em] uppercase drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">System Core Accessed</span>
-               <span className="w-24 h-[1px] bg-gradient-to-l from-transparent to-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.8)]"></span>
-            </div>
-            <p className="text-base md:text-lg font-mono text-slate-300 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
-              Thank you for scrolling into the depths. This raw terminal artifact is dedicated to the paranoid pioneers building the next generation of safe, autonomous technology. We're glad you're here.
-            </p>
-          </motion.div>
-
-          <motion.div
-            style={{
-              opacity: useTransform(scrollYProgress, [0.85, 0.98], [0, 1])
-            }}
-            className="w-full max-w-4xl mx-auto h-[400px] relative z-10 transition-opacity duration-300"
-          >
-            {/* Soft scanline overlay over the iframe to blend it perfectly */}
-            <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.02)_2px,rgba(255,255,255,0.02)_4px)] pointer-events-none z-20"></div>
-            
-            <iframe
-              src="/ascii-art.html"
-              title="AgentEval ASCII Art"
-              className="w-full h-full border-none mix-blend-screen opacity-90"
-              sandbox="allow-scripts allow-same-origin"
-              loading="lazy"
-              tabIndex="-1"
-            />
-          </motion.div>
-          
-          {/* Output Terminal Console Quote - Powered by the TV Frame Base Stem */}
-          <div className="relative w-full max-w-4xl mx-auto flex justify-center mt-12 mb-8 h-16 z-40">
-            <AnimatePresence mode="wait">
-              {showBubble && (
-                <motion.div
-                  key={phraseIndex}
-                  initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                  className="absolute bottom-0 flex flex-col items-center"
-                >
-                  <div className="relative px-8 py-3 bg-[#050505]/90 backdrop-blur-md border border-red-500/80 rounded-sm shadow-[0_0_20px_rgba(239,68,68,0.4)]">
-                    <span
-                      className="font-mono font-bold text-lg md:text-2xl tracking-[0.2em] text-red-500"
-                    >
-                      {phrases[phraseIndex]}
-                    </span>
-                    {/* Brutalist terminal tail pointing to base stem */}
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[12px] border-b-red-500/80" />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            © {new Date().getFullYear()} Syntrox.ai
           </div>
         </div>
       </div>

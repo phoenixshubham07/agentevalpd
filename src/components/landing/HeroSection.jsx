@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import { motion, useScroll, useInView } from 'framer-motion';
 import { ArrowRight, Activity } from 'lucide-react';
+import { SyntroxWordmark, SyntroxMark } from '../../brand';
 
 const ScrambleText = ({ text, delay = 0, className = "" }) => {
   const [displayText, setDisplayText] = useState("");
@@ -41,49 +42,147 @@ const ScrambleText = ({ text, delay = 0, className = "" }) => {
 
 export default function HeroSection() {
   const lineRef = useRef(null);
+  const logoRef = useRef(null);
+  const [splashDone, setSplashDone] = useState(false);
+  const [markReady, setMarkReady] = useState(false);
+  const logoInView = useInView(logoRef, { margin: '-40px' });
+  
   const { scrollYProgress } = useScroll({
     target: lineRef,
     offset: ["start center", "end center"]
   });
 
+  // Aggressive scroll lock while splash screen is active
+  useEffect(() => {
+    const preventScroll = (e) => e.preventDefault();
+    
+    if (!splashDone) {
+      // Force snap to top on load
+      window.scrollTo(0, 0);
+      
+      // Lock CSS overflow on both body and html to handle all browser quirks
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Actively prevent scroll events
+      window.addEventListener('wheel', preventScroll, { passive: false });
+      window.addEventListener('touchmove', preventScroll, { passive: false });
+    } else {
+      // Match the 1.2s transition duration of the splash elements fading out
+      const timer = setTimeout(() => {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        window.removeEventListener('wheel', preventScroll);
+        window.removeEventListener('touchmove', preventScroll);
+      }, 1200);
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('wheel', preventScroll);
+        window.removeEventListener('touchmove', preventScroll);
+      };
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      window.removeEventListener('wheel', preventScroll);
+      window.removeEventListener('touchmove', preventScroll);
+    };
+  }, [splashDone]);
+
+  // Dismiss splash once mark animation completes
+  useEffect(() => {
+    if (markReady) {
+      const timer = setTimeout(() => setSplashDone(true), 350);
+      return () => clearTimeout(timer);
+    }
+  }, [markReady]);
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-10 overflow-hidden">
       {/* Abstract Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(147,51,234,0.15)_0%,_transparent_70%)] mix-blend-screen animate-pulse duration-10000"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(11,15,25,0.8)_0%,_transparent_70%)] -z-10"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.08)_0%,_transparent_70%)] opacity-80"></div>
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(6,182,212,0.04)_0%,_transparent_70%)] mix-blend-screen animate-pulse duration-10000"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(11,15,25,0.9)_0%,_transparent_70%)] -z-10"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.03)_0%,_transparent_70%)] opacity-80"></div>
         
         {/* Carbon Fibre pattern from Pitch Deck */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 mix-blend-overlay"></div>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex-grow flex flex-col justify-center">
+      {/* Black Splash Background */}
+      <motion.div 
+        className="fixed inset-0 z-50 bg-[#020617]"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: splashDone ? 0 : 1 }}
+        transition={{ duration: 1.2, ease: "easeInOut" }}
+        style={{ pointerEvents: splashDone ? 'none' : 'auto' }}
+      />
 
+      {/* Floating mark — appears at bottom-right once logo scrolls out of view */}
+      <motion.div
+        className="fixed bottom-5 right-5 z-[40] pointer-events-none"
+        initial={false}
+        animate={{
+          opacity: splashDone && !logoInView ? 1 : 0,
+          scale:   splashDone && !logoInView ? 1 : 0.4,
+        }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+      >
+        <SyntroxMark size={36} animate={false} />
+      </motion.div>
 
-        <motion.h1 
-          initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-[4rem] lg:text-[7rem] font-bold font-heading tracking-tighter mb-4 text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.1)] leading-none"
+      <div ref={logoRef} className="relative z-[60] w-full flex justify-center mt-12 mb-0">
+        <motion.div
+          initial={{ y: '25vh', scale: 3 }}
+          animate={splashDone ? { y: 0, scale: 1 } : { y: '25vh', scale: 3 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-[60]"
         >
-          Agent<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Eval</span>
-        </motion.h1>
+          <SyntroxMark 
+            size={112} 
+            animate={true} 
+            onReady={() => {
+              setTimeout(() => setMarkReady(true), 400);
+            }} 
+          />
+        </motion.div>
+      </div>
 
-        <div className="text-xl text-slate-300 font-body font-light max-w-4xl mx-auto leading-relaxed tracking-wide mb-6">
-          <ScrambleText text="The Global Governance Layer for " delay={0.2} />
-          <ScrambleText text="Autonomous AI." delay={0.6} className="text-blue-400 font-medium font-tech" />
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex-grow flex flex-col justify-start pt-2">
+
+        <h1 className="flex justify-center w-full relative z-20 min-h-[100px] mb-6">
+          <span className="sr-only">Syntrox.ai</span>
+          {splashDone && (
+            <>
+              <div className="hidden lg:block relative z-20" aria-hidden="true">
+                <SyntroxWordmark fontSize={80} animate={true} delay={100} glitch={true} />
+              </div>
+              <div className="block lg:hidden relative z-20" aria-hidden="true">
+                <SyntroxWordmark fontSize={48} animate={true} delay={100} glitch={true} />
+              </div>
+            </>
+          )}
+        </h1>
+
+        <div className="text-xl md:text-2xl text-slate-300 font-body font-light max-w-4xl mx-auto leading-relaxed tracking-wide mb-6">
+          <ScrambleText text="The Active Governance System for " delay={0.2} />
+          <ScrambleText text="Autonomous AI." delay={0.6} className="text-cyan-400 font-bold font-tech drop-shadow-[0_0_15px_rgba(6,182,212,0.6)]" />
         </div>
 
-        <div className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-12 font-light leading-relaxed font-body">
-          <ScrambleText text="Real-time observability, cognitive safety, and asynchronous evaluation for enterprise multi-agent systems. Control the uncontrollable." delay={1.0} />
+        <div className="text-xl md:text-2xl text-slate-300 font-light max-w-3xl mx-auto mb-12 leading-relaxed">
+          <ScrambleText text="We don't just observe; we " delay={1.0} className="font-body" />
+          <ScrambleText text="intercept." delay={1.4} className="font-tech text-white font-bold tracking-widest uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
+          <div className="mt-4 text-lg md:text-xl text-slate-400 font-body">
+            <ScrambleText text="Absolute control and cognitive safety for enterprise multi-agent swarms." delay={1.8} />
+          </div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8"
         >
           {/* Cyberpunk Button 1 */}
           <a href="#" className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 border border-blue-500/50 bg-blue-500/10 text-blue-400 font-tech uppercase tracking-widest transition-all hover:bg-blue-500/20 hover:border-blue-400 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] overflow-hidden">
