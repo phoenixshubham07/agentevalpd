@@ -329,7 +329,6 @@ export default function Footer() {
                     sandbox="allow-scripts allow-same-origin"
                     loading="lazy"
                     tabIndex="-1"
-                    style={{ pointerEvents: 'none' }}
                   />
                 </div>
               </div>
