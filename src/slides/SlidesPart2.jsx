@@ -107,7 +107,7 @@ export const slidesPart2 = [
                <span className="text-slate-500 font-tech uppercase tracking-widest text-[10px] lg:text-xs">Feature</span>
             </div>
             <div className="p-3 lg:p-4 border-b border-purple-500/20 relative z-10">
-               <div className="text-lg lg:text-xl font-heading font-bold text-white mb-1">AgentEval</div>
+               <div className="text-lg lg:text-xl font-heading font-bold text-white mb-1">Syntrox</div>
                <div className="text-purple-400 text-[8px] lg:text-[10px] font-tech uppercase tracking-widest">Enterprise Standard</div>
             </div>
             <div className="p-3 lg:p-4 border-b border-slate-800/50 relative z-10 opacity-70">
@@ -276,7 +276,7 @@ export const slidesPart2 = [
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                   <div className="ml-4 px-3 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-[10px] font-tech text-slate-400 flex items-center gap-2">
-                     <Lock size={8} /> agenteval.internal/trace/8f92-a1b2
+                     <Lock size={8} /> syntrox.internal/trace/8f92-a1b2
                   </div>
                </div>
 
@@ -323,7 +323,7 @@ export const slidesPart2 = [
 
          <div className="w-1/2 flex flex-col justify-center border-l-4 border-purple-500 pl-10">
             <p className="text-3xl font-light leading-relaxed text-white font-serif italic opacity-90">
-               "In 5 years, no AI Agent will execute a financial transaction without passing through the <span className="font-bold text-purple-400 not-italic font-heading">AgentEval</span> protocol first."
+               "In 5 years, no AI Agent will execute a financial transaction without passing through the <span className="font-bold text-purple-400 not-italic font-heading">Syntrox</span> protocol first."
             </p>
          </div>
       </div>

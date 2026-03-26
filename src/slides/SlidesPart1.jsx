@@ -30,7 +30,7 @@ export const slidesPart1 = [
 
     <div className="z-10 animate-fade-in-up flex flex-col items-center justify-center h-full pb-12">
       <h1 className="text-[5rem] lg:text-[10rem] font-heading font-bold text-white tracking-tighter mb-8 drop-shadow-[0_0_40px_rgba(255,255,255,0.1)] leading-none">
-        Agent<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Eval</span>
+        Syntrox<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">.ai</span>
       </h1>
       <p className="text-2xl text-slate-400 font-body font-light max-w-4xl mx-auto leading-relaxed tracking-wide mb-32">
         The Governance and Safety Standard for the <span className="text-blue-400 font-medium">Agentic Economy</span>.
@@ -180,7 +180,7 @@ export const slidesPart1 = [
             OpenAI is hiring a "Head of Preparedness" for <span className="text-green-400 font-bold font-tech">$555k/yr</span>.
           </p>
           <p className="text-xl text-blue-400 font-heading font-bold mt-2">
-            AgentEval automates this entire role.
+            Syntrox automates this entire role.
           </p>
         </div>
       </div>
@@ -290,7 +290,7 @@ export const slidesPart1 = [
           <div className="bg-gradient-to-b from-slate-900 to-black border border-blue-500/50 p-1 rounded-2xl shadow-[0_0_60px_rgba(59,130,246,0.2)] transform hover:scale-105 transition-transform duration-500">
             <div className="bg-slate-900/80 backdrop-blur-xl px-10 py-8 rounded-xl border border-white/5 flex flex-col items-center text-center">
               <Shield size={48} className="text-blue-400 mb-3 drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]" />
-              <span className="text-2xl font-heading font-bold text-white tracking-tight mb-1">AgentEval Proxy</span>
+              <span className="text-2xl font-heading font-bold text-white tracking-tight mb-1">Syntrox Proxy</span>
               <div className="flex gap-2 mt-2">
                 <span className="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">PII Scan</span>
                 <span className="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Guardrails</span>
@@ -356,7 +356,7 @@ export const slidesPart1 = [
                 <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2">
                   <Cpu size={24} className="text-white" />
                 </div>
-                <div className="font-heading font-bold text-white text-xl tracking-tight">AgentEval Engine</div>
+                <div className="font-heading font-bold text-white text-xl tracking-tight">Syntrox Engine</div>
                 <div className="text-[10px] text-blue-200 mt-1 font-tech uppercase tracking-widest bg-black/30 px-2 py-0.5 rounded border border-white/10">Docker / K8s</div>
               </div>
 
@@ -399,7 +399,7 @@ export const slidesPart1 = [
         </div>
 
         <div className="mb-10 pl-6 border-l-2 border-green-500 bg-green-900/5 rounded-r-lg py-2">
-          <div className="text-xs uppercase text-green-400 font-tech font-bold mb-2 tracking-widest">AgentEval</div>
+          <div className="text-xs uppercase text-green-400 font-tech font-bold mb-2 tracking-widest">Syntrox</div>
           <p className="text-white font-body text-lg">Ops Manager hits one button.</p>
           <p className="text-green-400 font-bold font-heading text-2xl mt-1">Time: &lt; 1 Second.</p>
         </div>

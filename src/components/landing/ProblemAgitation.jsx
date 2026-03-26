@@ -86,7 +86,7 @@ export default function ProblemAgitation() {
             className="text-3xl md:text-5xl font-bold font-heading mb-6 tracking-tight text-white"
           >
             Multi-agent systems are black boxes. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 drop-shadow-[0_0_10px_rgba(167,139,250,0.5)]">We turn on the lights.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">We turn on the lights.</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

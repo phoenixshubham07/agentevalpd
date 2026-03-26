@@ -23,7 +23,7 @@ const features = [
       </>
     ),
     icon: <EyeOff className="w-6 h-6" />,
-    accent: { color: '#8b5cf6', gradient: 'from-purple-500/20 to-indigo-500/10', border: 'border-purple-500/50', glow: 'rgba(139,92,246,0.4)', text: 'text-purple-400', hoverText: 'text-purple-200', tag: '02' },
+    accent: { color: '#06b6d4', gradient: 'from-cyan-500/20 to-blue-500/10', border: 'border-cyan-500/50', glow: 'rgba(6,182,212,0.4)', text: 'text-cyan-400', hoverText: 'text-cyan-200', tag: '02' },
     delay: 0.3
   },
   {
@@ -58,42 +58,63 @@ export default function FeatureHighlights() {
   });
 
   return (
-    <section ref={sectionRef} id="solution" className="py-24 relative bg-[#020617]/50 backdrop-blur-3xl overflow-hidden">
+    <section ref={sectionRef} id="solution" className="pt-0 pb-24 relative bg-[#020617]/50 backdrop-blur-3xl overflow-hidden">
       {/* Background glow for features */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 -z-10"></div>
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] -translate-y-1/2 -z-10"></div>
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[60px] -translate-y-1/2 -z-10"></div>
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[60px] -translate-y-1/2 -z-10"></div>
       
       {/* Vertical Roadmap Lines */}
       <div className="absolute inset-x-0 top-0 h-full max-w-7xl mx-auto pointer-events-none hidden md:block z-0">
         <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" className="w-full h-full absolute inset-0 overflow-visible">
-          <defs>
-            <filter id="glow-white-feature" filterUnits="userSpaceOnUse" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-          {/* Center Core Line */}
-          <motion.path 
-            d="M 500 0 L 500.01 1000" 
-            fill="none" stroke="#ffffff" strokeWidth="6" filter="url(#glow-white-feature)"
-            vectorEffect="non-scaling-stroke"
-            style={{ 
-              pathLength: useTransform(scrollYProgress, [0, 0.8], [0, 1]),
-              opacity: 0.6
-            }}
+          <defs></defs>
+          {/* ===== PARANOID ENTERPRISE: PCB Circuit Traces ===== */}
+
+          {/* Left PCB trace — outer rail (amber/warm red) */}
+          <path 
+            d="M 20 0 L 20 200 L 60 240 L 60 760 L 20 800 L 20 1000" 
+            fill="none" stroke="#f59e0b" strokeWidth="1.5"             className="opacity-50"
+          />
+          {/* Left PCB trace — inner rail (cyan, offset inward) */}
+          <path 
+            d="M 45 0 L 45 210 L 75 250 L 75 750 L 45 790 L 45 1000" 
+            fill="none" stroke="#06b6d4" strokeWidth="1" 
+            className="opacity-30"
+          />
+          {/* Left PCB trace — animated signal dot */}
+          <motion.circle
+            cx="20" cy="0" r="3" fill="#fbbf24"             animate={{ cy: [0, 200, 800, 1000] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear", times: [0, 0.2, 0.8, 1] }}
+          />
+
+          {/* Right PCB trace — outer rail (blue) */}
+          <path 
+            d="M 980 0 L 980 200 L 940 240 L 940 760 L 980 800 L 980 1000" 
+            fill="none" stroke="#3b82f6" strokeWidth="1.5"
+            className="opacity-50"
+          />
+          {/* Right PCB trace — inner rail (purple accent, offset inward) */}
+          <path 
+            d="M 955 0 L 955 210 L 925 250 L 925 750 L 955 790 L 955 1000" 
+            fill="none" stroke="#818cf8" strokeWidth="1"
+            className="opacity-30"
+          />
+          {/* Right PCB trace — animated signal dot */}
+          <motion.circle
+            cx="980" cy="0" r="3" fill="#60a5fa"             animate={{ cy: [0, 200, 800, 1000] }}
+            transition={{ duration: 2.6, repeat: Infinity, ease: "linear", times: [0, 0.2, 0.8, 1], delay: 0.5 }}
           />
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-24">
         {/* Full Width News Ticker */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden bg-[#450a0a] py-4 z-20 shadow-[0_0_20px_rgba(239,68,68,0.2)] flex">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden bg-red-950/40 border-y border-red-900/50 py-3 z-20 shadow-[0_0_30px_rgba(220,38,38,0.2)] flex backdrop-blur-sm">
           <div className="animate-ticker-rtl">
             {/* Generate duplicate items to ensure a seamless loop */}
-            {[...Array(20)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <div key={i} className="flex items-center gap-4 px-10 whitespace-nowrap">
-                <span className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)] animate-[ping_2s_infinite]"></span>
-                <span className="text-red-400 font-bold font-tech text-lg tracking-widest uppercase">Active Governance</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)]"></span>
+                <span className="text-red-400 font-bold font-tech text-base tracking-widest uppercase opacity-80">Active Governance</span>
               </div>
             ))}
           </div>
@@ -117,7 +138,7 @@ export default function FeatureHighlights() {
       <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen -mt-16">
         <ScrollStack 
           useWindowScroll={true} 
-          stackPosition="20%"
+          stackPosition="15%"
           itemDistance={0}
           itemScale={0.03}
           blurAmount={2}

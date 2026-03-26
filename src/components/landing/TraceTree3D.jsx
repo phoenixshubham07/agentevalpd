@@ -202,7 +202,7 @@ const ShieldMembrane = () => {
           backdropFilter: 'blur(4px)',
           textShadow: '0 0 10px rgba(59, 130, 246, 0.5)',
         }}>
-          ◆ AgentEval ◆
+          ◆ Syntrox ◆
         </div>
       </Html>
     </group>

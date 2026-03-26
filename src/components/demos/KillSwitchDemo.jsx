@@ -44,7 +44,7 @@ const KillSwitchDemo = ({ onToggle }) => {
       {/* Top Bar */}
       <div className="h-16 border-b border-white/5 flex items-center justify-between px-6 z-10">
         <div className="text-lg font-bold tracking-tight text-slate-300 flex items-center gap-3">
-          <span className="font-heading tracking-tight">AgentEval</span>
+          <span className="font-heading tracking-tight">Syntrox</span>
         </div>
         <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold border flex items-center gap-2 transition-all duration-500 tracking-widest uppercase font-tech ${locked ? 'bg-red-950/30 border-red-500/50 text-red-500 shadow-[0_0_20px_rgba(220,38,38,0.2)]' : 'bg-green-950/30 border-green-500/50 text-green-500 shadow-[0_0_20px_rgba(34,197,94,0.2)]'}`}>
           <div className={`w-1.5 h-1.5 rounded-full ${locked ? 'bg-red-500 animate-[ping_1s_infinite]' : 'bg-green-500'}`}></div>

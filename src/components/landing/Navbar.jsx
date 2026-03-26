@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Shield } from 'lucide-react';
+import { SyntroxLogo } from '../../brand';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -9,7 +9,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -26,8 +26,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <div className="flex items-center gap-2 cursor-pointer">
-          <Shield className="w-6 h-6 text-blue-500" />
-          <span className="font-heading font-bold text-xl tracking-tight text-white">AgentEval</span>
+          <SyntroxLogo show={true} animate={false} fontSize={24} />
         </div>
         
         <div className="hidden md:flex items-center gap-8">

@@ -95,7 +95,7 @@ export default function AnimatedTracesBackground() {
       style={{ opacity, filter }}
     >
       {/* Substituted CSS blur with zero-cost radial gradients */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(147,51,234,0.1),_transparent_70%)] mix-blend-screen z-[-1]"></div>
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(6,182,212,0.1),_transparent_70%)] mix-blend-screen z-[-1]"></div>
       <div className="absolute top-3/4 right-1/4 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(37,99,235,0.08),_transparent_70%)] mix-blend-screen z-[-1]"></div>
       
       {/* Scaled Container for Edges and Nodes to preserve relative positioning */}

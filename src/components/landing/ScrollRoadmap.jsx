@@ -54,21 +54,21 @@ export default function ScrollRoadmap() {
   // Main trunk from top to ProblemAgitation title
   const trunkPath = `M ${centerX} 200 L ${centerX} ${problemTop}`;
   
-  // Left branch (Unpredictability -> Trust But Verify)
+  // Left branch (Unpredictability -> Trust But Verify) -> Connect downward to bottom
   const leftBranch = `M ${centerX} ${problemTop} 
                       C ${centerX} ${problemTop + 100}, ${leftX} ${problemTop + 100}, ${leftX} ${cardsY}
                       L ${leftX} ${section1Y} 
-                      C ${leftX} ${section1Y + 100}, ${centerX - 200} ${section1Y + 100}, ${centerX - 200} ${section1Y + 200}`;
+                      C ${leftX} ${section1Y + 100}, ${leftX - 100} ${section1Y + 100}, ${leftX - 100} ${windowSize.height}`;
 
-  // Center branch (Security Risks -> Full X-Ray)
+  // Center branch (Security Risks -> Full X-Ray) -> Connect downward
   const centerBranch = `M ${centerX} ${problemTop} 
-                        L ${centerX} ${section2Y}`;
+                        L ${centerX} ${windowSize.height}`;
 
-  // Right branch (Compliance -> Kill Switch)
+  // Right branch (Compliance -> Kill Switch) -> Connect downward
   const rightBranch = `M ${centerX} ${problemTop} 
                        C ${centerX} ${problemTop + 100}, ${rightX} ${problemTop + 100}, ${rightX} ${cardsY}
                        L ${rightX} ${section3Y} 
-                       C ${rightX} ${section3Y + 100}, ${centerX + 200} ${section3Y + 100}, ${centerX + 200} ${section3Y + 200}`;
+                       C ${rightX} ${section3Y + 100}, ${rightX + 100} ${section3Y + 100}, ${rightX + 100} ${windowSize.height}`;
 
 
   return (
