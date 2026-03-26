@@ -351,56 +351,67 @@ export default function Footer() {
             </div>
 
             {/* Cursive signature with writing animation */}
-            <motion.div
-              className="group cursor-pointer relative"
-              onHoverStart={() => {}}
-              onHoverEnd={() => {}}
-            >
-              <motion.p
-                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="relative"
+            <div className="relative group cursor-default select-none" style={{ padding: '10px 0' }}>
+              {/* Ghost base layer - always visible, faint */}
+              <span
                 style={{
                   fontFamily: "'Great Vibes', cursive",
                   fontSize: 'clamp(3.5rem, 8vw, 6rem)',
-                  color: '#ffffff',
-                  textShadow: '0 0 15px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.1)',
+                  color: 'rgba(255,255,255,0.08)',
                   lineHeight: 1,
                   letterSpacing: '0.02em',
-                  padding: '10px 0',
-                  margin: 0,
-                  position: 'relative',
-                  zIndex: 1
+                  display: 'block',
+                  userSelect: 'none',
                 }}
               >
                 Syntrox
-              </motion.p>
+              </span>
 
-              {/* Writing animation overlay */}
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  fontFamily: "'Great Vibes', cursive",
-                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
-                  color: '#ffffff',
-                  textShadow: '0 0 15px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.1)',
-                  lineHeight: 1,
-                  letterSpacing: '0.02em',
-                  padding: '10px 0',
-                  clipPath: 'inset(0 100% 0 0)',
-                  WebkitClipPath: 'inset(0 100% 0 0)',
-                }}
+              {/* Animated writing layer — clip-path sweeps left-to-right on scroll */}
+              <motion.span
                 initial={{ clipPath: 'inset(0 100% 0 0)' }}
                 whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: false, margin: '-80px' }}
+                transition={{ duration: 1.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ clipPath: 'inset(0 0% 0 0)' }}
-                transition={{ duration: 1.8, delay: 1.2, ease: "easeInOut" }}
+                style={{
+                  fontFamily: "'Great Vibes', cursive",
+                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
+                  color: '#ffffff',
+                  textShadow: '0 0 15px rgba(255,255,255,0.5), 0 0 50px rgba(255,255,255,0.15)',
+                  lineHeight: 1,
+                  letterSpacing: '0.02em',
+                  display: 'block',
+                  position: 'absolute',
+                  top: '10px',
+                  left: 0,
+                  userSelect: 'none',
+                }}
               >
                 Syntrox
-              </motion.div>
-            </motion.div>
+              </motion.span>
+
+              {/* On-hover re-write effect */}
+              <motion.span
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                whileHover={{ clipPath: 'inset(0 0% 0 0)', transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }}
+                style={{
+                  fontFamily: "'Great Vibes', cursive",
+                  fontSize: 'clamp(3.5rem, 8vw, 6rem)',
+                  color: '#fde68a',
+                  textShadow: '0 0 20px rgba(251,191,36,0.6), 0 0 60px rgba(251,191,36,0.2)',
+                  lineHeight: 1,
+                  letterSpacing: '0.02em',
+                  display: 'block',
+                  position: 'absolute',
+                  top: '10px',
+                  left: 0,
+                  userSelect: 'none',
+                }}
+              >
+                Syntrox
+              </motion.span>
+            </div>
           </motion.div>
 
 

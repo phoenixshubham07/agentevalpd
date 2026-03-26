@@ -72,7 +72,7 @@ function buildNeurons(verts) {
 
 // ─── Intro timing ─────────────────────────────────────────────────────────────
 
-const T = { appear: 200, converge: 1100, drawOn: 1900, center: 2600, idle: 3100, morphCycle: 4500 };
+const T = { appear: 100, converge: 600, drawOn: 1000, center: 1400, idle: 1700, morphCycle: 4500 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
 

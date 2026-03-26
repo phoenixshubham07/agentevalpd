@@ -167,12 +167,14 @@ export default function SocialProof() {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: 0.1 * index, type: "spring", stiffness: 100 }}
-                whileHover={{ y: -12, scale: 1.05 }}
-                className={`relative h-full group p-8 rounded-2xl bg-gradient-to-br from-slate-900/60 via-[#0a0f1e] to-slate-950/40 border border-white/10 transition-all duration-300 overflow-hidden shadow-lg ${feature.glowColor} ${feature.borderColor}`}
+                whileHover={{ y: -12, scale: 1.04 }}
+                className={`relative h-full group p-8 rounded-2xl bg-gradient-to-br from-slate-900/80 via-[#0a0f1e] to-slate-950/60 border border-white/10 transition-all duration-300 overflow-hidden shadow-xl ${feature.glowColor} ${feature.borderColor}`}
               >
-                {/* Colored top accent bar */}
-                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300`} style={{ backgroundImage: `linear-gradient(90deg, ${feature.lineColor}, transparent)` }}></div>
-
+                {/* Colored top accent line */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-[2px] opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: `linear-gradient(90deg, ${feature.lineColor}, transparent 80%)` }}
+                />
                 {/* Top Gradient Glow */}
                 <div className={`absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b ${feature.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
                 

@@ -93,7 +93,7 @@ export default function HeroSection() {
   // Dismiss splash once mark animation completes
   useEffect(() => {
     if (markReady) {
-      const timer = setTimeout(() => setSplashDone(true), 350);
+      const timer = setTimeout(() => setSplashDone(true), 150);
       return () => clearTimeout(timer);
     }
   }, [markReady]);
@@ -139,12 +139,10 @@ export default function HeroSection() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-[60]"
         >
-          <SyntroxMark 
-            size={112} 
-            animate={true} 
-            onReady={() => {
-              setTimeout(() => setMarkReady(true), 400);
-            }} 
+          <SyntroxMark
+            size={112}
+            animate={true}
+            onReady={() => setMarkReady(true)}
           />
         </motion.div>
       </div>

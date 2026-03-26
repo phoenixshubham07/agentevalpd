@@ -106,21 +106,20 @@ export default function FeatureHighlights() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-0">
-        {/* Full Width News Ticker */}
-        <div className="w-screen relative left-[calc(-50vw+50%)] overflow-hidden bg-red-950/40 border-y border-red-900/50 py-3 z-20 shadow-[0_0_30px_rgba(220,38,38,0.2)] flex backdrop-blur-sm mb-12">
-          <div className="animate-ticker-rtl">
-            {/* Generate duplicate items to ensure a seamless loop */}
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="flex items-center gap-4 px-10 whitespace-nowrap">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)]"></span>
-                <span className="text-red-400 font-bold font-tech text-base tracking-widest uppercase opacity-80">Active Governance</span>
-              </div>
-            ))}
-          </div>
+      {/* Full Width News Ticker - in document flow, not absolute */}
+      <div className="w-full overflow-hidden bg-red-950/40 border-y border-red-900/50 py-3 z-20 shadow-[0_0_30px_rgba(220,38,38,0.2)] flex backdrop-blur-sm relative">
+        <div className="animate-ticker-rtl">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="flex items-center gap-4 px-10 whitespace-nowrap">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)]"></span>
+              <span className="text-red-400 font-bold font-tech text-base tracking-widest uppercase opacity-80">Active Governance</span>
+            </div>
+          ))}
         </div>
+      </div>
 
-        <div className="text-center flex flex-col items-center pt-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-0 relative z-30 pt-16">
+        <div className="text-center flex flex-col items-center">
           <div className="relative inline-block z-20 bg-[#020617]/80 backdrop-blur-md px-6 py-2 rounded-2xl shadow-[0_0_40px_rgba(2,6,23,0.9)]">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -135,7 +134,7 @@ export default function FeatureHighlights() {
         </div>
       </div>
 
-      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen pt-24">
+      <div className="relative z-10 w-full px-2 sm:px-6 lg:px-12 xl:px-24 mx-auto min-h-screen pt-16">
         <ScrollStack 
           useWindowScroll={true} 
           stackPosition="15%"
