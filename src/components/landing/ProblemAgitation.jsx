@@ -123,12 +123,7 @@ export default function ProblemAgitation() {
                   <div className={`absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b ${problem.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
                   
                   {/* Cyberpunk Scanner Line */}
-                  <motion.div 
-                    className={`absolute left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 ${problem.scannerBg} z-20 blur-[1px]`}
-                    initial={{ top: '-10%' }}
-                    whileHover={{ top: '110%' }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                  />
+                  <div className={`scanner-line absolute left-0 right-0 h-[2px] ${problem.scannerBg} z-20 blur-[1px]`} />
 
                   <div className="relative z-10">
                     <motion.div 

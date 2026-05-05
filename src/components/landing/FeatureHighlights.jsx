@@ -81,10 +81,11 @@ export default function FeatureHighlights() {
             className="opacity-30"
           />
           {/* Left PCB trace — animated signal dot */}
-          <motion.circle
-            cx="20" cy="0" r="3" fill="#fbbf24"             animate={{ cy: [0, 200, 800, 1000] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear", times: [0, 0.2, 0.8, 1] }}
-          />
+          <circle r="3" fill="#fbbf24">
+            <animateMotion dur="3s" repeatCount="indefinite" calcMode="linear"
+              keyTimes="0;0.2;0.8;1" keyPoints="0;0.2;0.8;1"
+              path="M 20 0 L 20 200 L 60 240 L 60 760 L 20 800 L 20 1000" />
+          </circle>
 
           {/* Right PCB trace — outer rail (blue) */}
           <path 
@@ -99,10 +100,11 @@ export default function FeatureHighlights() {
             className="opacity-30"
           />
           {/* Right PCB trace — animated signal dot */}
-          <motion.circle
-            cx="980" cy="0" r="3" fill="#60a5fa"             animate={{ cy: [0, 200, 800, 1000] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: "linear", times: [0, 0.2, 0.8, 1], delay: 0.5 }}
-          />
+          <circle r="3" fill="#60a5fa">
+            <animateMotion dur="2.6s" begin="0.5s" repeatCount="indefinite" calcMode="linear"
+              keyTimes="0;0.2;0.8;1" keyPoints="0;0.2;0.8;1"
+              path="M 980 0 L 980 200 L 940 240 L 940 760 L 980 800 L 980 1000" />
+          </circle>
         </svg>
       </div>
 

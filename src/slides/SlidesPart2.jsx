@@ -15,14 +15,16 @@ import {
    GraduationCap
 } from 'lucide-react';
 import { Slide, SlideHeader } from '../components/SlideComponents';
+import SyntroxWordmark from '../brand/SyntroxWordmark';
 import DashboardDemo from '../components/demos/DashboardDemo';
 import { Suspense } from 'react';
 
-const TraceTree3D = React.lazy(() => import('../components/landing/TraceTree3D'));
+const TraceTree = React.lazy(() => import('../components/trace').then(m => ({ default: m.TraceTree })));
+const TraceTreeSlide = React.lazy(() => import('../components/trace/TraceTreeSlide'));
 
 export const slidesPart2 = [
    // Slide 8: Market Opportunity (REDESIGNED: High-Impact Cards)
-   <Slide key="8" className="flex flex-col">
+   <Slide key="8">
       <SlideHeader title="Market Capture" subtitle="The Governance Tax" />
 
       <div className="flex-1 flex flex-col justify-center gap-12 min-h-0 relative z-10">
@@ -30,7 +32,7 @@ export const slidesPart2 = [
          <div className="flex items-stretch justify-center gap-8 h-[60%]">
 
             {/* TAM Card - Subtle Dark Theme */}
-            <div className="flex-1 bg-slate-900/40 border border-slate-800 p-8 rounded-3xl backdrop-blur-sm relative group overflow-hidden hover:border-slate-700 transition-colors flex flex-col justify-between">
+            <div className="flex-1 bg-slate-950 border border-slate-800 p-8 rounded-3xl backdrop-blur-sm relative group overflow-hidden hover:border-slate-700 transition-colors flex flex-col justify-between">
                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Globe size={120} className="text-slate-400" />
                </div>
@@ -46,7 +48,7 @@ export const slidesPart2 = [
             </div>
 
             {/* SAM Card - Highlighted/Active Theme */}
-            <div className="flex-1 bg-gradient-to-br from-blue-950/40 to-purple-950/40 border border-blue-500/40 p-8 rounded-3xl backdrop-blur-md relative group overflow-hidden shadow-[0_0_60px_rgba(59,130,246,0.15)] hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] transition-shadow flex flex-col justify-between">
+            <div className="flex-1 bg-slate-950 border border-blue-500/40 p-8 rounded-3xl backdrop-blur-md relative group overflow-hidden shadow-[0_0_60px_rgba(59,130,246,0.15)] hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] transition-shadow flex flex-col justify-between">
                <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-30 transition-opacity">
                   <Shield size={120} className="text-blue-400" />
@@ -89,101 +91,108 @@ export const slidesPart2 = [
       </div>
    </Slide>,
 
-   // Slide 9: Competitive Landscape (REDESIGNED 4-COLUMN GRID, FIXED SPACING)
-   <Slide key="9" className="flex flex-col">
+   // Slide 9: Competitive Landscape
+   <Slide key="9">
       <SlideHeader title="Competitive Landscape" subtitle="From Debugging to Governing" />
 
-      <div className="flex-1 flex flex-col justify-center min-h-0 relative z-10">
+      <div className="flex-1 flex flex-col justify-center min-h-0 relative z-10 gap-3">
 
-         {/* Comparison Grid */}
-         <div className="grid grid-cols-4 gap-0 border border-slate-800 rounded-3xl overflow-hidden bg-slate-950/50 backdrop-blur-sm relative">
+         {/* Column Headers — fixed row above the cards */}
+         <div className="grid grid-cols-[160px_1fr_1fr_1fr] px-1">
+            <div />
+            <div className="px-5 py-2">
+               <span className="text-base font-heading font-bold text-white">Syntrox</span>
+               <span className="ml-2 text-[10px] font-tech uppercase tracking-widest text-purple-400 align-middle">★ Us</span>
+            </div>
+            <div className="px-5 py-2">
+               <span className="text-base font-heading font-semibold text-slate-400">LangSmith</span>
+            </div>
+            <div className="px-5 py-2">
+               <span className="text-base font-heading font-semibold text-slate-500">DIY Scripts</span>
+            </div>
+         </div>
 
-            {/* Background Highlight for AgentEval Column (Col 2) */}
-            <div className="absolute top-0 bottom-0 left-[25%] w-[25%] bg-gradient-to-b from-purple-900/10 to-blue-900/10 border-x border-purple-500/20 z-0"></div>
-            <div className="absolute top-0 left-[25%] w-[25%] h-1 bg-gradient-to-r from-purple-500 to-blue-500 z-10"></div>
-
-            {/* HEADER ROW */}
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 flex items-end">
-               <span className="text-slate-500 font-tech uppercase tracking-widest text-[10px] lg:text-xs">Feature</span>
+         {/* Row 1: Core Function */}
+         <div className="grid grid-cols-[160px_1fr_1fr_1fr] border border-slate-800 rounded-xl overflow-hidden bg-slate-950/60 relative">
+            <div className="absolute top-0 left-[160px] w-[calc((100%-160px)/3)] h-[2px] bg-gradient-to-r from-purple-500 to-blue-500" />
+            <div className="absolute top-0 bottom-0 left-[160px] w-[calc((100%-160px)/3)] bg-purple-900/10 border-x border-purple-500/20" />
+            {/* Label */}
+            <div className="px-5 py-5 flex flex-col justify-center border-r border-slate-800/60 bg-slate-900/30">
+               <h4 className="text-xs font-tech font-bold text-slate-400 uppercase tracking-widest">Core</h4>
+               <h4 className="text-xs font-tech font-bold text-slate-400 uppercase tracking-widest">Function</h4>
             </div>
-            <div className="p-3 lg:p-4 border-b border-purple-500/20 relative z-10">
-               <div className="text-lg lg:text-xl font-heading font-bold text-white mb-1">Syntrox</div>
-               <div className="text-purple-400 text-[8px] lg:text-[10px] font-tech uppercase tracking-widest">Enterprise Standard</div>
-            </div>
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 relative z-10 opacity-70">
-               <div className="text-base lg:text-lg font-heading font-bold text-slate-400 mb-1">LangSmith</div>
-               <div className="text-slate-500 text-[8px] lg:text-[10px] font-tech uppercase tracking-widest">Observability</div>
-            </div>
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 relative z-10 opacity-50">
-               <div className="text-base lg:text-lg font-heading font-bold text-slate-400 mb-1">DIY Scripts</div>
-               <div className="text-slate-500 text-[8px] lg:text-[10px] font-tech uppercase tracking-widest">In-House</div>
-            </div>
-
-            {/* ROW 1: CORE FUNCTION */}
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 flex flex-col justify-center">
-               <h4 className="text-sm lg:text-base font-heading font-bold text-white">Core Function</h4>
-            </div>
-            <div className="p-3 lg:p-4 border-b border-purple-500/20 relative z-10 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-bold text-white flex items-center gap-2">
-                  <Activity size={14} className="text-blue-400" />
+            {/* Syntrox */}
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 relative z-10">
+               <div className="flex items-center gap-2 text-white font-bold text-base">
+                  <Activity size={16} className="text-blue-400 flex-shrink-0" />
                   Active Intervention
                </div>
-               <p className="text-slate-400 text-[9px] mt-1 leading-relaxed">Blocks bad actions <span className="text-white">before</span> they happen.</p>
+               <p className="text-slate-300 text-sm leading-snug">Blocks bad actions <span className="text-white font-semibold">before</span> they happen via real-time proxy.</p>
             </div>
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 relative z-10 opacity-70 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-medium text-slate-400">Passive Monitoring</div>
-               <p className="text-slate-500 text-[9px] mt-1">Logs errors after money is lost.</p>
+            {/* LangSmith */}
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 border-l border-slate-800/60">
+               <div className="text-slate-300 font-semibold text-base">Passive Monitoring</div>
+               <p className="text-slate-500 text-sm leading-snug">Logs errors after money is already lost.</p>
             </div>
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 relative z-10 opacity-50 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-medium text-slate-400">Manual Regex</div>
-               <p className="text-slate-500 text-[9px] mt-1">Brittle, hard-coded rules.</p>
+            {/* DIY */}
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 border-l border-slate-800/60 opacity-55">
+               <div className="text-slate-400 font-semibold text-base">Manual Regex</div>
+               <p className="text-slate-500 text-sm leading-snug">Brittle rules that break at scale.</p>
             </div>
+         </div>
 
-            {/* ROW 2: DEPLOYMENT */}
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 flex flex-col justify-center">
-               <h4 className="text-sm lg:text-base font-heading font-bold text-white">Deployment</h4>
+         {/* Row 2: Deployment */}
+         <div className="grid grid-cols-[160px_1fr_1fr_1fr] border border-slate-800 rounded-xl overflow-hidden bg-slate-950/60 relative">
+            <div className="absolute top-0 left-[160px] w-[calc((100%-160px)/3)] h-[2px] bg-gradient-to-r from-purple-500 to-blue-500" />
+            <div className="absolute top-0 bottom-0 left-[160px] w-[calc((100%-160px)/3)] bg-purple-900/10 border-x border-purple-500/20" />
+            <div className="px-5 py-5 flex flex-col justify-center border-r border-slate-800/60 bg-slate-900/30">
+               <h4 className="text-xs font-tech font-bold text-slate-400 uppercase tracking-widest">Deploy-</h4>
+               <h4 className="text-xs font-tech font-bold text-slate-400 uppercase tracking-widest">ment</h4>
             </div>
-            <div className="p-3 lg:p-4 border-b border-purple-500/20 relative z-10 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-bold text-white flex items-center gap-2">
-                  <Lock size={14} className="text-green-400" />
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 relative z-10">
+               <div className="flex items-center gap-2 text-white font-bold text-base">
+                  <Lock size={16} className="text-green-400 flex-shrink-0" />
                   On-Prem / VPC
                </div>
-               <p className="text-slate-400 text-[9px] mt-1 leading-relaxed">Data never leaves the premise.</p>
+               <p className="text-slate-300 text-sm leading-snug">Data never leaves your enterprise firewall.</p>
             </div>
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 relative z-10 opacity-70 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-medium text-slate-400">Cloud SaaS</div>
-               <p className="text-slate-500 text-[9px] mt-1">Requires sending data to 3rd party.</p>
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 border-l border-slate-800/60">
+               <div className="text-slate-300 font-semibold text-base">Cloud SaaS</div>
+               <p className="text-slate-500 text-sm leading-snug">Requires sending data to a 3rd party.</p>
             </div>
-            <div className="p-3 lg:p-4 border-b border-slate-800/50 relative z-10 opacity-50 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-medium text-slate-400">Local Only</div>
-               <p className="text-slate-500 text-[9px] mt-1">Hard to scale across teams.</p>
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 border-l border-slate-800/60 opacity-55">
+               <div className="text-slate-400 font-semibold text-base">Local Only</div>
+               <p className="text-slate-500 text-sm leading-snug">Hard to scale or govern across teams.</p>
             </div>
+         </div>
 
-            {/* ROW 3: CONTROL */}
-            <div className="p-3 lg:p-4 flex flex-col justify-center">
-               <h4 className="text-sm lg:text-base font-heading font-bold text-white">Control</h4>
+         {/* Row 3: Control */}
+         <div className="grid grid-cols-[160px_1fr_1fr_1fr] border border-slate-800 rounded-xl overflow-hidden bg-slate-950/60 relative">
+            <div className="absolute top-0 left-[160px] w-[calc((100%-160px)/3)] h-[2px] bg-gradient-to-r from-purple-500 to-blue-500" />
+            <div className="absolute top-0 bottom-0 left-[160px] w-[calc((100%-160px)/3)] bg-purple-900/10 border-x border-purple-500/20" />
+            <div className="px-5 py-5 flex flex-col justify-center border-r border-slate-800/60 bg-slate-900/30">
+               <h4 className="text-xs font-tech font-bold text-slate-400 uppercase tracking-widest">Control</h4>
             </div>
-            <div className="p-3 lg:p-4 relative z-10 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-bold text-white flex items-center gap-2">
-                  <Zap size={14} className="text-red-400" />
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 relative z-10">
+               <div className="flex items-center gap-2 text-white font-bold text-base">
+                  <Zap size={16} className="text-red-400 flex-shrink-0" />
                   Global Kill Switch
                </div>
-               <p className="text-slate-400 text-[9px] mt-1 leading-relaxed">Instant freeze for rogue fleets.</p>
+               <p className="text-slate-300 text-sm leading-snug">Freeze any rogue agent in under 1 second.</p>
             </div>
-            <div className="p-3 lg:p-4 relative z-10 opacity-70 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-medium text-slate-400">No Emergency Brake</div>
-               <p className="text-slate-500 text-[9px] mt-1">Manual rollback required.</p>
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 border-l border-slate-800/60">
+               <div className="text-slate-300 font-semibold text-base">No Emergency Brake</div>
+               <p className="text-slate-500 text-sm leading-snug">Manual rollback. Downtime in minutes.</p>
             </div>
-            <div className="p-3 lg:p-4 relative z-10 opacity-50 flex flex-col justify-center">
-               <div className="text-xs lg:text-sm font-medium text-slate-400">None</div>
-               <p className="text-slate-500 text-[9px] mt-1">No centralized control.</p>
+            <div className="px-5 py-5 flex flex-col justify-center gap-1 border-l border-slate-800/60 opacity-55">
+               <div className="text-slate-400 font-semibold text-base">None</div>
+               <p className="text-slate-500 text-sm leading-snug">No centralized control at all.</p>
             </div>
-
          </div>
 
          {/* Quote */}
-         <div className="mt-6 text-center">
-            <p className="text-xl text-white font-serif italic font-light opacity-80 max-w-4xl mx-auto">
+         <div className="text-center pt-1">
+            <p className="text-lg text-white font-serif italic font-light opacity-70 max-w-4xl mx-auto">
                "Competitors build tools for developers; we build safety gear for the <span className="text-purple-400 font-normal not-italic font-heading">C-Suite</span>."
             </p>
          </div>
@@ -218,71 +227,76 @@ export const slidesPart2 = [
       </div>
    </Slide>,
 
-   // Slide 11: Product UI Demo (FIXED)
-   <Slide key="11" className="flex flex-col">
-      {/* Compact Header to save vertical space */}
-      <div className="mb-6 z-10 relative">
-         <h2 className="text-5xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-slate-500 tracking-tighter drop-shadow-sm">
-            Something Developers Are Screaming For
-         </h2>
-         <h3 className="text-xs text-purple-400 mt-2 font-tech font-bold tracking-[0.2em] uppercase pl-1">Full Observability for Stochastic Systems</h3>
-         <div className="h-1 w-24 bg-gradient-to-r from-purple-600 to-blue-600 mt-4 rounded-full" />
-      </div>
+   // Slide 11: Product UI Demo
+   <Slide key="11">
+      <SlideHeader title="Something Developers Are Screaming For" subtitle="Full Observability for Stochastic Systems" />
 
-      <div className="flex-1 flex gap-8 min-h-0 items-center">
+      <div className="flex-1 flex gap-10 min-h-0">
          {/* Left Col: The Narrative */}
-         <div className="w-1/3 flex flex-col justify-center space-y-8">
+         <div className="w-[38%] flex flex-col justify-center gap-10">
+            {/* Pain Point */}
             <div>
-               <div className="flex items-center gap-2 text-red-400 mb-2">
-                  <Bug size={20} />
-                  <span className="font-tech uppercase tracking-widest text-xs font-bold">The Pain Point</span>
+               <div className="flex items-center gap-2 text-red-400 mb-3">
+                  <Bug size={18} />
+                  <span className="font-tech uppercase tracking-widest text-[10px] font-bold">The Pain Point</span>
                </div>
-               <h3 className="text-3xl font-heading font-bold text-white mb-3">"Why did my Agent spend $50 on a loop?"</h3>
-               <p className="text-slate-400 font-body text-sm leading-relaxed">
-                  LLMs are black boxes. When they fail, they fail silently and expensively. Developers are currently debugging this with <code className="bg-slate-800 px-1 py-0.5 rounded text-blue-300 text-xs">print()</code> statements.
+               <h3 className="text-3xl font-heading font-bold text-white mb-4 leading-tight">
+                  "Why did my Agent spend $50 on a loop?"
+               </h3>
+               <p className="text-slate-400 font-body text-base leading-relaxed">
+                  LLMs are black boxes. When they fail, they fail silently and expensively. Developers are currently debugging this with{' '}
+                  <code className="bg-slate-800 px-1.5 py-0.5 rounded text-blue-300 text-sm">print()</code>{' '}
+                  statements.
                </p>
             </div>
 
-            <div className="pl-6 border-l-2 border-purple-500">
-               <div className="flex items-center gap-2 text-purple-400 mb-2">
-                  <Activity size={20} />
-                  <span className="font-tech uppercase tracking-widest text-xs font-bold">The Solution</span>
+            {/* Solution */}
+            <div className="pl-6 border-l-2 border-blue-500">
+               <div className="flex items-center gap-2 text-blue-400 mb-3">
+                  <Activity size={18} />
+                  <span className="font-tech uppercase tracking-widest text-[10px] font-bold">The Solution</span>
                </div>
-               <h3 className="text-2xl font-heading font-bold text-white mb-2">MRI for Agents</h3>
-               <ul className="space-y-2 mt-3">
-                  <li className="flex items-center gap-3 text-slate-300 font-body text-sm">
-                     <CheckCircle size={16} className="text-green-400" /> Real-time Cost & Latency Tracking
+               <h3 className="text-2xl font-heading font-bold text-white mb-4">MRI for Agents</h3>
+               <ul className="space-y-3">
+                  <li className="flex items-center gap-3 text-slate-300 font-body text-base">
+                     <CheckCircle size={16} className="text-green-400 flex-shrink-0" />
+                     Real-time Cost &amp; Latency Tracking
                   </li>
-                  <li className="flex items-center gap-3 text-slate-300 font-body text-sm">
-                     <CheckCircle size={16} className="text-green-400" /> Visual "Thought Process" Mapping
+                  <li className="flex items-center gap-3 text-slate-300 font-body text-base">
+                     <CheckCircle size={16} className="text-green-400 flex-shrink-0" />
+                     Visual "Thought Process" Mapping
                   </li>
-                  <li className="flex items-center gap-3 text-slate-300 font-body text-sm">
-                     <CheckCircle size={16} className="text-green-400" /> Instant PII Detection
+                  <li className="flex items-center gap-3 text-slate-300 font-body text-base">
+                     <CheckCircle size={16} className="text-green-400 flex-shrink-0" />
+                     Instant PII Detection &amp; Redaction
                   </li>
                </ul>
             </div>
          </div>
 
-         {/* Right Col: The UI Demo */}
-         <div className="flex-1 h-full max-h-[500px] relative group">
-            {/* Glow Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition duration-1000"></div>
+         {/* Right Col: Mac OS Window — clean empty shell */}
+         <div className="flex-1 flex flex-col min-h-0 relative group">
+            {/* Ambient glow */}
+            <div className="absolute -inset-1 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-2xl blur-xl opacity-40 group-hover:opacity-60 transition duration-700 pointer-events-none" />
 
-            {/* Window Frame */}
-            <div className="relative w-full h-full bg-[#0f172a] rounded-xl border border-slate-700/50 shadow-2xl flex flex-col overflow-hidden">
-               {/* Window Controls */}
-               <div className="h-8 bg-slate-900 border-b border-slate-800 flex items-center px-4 gap-2 flex-shrink-0">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-                  <div className="ml-4 px-3 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-[10px] font-tech text-slate-400 flex items-center gap-2">
-                     <Lock size={8} /> syntrox.internal/trace/8f92-a1b2
+            {/* Window */}
+            <div className="relative flex-1 flex flex-col bg-[#0d1117] rounded-xl border border-slate-700/60 shadow-2xl overflow-hidden">
+               {/* Title bar */}
+               <div className="h-9 bg-[#161b22] border-b border-slate-700/60 flex items-center px-4 gap-2 flex-shrink-0">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                  <div className="ml-4 flex-1 flex justify-center">
+                     <div className="px-4 py-1 rounded-md bg-[#0d1117] border border-slate-700/50 text-[11px] font-tech text-slate-400 flex items-center gap-2 max-w-xs">
+                        <Lock size={9} className="text-slate-500" />
+                        syntrox.internal/trace/8f92-a1b2
+                     </div>
                   </div>
                </div>
 
-               {/* UI Component */}
-               <Suspense fallback={<div className="flex-1 bg-slate-900/50 animate-pulse flex items-center justify-center text-slate-500 font-tech">Initializing Three.js Context...</div>}>
-                 <TraceTree3D />
+               {/* Trace tree — compact version fitted to this window */}
+               <Suspense fallback={<div className="flex-1 bg-[#0d1117] animate-pulse" />}>
+                  <TraceTreeSlide />
                </Suspense>
             </div>
          </div>
@@ -290,7 +304,7 @@ export const slidesPart2 = [
    </Slide>,
 
    // Slide 12: Central Command UI (NEW)
-   <Slide key="12" className="flex flex-col">
+   <Slide key="12">
       <SlideHeader title="Central Command" subtitle="Mission Control for AI Fleets" />
 
       <div className="flex-1 flex items-center justify-center p-4">
@@ -306,25 +320,27 @@ export const slidesPart2 = [
    <Slide key="14">
       <SlideHeader title="The Ask & Vision" subtitle="The Standard for Safe AI" />
 
-      <div className="flex gap-20 mt-12">
-         <div className="w-1/2 bg-slate-900/30 p-10 rounded-3xl border border-slate-800 backdrop-blur-sm">
-            <h3 className="text-4xl font-heading font-bold text-white mb-8">Raising Seed Round</h3>
-            <div className="space-y-6">
-               <div className="flex items-start gap-4">
-                  <CheckCircle className="text-blue-500 mt-1" />
-                  <span className="text-slate-300 text-xl font-body font-light">Scale Sales Engineering for <span className="text-white font-medium">Banking Pipeline</span></span>
-               </div>
-               <div className="flex items-start gap-4">
-                  <CheckCircle className="text-blue-500 mt-1" />
-                  <span className="text-slate-300 text-xl font-body font-light">Harden "Self-Healing" agent capabilities</span>
+      <div className="flex-1 flex items-center">
+         <div className="flex gap-20 w-full">
+            <div className="w-1/2 bg-slate-900/30 p-10 rounded-3xl border border-slate-800 backdrop-blur-sm">
+               <h3 className="text-4xl font-heading font-bold text-white mb-8">Raising Seed Round</h3>
+               <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                     <CheckCircle className="text-blue-500 mt-1" />
+                     <span className="text-slate-300 text-xl font-body font-light">Scale Sales Engineering for <span className="text-white font-medium">Banking Pipeline</span></span>
+                  </div>
+                  <div className="flex items-start gap-4">
+                     <CheckCircle className="text-blue-500 mt-1" />
+                     <span className="text-slate-300 text-xl font-body font-light">Harden "Self-Healing" agent capabilities</span>
+                  </div>
                </div>
             </div>
-         </div>
 
-         <div className="w-1/2 flex flex-col justify-center border-l-4 border-purple-500 pl-10">
-            <p className="text-3xl font-light leading-relaxed text-white font-serif italic opacity-90">
-               "In 5 years, no AI Agent will execute a financial transaction without passing through the <span className="font-bold text-purple-400 not-italic font-heading">Syntrox</span> protocol first."
-            </p>
+            <div className="w-1/2 flex flex-col justify-center border-l-4 border-purple-500 pl-10">
+               <p className="text-3xl font-light leading-relaxed text-white font-serif italic opacity-90">
+                  "In 5 years, no AI Agent will execute a financial transaction without passing through the <span className="font-bold text-purple-400 not-italic font-heading">Syntrox</span> protocol first."
+               </p>
+            </div>
          </div>
       </div>
    </Slide>,
@@ -339,9 +355,35 @@ export const slidesPart2 = [
             <h1 className="text-5xl lg:text-7xl font-heading font-bold text-white leading-tight tracking-tight drop-shadow-2xl mb-8">
                Making a dent in the digital universe by saving <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">Tens of Billions</span> annually.
             </h1>
-            <p className="text-xl text-slate-400 font-tech uppercase tracking-[0.3em] opacity-80">
+            <p className="text-xl text-slate-400 font-tech uppercase tracking-[0.3em] opacity-80 mb-10">
                Protecting the Agentic Economy
             </p>
+
+            {/* CTA Button - Sleek, Enterprise Glassmorphism Design */}
+            <div className="flex justify-center w-full mt-4">
+               <a 
+                  href="https://syntrox.ai/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center gap-6 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl px-8 py-5 transition-all duration-500 backdrop-blur-md shadow-2xl overflow-hidden"
+               >
+                  {/* Subtle shine effect on hover */}
+                  <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:transition-transform group-hover:duration-1000 group-hover:translate-x-[150%]" />
+                  
+                  <div className="flex flex-col items-start pr-6 border-r border-white/10 relative z-10">
+                     <span className="text-slate-400 text-xs font-auto font-body font-light tracking-wide group-hover:text-slate-300 transition-colors">
+                        Ready to elevate your infrastructure?
+                     </span>
+                     <span className="text-white font-heading font-medium mt-1 text-lg">
+                        Click here to enter
+                     </span>
+                  </div>
+                  
+                  <div className="pl-2 relative z-10 flex items-center group-hover:scale-105 transition-transform duration-500">
+                     <SyntroxWordmark fontSize={24} animate={false} color="#ffffff" />
+                  </div>
+               </a>
+            </div>
          </div>
       </div>
    </Slide>

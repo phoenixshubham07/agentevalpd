@@ -12,6 +12,68 @@ export default function PitchDeck() {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
 
+  const isPrintMode = new URLSearchParams(window.location.search).get('print') === 'true';
+
+  if (isPrintMode) {
+    return (
+      <div className="w-full bg-[#050505] text-slate-200 font-sans min-h-screen">
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+          .font-heading { font-family: 'Space Grotesk', sans-serif; }
+          .font-body { font-family: 'Inter', sans-serif; }
+          .font-tech { font-family: 'JetBrains Mono', monospace; }
+          
+          /* Force all animations to end state for PDF */
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          
+          /* Override Framer Motion and other opacity-based animations */
+          [style*="opacity: 0"], 
+          .opacity-0,
+          motion-div,
+          [data-framer-component-type],
+          div[style*="opacity"] {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            filter: none !important;
+          }
+
+          @page { 
+            size: 1920px 1080px; 
+            margin: 0; 
+          }
+          
+          body { 
+            margin: 0; 
+            background: #050505 !important; 
+            overflow: visible !important;
+          }
+          
+          /* Ensure all nested components are visible */
+          .flex-1 { flex: 1 1 auto !important; }
+        `}</style>
+        {slides.map((slide, index) => (
+          <div 
+            key={index} 
+            style={{ 
+              width: '1920px', 
+              height: '1080px', 
+              position: 'relative', 
+              overflow: 'hidden', 
+              pageBreakAfter: 'always', 
+              breakAfter: 'page' 
+            }}
+          >
+            {slide}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();

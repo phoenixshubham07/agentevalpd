@@ -16,7 +16,6 @@ const label = (text) => ({
 export default function BrandShowcase() {
   const [markKey, setMarkKey] = useState(0);
   const [logoKey, setLogoKey] = useState(0);
-  const [logoPaused, setLogoPaused] = useState(false);
 
   return (
     <div
@@ -48,16 +47,9 @@ export default function BrandShowcase() {
       {/* ── 2. ANIMATED FULL LOGO ────────────────────────────────── */}
       <section style={{ textAlign: 'center' }}>
         <p style={label()}>Animated Full Logo — Hero Size</p>
-        <SyntroxLogo key={logoKey} size="hero" variant="full" animate={true} color="white" paused={logoPaused} />
+        <SyntroxLogo key={logoKey} size="hero" variant="full" animate={true} color="white" />
         <div style={{ marginTop: 32, display: 'flex', gap: 12 }}>
-          <button
-            onClick={() => setLogoPaused(p => !p)}
-            style={{ ...btnStyle, borderColor: logoPaused ? `${BRAND_COLORS.blue}99` : `${BRAND_COLORS.blue}40`,
-              color: logoPaused ? BRAND_COLORS.blue : BRAND_COLORS.muted }}
-          >
-            {logoPaused ? 'Resume' : 'Pause'}
-          </button>
-          <button onClick={() => { setLogoPaused(false); setLogoKey(k => k + 1); }} style={btnStyle}>
+          <button onClick={() => setLogoKey(k => k + 1)} style={btnStyle}>
             Replay
           </button>
         </div>

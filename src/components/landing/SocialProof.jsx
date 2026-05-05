@@ -205,12 +205,7 @@ export default function SocialProof() {
                 </div>
 
                 {/* Cyberpunk scanner sweep */}
-                <motion.div
-                  className={`absolute left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 ${feature.scannerBg} z-20 blur-[1px] pointer-events-none`}
-                  initial={{ top: '-10%' }}
-                  whileHover={{ top: '110%' }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                />
+                <div className={`scanner-line absolute left-0 right-0 h-[2px] ${feature.scannerBg} z-20 blur-[1px] pointer-events-none`} />
 
                 {/* Content */}
                 <div className="relative z-10 p-8 flex flex-col h-full">

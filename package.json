@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "gen:pptx": "node scripts/generate-pptx.js"
+    "gen:pptx": "node scripts/generate-pptx.js",
+    "gen:pdf": "node scripts/generate-pdf.js"
   },
   "dependencies": {
     "@react-three/drei": "^9.122.0",
@@ -36,6 +37,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "pptxgenjs": "^4.0.1",
     "puppeteer": "^24.35.0",
+    "terser": "^5.46.1",
     "vite": "^5.2.0"
   }
 }

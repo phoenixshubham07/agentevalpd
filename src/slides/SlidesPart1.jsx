@@ -13,32 +13,35 @@ import {
   Briefcase,
   Rocket,
   Award,
-  GraduationCap
+  GraduationCap,
+  Linkedin
 } from 'lucide-react';
 import { Slide, SlideHeader, ScaleIcon } from '../components/SlideComponents';
-import praveenQr from '../assets/praveen.png';
-import saiQr from '../assets/sai.png';
+import SyntroxWordmark from '../brand/SyntroxWordmark';
 import { Suspense } from 'react';
 
 const KillSwitchDemo = React.lazy(() => import('../components/demos/KillSwitchDemo'));
 
 export const slidesPart1 = [
   // Slide 1: Title
-  <Slide key="1" className="flex flex-col justify-center items-center text-center">
+  <Slide key="1" className="justify-center items-center text-center">
     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0f172a] via-[#020617] to-black z-0"></div>
     <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 mix-blend-overlay"></div>
 
-    <div className="z-10 animate-fade-in-up flex flex-col items-center justify-center h-full pb-12">
-      <h1 className="text-[5rem] lg:text-[10rem] font-heading font-bold text-white tracking-tighter mb-8 drop-shadow-[0_0_40px_rgba(255,255,255,0.1)] leading-none">
-        Syntrox<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">.ai</span>
-      </h1>
-      <p className="text-2xl text-slate-400 font-body font-light max-w-4xl mx-auto leading-relaxed tracking-wide mb-32">
+    <div className="z-10 flex flex-col items-center justify-center flex-1 gap-8">
+      {/* SYNTROX.ai logo — the full wordmark, static, large hero size */}
+      <div className="drop-shadow-[0_0_60px_rgba(255,255,255,0.08)]">
+        <SyntroxWordmark fontSize={90} animate={false} color="#ffffff" />
+      </div>
+
+      {/* Tagline */}
+      <p className="text-2xl text-slate-300 font-body font-light max-w-3xl leading-relaxed tracking-wide">
         The Governance and Safety Standard for the <span className="text-blue-400 font-medium">Agentic Economy</span>.
       </p>
 
-      <div className="max-w-5xl mx-auto relative group cursor-default">
-        <div className="absolute -inset-8 bg-gradient-to-r from-purple-500/0 via-purple-500/5 to-blue-500/0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-        <p className="text-4xl font-heading font-medium text-white leading-tight tracking-tight relative z-10">
+      {/* Body statement */}
+      <div className="max-w-5xl mx-auto">
+        <p className="text-4xl font-heading font-medium text-white leading-tight tracking-tight">
           We stop Enterprise AI Agents from <span className="text-purple-400 border-b border-purple-500/30 pb-1">hallucinating</span>, <span className="text-blue-400 border-b border-blue-500/30 pb-1">leaking data</span>, and <span className="text-red-400 border-b border-red-500/30 pb-1">burning cash</span>—automatically.
         </p>
       </div>
@@ -46,7 +49,7 @@ export const slidesPart1 = [
   </Slide>,
 
   // Slide 1.1: Team
-  <Slide key="team" className="flex flex-col">
+  <Slide key="team">
     <SlideHeader title="The Team" subtitle="Veterans & Visionaries" />
 
     <div className="flex-1 flex gap-8 items-stretch justify-center relative z-10 mt-4">
@@ -83,9 +86,22 @@ export const slidesPart1 = [
             </div>
           </div>
 
-          {/* QR Code */}
-          <div className="mt-auto pt-8 flex justify-center">
-            <img src={praveenQr} alt="LinkedIn QR" className="w-32 h-32 rounded-xl border-2 border-slate-700/50 shadow-lg" />
+          {/* LinkedIn Link */}
+          <div className="mt-auto pt-8 flex justify-center w-full">
+            <a 
+              href="https://www.linkedin.com/in/praveen-kumar-tumma/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-between w-full border border-slate-700/60 hover:border-blue-500/50 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl px-6 py-4 transition-all duration-300 group"
+            >
+              <div className="flex flex-col items-start text-left">
+                <span className="text-slate-400 text-xs font-tech uppercase tracking-wider mb-0.5">Connect on LinkedIn</span>
+                <span className="text-slate-200 group-hover:text-blue-400 font-heading font-bold text-lg transition-colors">in/praveen-kumar-tumma</span>
+              </div>
+              <div className="p-2.5 rounded-lg bg-blue-500/10 text-blue-400">
+                <Linkedin size={22} className="group-hover:scale-110 transition-transform" />
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -132,9 +148,22 @@ export const slidesPart1 = [
             </div>
           </div>
 
-          {/* QR Code */}
-          <div className="mt-auto pt-8 flex justify-center">
-            <img src={saiQr} alt="LinkedIn QR" className="w-32 h-32 rounded-xl border-2 border-slate-700/50 shadow-lg bg-white p-1" />
+          {/* LinkedIn Link */}
+          <div className="mt-auto pt-8 flex justify-center w-full">
+            <a 
+              href="https://www.linkedin.com/in/saipraneeth-iit/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-between w-full border border-slate-700/60 hover:border-purple-500/50 bg-slate-800/40 hover:bg-slate-800/80 rounded-xl px-6 py-4 transition-all duration-300 group"
+            >
+              <div className="flex flex-col items-start text-left">
+                <span className="text-slate-400 text-xs font-tech uppercase tracking-wider mb-0.5">Connect on LinkedIn</span>
+                <span className="text-slate-200 group-hover:text-purple-400 font-heading font-bold text-lg transition-colors">in/saipraneeth-iit</span>
+              </div>
+              <div className="p-2.5 rounded-lg bg-purple-500/10 text-purple-400">
+                <Linkedin size={22} className="group-hover:scale-110 transition-transform" />
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -143,7 +172,7 @@ export const slidesPart1 = [
   </Slide>,
 
   // Slide 2: The Shift
-  <Slide key="2" className="flex flex-col">
+  <Slide key="2">
     <SlideHeader title="The Shift" subtitle="The World has Moved to Level 3 Autonomy" />
 
     <div className="flex-1 grid grid-cols-2 gap-8 min-h-0 items-center">
@@ -230,7 +259,7 @@ export const slidesPart1 = [
         { Icon: Lock, title: "Security Risks", color: "text-red-400", desc: "Hackers using agents to target global entities with minimal intervention." },
         { Icon: ScaleIcon, title: "Compliance", color: "text-blue-400", desc: "Banks cannot deploy agents that might hallucinate regs or leak PII." }
       ].map(({ Icon, title, color, desc }, i) => (
-        <div key={i} className="bg-gradient-to-b from-slate-900 to-slate-900/50 p-10 rounded-3xl border border-slate-800 hover:border-slate-600 transition-all duration-500 group hover:-translate-y-2 hover:shadow-2xl">
+        <div key={i} className="bg-slate-950 p-10 rounded-3xl border border-slate-800 hover:border-slate-600 transition-all duration-500 group hover:-translate-y-2 hover:shadow-2xl">
           <div className={`w-16 h-16 rounded-2xl bg-slate-800/50 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform border border-slate-700`}>
             <Icon className={`w-8 h-8 ${color}`} />
           </div>
@@ -242,7 +271,7 @@ export const slidesPart1 = [
   </Slide>,
 
   // Slide 4: The Solution
-  <Slide key="4" className="flex flex-col">
+  <Slide key="4">
     <SlideHeader title="The Solution" subtitle="Active Governance" />
     <div className="flex-1 flex flex-col relative z-10 min-h-0 justify-start">
       <div className="absolute right-0 top-0 text-[10rem] font-heading font-black text-slate-800 opacity-10 z-0 tracking-tighter leading-none select-none pointer-events-none">ATC</div>
@@ -388,23 +417,22 @@ export const slidesPart1 = [
 
   // Slide 6: Killer Feature UI
   <Slide key="6">
-    <div className="flex h-full gap-16">
-      <div className="w-1/3 pt-12 flex flex-col justify-center">
-        <h2 className="text-5xl font-heading font-bold text-white mb-6 leading-tight">The "Killer Feature"</h2>
-        <h3 className="text-xl text-red-400 font-body font-medium mb-12">What happens when an agent goes rogue?</h3>
+    <SlideHeader title='The "Killer Feature"' subtitle="What happens when an agent goes rogue?" />
+    <div className="flex flex-1 gap-16 min-h-0">
+      <div className="w-1/3 flex flex-col justify-center gap-8">
 
-        <div className="mb-10 pl-6 border-l-2 border-slate-700">
+        <div className="pl-6 border-l-2 border-slate-700">
           <div className="text-xs uppercase text-slate-500 font-tech font-bold mb-2 tracking-widest">Status Quo</div>
           <p className="text-slate-300 font-body text-lg">Developers redeploy code. <br /><span className="text-red-500 font-bold">Time: 15+ Minutes.</span></p>
         </div>
 
-        <div className="mb-10 pl-6 border-l-2 border-green-500 bg-green-900/5 rounded-r-lg py-2">
+        <div className="pl-6 border-l-2 border-green-500 bg-green-900/5 rounded-r-lg py-2">
           <div className="text-xs uppercase text-green-400 font-tech font-bold mb-2 tracking-widest">Syntrox</div>
           <p className="text-white font-body text-lg">Ops Manager hits one button.</p>
           <p className="text-green-400 font-bold font-heading text-2xl mt-1">Time: &lt; 1 Second.</p>
         </div>
       </div>
-      <div className="w-2/3 h-full pt-8 pb-8">
+      <div className="flex-1 h-full py-2">
         <Suspense fallback={<div className="w-full h-full bg-slate-900/50 rounded-2xl animate-pulse flex items-center justify-center text-slate-500 font-tech">Loading Demo System...</div>}>
           <KillSwitchDemo />
         </Suspense>
@@ -413,7 +441,7 @@ export const slidesPart1 = [
   </Slide>,
 
   // Slide 7: Digital Workforce
-  <Slide key="7" className="flex flex-col">
+  <Slide key="7">
     <SlideHeader title="The Digital Workforce" subtitle="Governing the Next Trillion Dollars of Autonomy" />
 
     <div className="flex-1 grid grid-cols-2 gap-8 min-h-0 items-center">

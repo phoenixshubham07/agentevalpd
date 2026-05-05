@@ -3,6 +3,17 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useInView } from 'framer-motion';
 import { OrbitControls, Html, Float, Line } from '@react-three/drei';
 import * as THREE from 'three';
+function supportsWebGL() {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch {
+    return false;
+  }
+}
 
 /* ─── Animated particles rising through the scene ─── */
 const DataStream = ({ position, color, governedColor, shieldY = 0, count = 20 }) => {
@@ -300,17 +311,25 @@ export default function TraceTree3D() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { margin: "400px" });
 
+  const hasWebGL = useMemo(() => supportsWebGL(), []);
+
   return (
     <div
       ref={containerRef}
       className={`w-full relative transition-all duration-500 rounded-xl overflow-hidden group/canvas`}
-      style={{ height: '640px' }}
+      style={{ height: '640px', backgroundColor: '#020617' }}
     >
-      {/* ── Scroll-Safe Interaction Masks ── 
-          These overlays ensure that the edges of the component 
-          always allow for natural page scrolling, especially on mobile.
-          Interaction is restricted to the central 50% width.
-      */}
+      {/* ── SEO / AI Search Context ── */}
+      <div className="sr-only" aria-hidden="false">
+        <h2>Syntrox Active Governance Layer</h2>
+        <p>
+          Real-time trace interception membrane. Syntrox provides dynamic, real-time AI security governance. 
+          Our platform intercepts agent traces, scans and detects PII (Personally Identifiable Information), 
+          enforces enterprise shields, and governs multiple AI data streams simultaneously without adding latency.
+        </p>
+      </div>
+
+      {/* ── Scroll-Safe Interaction Masks ── */}
       <div className="absolute inset-y-0 left-0 w-[25%] z-30 pointer-events-auto touch-auto cursor-default" title="Scroll Zone" />
       <div className="absolute inset-y-0 right-0 w-[25%] z-30 pointer-events-auto touch-auto cursor-default" title="Scroll Zone" />
       <div className="absolute top-0 inset-x-0 h-[15%] z-30 pointer-events-auto touch-auto cursor-default" title="Scroll Zone" />
@@ -334,50 +353,62 @@ export default function TraceTree3D() {
         </div>
       </div>
 
-      {/* ── 3D Canvas ── */}
-      <Canvas
-        camera={{ position: [0, 3.5, 9], fov: 50 }}
-        frameloop={isInView ? 'always' : 'demand'}
-        dpr={[1, 1.5]} /* Limit max DPR for performance */
-      >
-        {/* Lighting */}
-        <ambientLight intensity={0.25} />
-        <pointLight position={[6, 8, 5]} intensity={0.7} color="#3b82f6" />
-        <pointLight position={[-6, -4, 4]} intensity={0.4} color="#6366f1" />
-        <pointLight position={[0, -6, -4]} intensity={0.3} color="#0ea5e9" />
+      {/* ── 3D Canvas or Graceful Fallback ── */}
+      {hasWebGL ? (
+        <Canvas
+          camera={{ position: [0, 3.5, 9], fov: 50 }}
+          frameloop={isInView ? 'always' : 'demand'}
+          dpr={[1, 1.5]} /* Limit max DPR for performance */
+        >
+          {/* Lighting */}
+          <ambientLight intensity={0.25} />
+          <pointLight position={[6, 8, 5]} intensity={0.7} color="#3b82f6" />
+          <pointLight position={[-6, -4, 4]} intensity={0.4} color="#6366f1" />
+          <pointLight position={[0, -6, -4]} intensity={0.3} color="#0ea5e9" />
 
-        {/* Central hex shield */}
-        <ShieldMembrane />
+          {/* Central hex shield */}
+          <ShieldMembrane />
 
-        {/* Data stream pillars — positioned around the shield */}
-        <StreamPillar position={[-3.2, 0, -0.8]} label="Agent Trace α" color="#ef4444" governedColor="#22c55e" />
-        <StreamPillar position={[-1.3, 0, 2.0]} label="Agent Trace β" color="#f97316" governedColor="#22c55e" />
-        <StreamPillar position={[1.3, 0, 2.0]} label="Agent Trace γ" color="#eab308" governedColor="#22c55e" />
-        <StreamPillar position={[3.2, 0, -0.8]} label="Agent Trace δ" color="#ec4899" governedColor="#22c55e" />
-        <StreamPillar position={[0, 0, -2.8]} label="Agent Trace ε" color="#a855f7" governedColor="#22c55e" />
+          {/* Data stream pillars */}
+          <StreamPillar position={[-3.2, 0, -0.8]} label="Agent Trace α" color="#ef4444" governedColor="#22c55e" />
+          <StreamPillar position={[-1.3, 0, 2.0]} label="Agent Trace β" color="#f97316" governedColor="#22c55e" />
+          <StreamPillar position={[1.3, 0, 2.0]} label="Agent Trace γ" color="#eab308" governedColor="#22c55e" />
+          <StreamPillar position={[3.2, 0, -0.8]} label="Agent Trace δ" color="#ec4899" governedColor="#22c55e" />
+          <StreamPillar position={[0, 0, -2.8]} label="Agent Trace ε" color="#a855f7" governedColor="#22c55e" />
 
-        {/* Floating 3D labels with HUD connecting lines pointing at pillars/shield */}
-        <FloatingLabel position={[-5, 3, 0]} target={[-3.2, 0.5, -0.8]} text="Intercept" icon="⚡" color="#f87171" />
-        <FloatingLabel position={[5, 3, 0]} target={[3.2, 0.5, -0.8]} text="Scan" icon="◎" color="#60a5fa" />
-        <FloatingLabel position={[-4.8, -2.5, 1]} target={[-1.3, -0.2, 2.0]} text="Detect PII" icon="⬡" color="#fbbf24" />
-        <FloatingLabel position={[4.8, -2.5, 1]} target={[1.3, -0.2, 2.0]} text="Govern" icon="◈" color="#34d399" />
-        <FloatingLabel position={[0, 4.5, -1]} target={[0, 0.5, -0.5]} text="Shield Enforced" icon="▣" color="#818cf8" />
+          {/* Floating 3D labels */}
+          <FloatingLabel position={[-5, 3, 0]} target={[-3.2, 0.5, -0.8]} text="Intercept" icon="⚡" color="#f87171" />
+          <FloatingLabel position={[5, 3, 0]} target={[3.2, 0.5, -0.8]} text="Scan" icon="◎" color="#60a5fa" />
+          <FloatingLabel position={[-4.8, -2.5, 1]} target={[-1.3, -0.2, 2.0]} text="Detect PII" icon="⬡" color="#fbbf24" />
+          <FloatingLabel position={[4.8, -2.5, 1]} target={[1.3, -0.2, 2.0]} text="Govern" icon="◈" color="#34d399" />
+          <FloatingLabel position={[0, 4.5, -1]} target={[0, 0.5, -0.5]} text="Shield Enforced" icon="▣" color="#818cf8" />
 
-        {/* Background particles */}
-        <BackgroundDust count={40} />
+          {/* Background particles */}
+          <BackgroundDust count={40} />
 
-        {/* Controls */}
-        <OrbitControls
-          enableZoom={true}
-          minDistance={5}
-          maxDistance={15}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.5}
-          maxPolarAngle={Math.PI / 1.7}
-          minPolarAngle={Math.PI / 4}
-        />
-      </Canvas>
+          {/* Controls */}
+          <OrbitControls
+            enableZoom={true}
+            minDistance={5}
+            maxDistance={15}
+            enablePan={false}
+            autoRotate
+            autoRotateSpeed={0.5}
+            maxPolarAngle={Math.PI / 1.7}
+            minPolarAngle={Math.PI / 4}
+          />
+        </Canvas>
+      ) : (
+        /* Graceful CSS Fallback when WebGL is blocked (e.g., Brave strict mode) */
+        <div className="absolute inset-0 flex items-center justify-center opacity-40">
+          <div className="relative w-96 h-96">
+            <div className="absolute inset-0 rounded-full border border-blue-500/20 animate-[spin_10s_linear_infinite]" />
+            <div className="absolute inset-4 rounded-full border border-indigo-500/30 animate-[spin_15s_linear_infinite_reverse]" />
+            <div className="absolute inset-8 rounded-full border border-emerald-500/20 animate-[spin_20s_linear_infinite]" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-emerald-900/10 rounded-full blur-2xl" />
+          </div>
+        </div>
+      )}
 
       {/* ── Footer overlays ── */}
       <div className="absolute bottom-3 right-4 z-20 text-[10px] font-mono text-slate-400 bg-slate-900/80 px-2 py-1 rounded backdrop-blur-md border border-white/10 pointer-events-none shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
