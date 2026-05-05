@@ -183,7 +183,7 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8"
         >
           {/* Cyberpunk Button 1 */}
-          <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 border border-blue-500/50 bg-blue-500/10 text-blue-400 font-tech uppercase tracking-widest transition-all hover:bg-blue-500/20 hover:border-blue-400 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] overflow-hidden">
+          <a href="https://forms.gle/baEGqNxJE9xdZ9s28" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 border border-blue-500/50 bg-blue-500/10 text-blue-400 font-tech uppercase tracking-widest transition-all hover:bg-blue-500/20 hover:border-blue-400 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] overflow-hidden">
              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-400 group-hover:border-white transition-colors"></div>
              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-400 group-hover:border-white transition-colors"></div>
              <span className="relative z-10 flex items-center gap-3 text-xs font-bold">

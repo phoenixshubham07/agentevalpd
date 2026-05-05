@@ -36,7 +36,7 @@ export default function Navbar() {
 
         <div>
           <a 
-            href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" 
+            href="https://forms.gle/baEGqNxJE9xdZ9s28" 
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 bg-transparent border border-blue-500/30 rounded-full hover:bg-blue-500/10 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]"

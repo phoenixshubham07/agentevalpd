@@ -178,7 +178,7 @@ export default function Footer() {
                     Spots for our private beta are <span className="text-red-400 font-bold drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">strictly limited</span>. Secure your organization's place in the future of <span className="text-white font-medium">autonomous AI safety</span>.
                   </p>
 
-                  <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center px-10 py-5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full transition-all hover:from-blue-500 hover:to-blue-400 hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] hover:scale-105 duration-300 relative overflow-hidden">
+                  <a href="https://forms.gle/baEGqNxJE9xdZ9s28" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center px-10 py-5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-full transition-all hover:from-blue-500 hover:to-blue-400 hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] hover:scale-105 duration-300 relative overflow-hidden">
                     <span className="relative z-10">Join the Waitlist</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   </a>
