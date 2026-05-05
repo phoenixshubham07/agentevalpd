@@ -2,10 +2,13 @@ import React, { useRef, useState, Suspense, lazy } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import HeroSection from './HeroSection';
 import ProblemAgitation from './ProblemAgitation';
+import FailedSystemsSection from './FailedSystemsSection';
 import FeatureHighlights from './FeatureHighlights';
 import SocialProof from './SocialProof';
 import Footer from './Footer';
 import AgentTraceBackground from '../../backgrounds/AgentTraceBackground';
+import ErrorBoundary from './ErrorBoundary';
+import TraceTreeFallback from './TraceTreeFallback';
 
 // Lazy load heavy 3D/demo components to code-split Three.js (~200KB+)
 const TraceTree3D = lazy(() => import('./TraceTree3D'));
@@ -20,7 +23,7 @@ export default function LandingPage() {
   });
 
   return (
-    <div className={`bg-[#020617] text-slate-200 min-h-screen font-sans selection:bg-blue-500/30 selection:text-blue-200 overflow-x-hidden relative transition-all duration-700 ${killSwitchActive ? 'hue-rotate-0' : ''}`}>
+    <div className={`bg-[#020617] text-slate-200 min-h-screen font-sans selection:bg-blue-500/30 selection:text-blue-200 overflow-x-clip relative transition-all duration-700 ${killSwitchActive ? 'hue-rotate-0' : ''}`}>
       {/* Full-page red overlay when kill switch is active */}
       <div 
         className={`fixed inset-0 z-[100] pointer-events-none transition-all duration-700 ${
@@ -44,7 +47,8 @@ export default function LandingPage() {
       <main>
         <HeroSection />
         <ProblemAgitation />
-        
+        <FailedSystemsSection />
+
         <section ref={roadmapRef} className="pt-48 md:pt-64 pb-4 w-full relative z-10 overflow-visible">
           
           {/* Incoming Roadmap Lines from ProblemAgitation */}
@@ -164,9 +168,11 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <div className="w-full max-w-6xl mx-auto px-2 sm:px-6 relative z-10">
-                    <Suspense fallback={<div className="w-full h-[540px] bg-slate-900/50 rounded-2xl animate-pulse" />}>
-                      <TraceTree3D />
-                    </Suspense>
+                    <ErrorBoundary fallback={<TraceTreeFallback />}>
+                      <Suspense fallback={<div className="w-full h-[540px] bg-slate-900/50 rounded-2xl animate-pulse" />}>
+                        <TraceTree3D />
+                      </Suspense>
+                    </ErrorBoundary>
                   </div>
                 </div>
               </motion.div>

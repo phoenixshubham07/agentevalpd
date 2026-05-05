@@ -100,8 +100,8 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-10 overflow-hidden">
-      {/* Abstract Background Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Abstract Background Elements — locked to viewport height to avoid CLS from growing section */}
+      <div className="absolute inset-x-0 top-0 h-screen z-0 pointer-events-none overflow-hidden [contain:layout_paint_size]">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(6,182,212,0.04)_0%,_transparent_70%)] mix-blend-screen animate-pulse duration-10000"></div>
         <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(11,15,25,0.9)_0%,_transparent_70%)] -z-10"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.03)_0%,_transparent_70%)] opacity-80"></div>
@@ -183,7 +183,7 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8"
         >
           {/* Cyberpunk Button 1 */}
-          <a href="#" className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 border border-blue-500/50 bg-blue-500/10 text-blue-400 font-tech uppercase tracking-widest transition-all hover:bg-blue-500/20 hover:border-blue-400 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] overflow-hidden">
+          <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 border border-blue-500/50 bg-blue-500/10 text-blue-400 font-tech uppercase tracking-widest transition-all hover:bg-blue-500/20 hover:border-blue-400 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] overflow-hidden">
              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-blue-400 group-hover:border-white transition-colors"></div>
              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-blue-400 group-hover:border-white transition-colors"></div>
              <span className="relative z-10 flex items-center gap-3 text-xs font-bold">
