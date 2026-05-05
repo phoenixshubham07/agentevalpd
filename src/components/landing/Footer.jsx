@@ -94,24 +94,24 @@ export default function Footer() {
           {/* LEFT circuit lines */}
           <div className="absolute left-0 top-0 bottom-0 w-56 pointer-events-none z-0 hidden lg:block">
             <svg viewBox="0 0 220 500" preserveAspectRatio="none" className="w-full h-full">
-              <line x1="8"  y1="0" x2="8"  y2="500" stroke="#06b6d4" strokeWidth="1.5" opacity="0.4"/>
-              <line x1="40" y1="0" x2="40" y2="500" stroke="#06b6d4" strokeWidth="1"   opacity="0.2"/>
-              <line x1="75" y1="40" x2="75" y2="460" stroke="#0e7490" strokeWidth="1"  opacity="0.15"/>
-              <line x1="8" y1="40"  x2="120" y2="40"  stroke="#06b6d4" strokeWidth="1" opacity="0.3"/>
-              <line x1="8" y1="80"  x2="160" y2="80"  stroke="#06b6d4" strokeWidth="1" opacity="0.45"/>
-              <line x1="8" y1="150" x2="140" y2="150" stroke="#06b6d4" strokeWidth="1" opacity="0.35"/>
-              <line x1="8" y1="190" x2="100" y2="190" stroke="#22d3ee" strokeWidth="1" opacity="0.30"/>
-              <line x1="8" y1="260" x2="180" y2="260" stroke="#06b6d4" strokeWidth="1" opacity="0.35"/>
-              <line x1="8" y1="370" x2="155" y2="370" stroke="#06b6d4" strokeWidth="1" opacity="0.30"/>
-              <line x1="8" y1="455" x2="130" y2="455" stroke="#06b6d4" strokeWidth="1" opacity="0.25"/>
-              {[{cx:8,cy:40},{cx:8,cy:80},{cx:8,cy:150},{cx:8,cy:260},{cx:8,cy:370},
-                {cx:40,cy:80},{cx:40,cy:150},{cx:40,cy:260},
-                {cx:75,cy:115},{cx:75,cy:220}
-              ].map((n,i) => (
-                <circle key={i} cx={n.cx} cy={n.cy} r="2.5" fill="#06b6d4" opacity="0.5"/>
+              <line x1="8" y1="0" x2="8" y2="500" stroke="#06b6d4" strokeWidth="1.5" opacity="0.4" />
+              <line x1="40" y1="0" x2="40" y2="500" stroke="#06b6d4" strokeWidth="1" opacity="0.2" />
+              <line x1="75" y1="40" x2="75" y2="460" stroke="#0e7490" strokeWidth="1" opacity="0.15" />
+              <line x1="8" y1="40" x2="120" y2="40" stroke="#06b6d4" strokeWidth="1" opacity="0.3" />
+              <line x1="8" y1="80" x2="160" y2="80" stroke="#06b6d4" strokeWidth="1" opacity="0.45" />
+              <line x1="8" y1="150" x2="140" y2="150" stroke="#06b6d4" strokeWidth="1" opacity="0.35" />
+              <line x1="8" y1="190" x2="100" y2="190" stroke="#22d3ee" strokeWidth="1" opacity="0.30" />
+              <line x1="8" y1="260" x2="180" y2="260" stroke="#06b6d4" strokeWidth="1" opacity="0.35" />
+              <line x1="8" y1="370" x2="155" y2="370" stroke="#06b6d4" strokeWidth="1" opacity="0.30" />
+              <line x1="8" y1="455" x2="130" y2="455" stroke="#06b6d4" strokeWidth="1" opacity="0.25" />
+              {[{ cx: 8, cy: 40 }, { cx: 8, cy: 80 }, { cx: 8, cy: 150 }, { cx: 8, cy: 260 }, { cx: 8, cy: 370 },
+              { cx: 40, cy: 80 }, { cx: 40, cy: 150 }, { cx: 40, cy: 260 },
+              { cx: 75, cy: 115 }, { cx: 75, cy: 220 }
+              ].map((n, i) => (
+                <circle key={i} cx={n.cx} cy={n.cy} r="2.5" fill="#06b6d4" opacity="0.5" />
               ))}
               <circle r="2.5" fill="#67e8f9" opacity="0.8">
-                <animateMotion dur="4s" repeatCount="indefinite" path="M 8 0 L 8 500"/>
+                <animateMotion dur="4s" repeatCount="indefinite" path="M 8 0 L 8 500" />
               </circle>
             </svg>
           </div>
@@ -119,24 +119,24 @@ export default function Footer() {
           {/* RIGHT circuit lines */}
           <div className="absolute right-0 top-0 bottom-0 w-56 pointer-events-none z-0 hidden lg:block">
             <svg viewBox="0 0 220 500" preserveAspectRatio="none" className="w-full h-full">
-              <line x1="212" y1="0" x2="212" y2="500" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4"/>
-              <line x1="180" y1="0" x2="180" y2="500" stroke="#3b82f6" strokeWidth="1"   opacity="0.2"/>
-              <line x1="145" y1="40" x2="145" y2="460" stroke="#1d4ed8" strokeWidth="1"  opacity="0.15"/>
-              <line x1="212" y1="40"  x2="100" y2="40"  stroke="#3b82f6" strokeWidth="1" opacity="0.3"/>
-              <line x1="212" y1="80"  x2="60"  y2="80"  stroke="#3b82f6" strokeWidth="1" opacity="0.45"/>
-              <line x1="212" y1="150" x2="80"  y2="150" stroke="#3b82f6" strokeWidth="1" opacity="0.35"/>
-              <line x1="212" y1="190" x2="120" y2="190" stroke="#60a5fa" strokeWidth="1" opacity="0.30"/>
-              <line x1="212" y1="260" x2="40"  y2="260" stroke="#3b82f6" strokeWidth="1" opacity="0.35"/>
-              <line x1="212" y1="370" x2="65"  y2="370" stroke="#3b82f6" strokeWidth="1" opacity="0.30"/>
-              <line x1="212" y1="455" x2="90"  y2="455" stroke="#3b82f6" strokeWidth="1" opacity="0.25"/>
-              {[{cx:212,cy:40},{cx:212,cy:80},{cx:212,cy:150},{cx:212,cy:260},{cx:212,cy:370},
-                {cx:180,cy:80},{cx:180,cy:150},{cx:180,cy:260},
-                {cx:145,cy:115},{cx:145,cy:220}
-              ].map((n,i) => (
-                <circle key={i} cx={n.cx} cy={n.cy} r="2.5" fill="#3b82f6" opacity="0.5"/>
+              <line x1="212" y1="0" x2="212" y2="500" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4" />
+              <line x1="180" y1="0" x2="180" y2="500" stroke="#3b82f6" strokeWidth="1" opacity="0.2" />
+              <line x1="145" y1="40" x2="145" y2="460" stroke="#1d4ed8" strokeWidth="1" opacity="0.15" />
+              <line x1="212" y1="40" x2="100" y2="40" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
+              <line x1="212" y1="80" x2="60" y2="80" stroke="#3b82f6" strokeWidth="1" opacity="0.45" />
+              <line x1="212" y1="150" x2="80" y2="150" stroke="#3b82f6" strokeWidth="1" opacity="0.35" />
+              <line x1="212" y1="190" x2="120" y2="190" stroke="#60a5fa" strokeWidth="1" opacity="0.30" />
+              <line x1="212" y1="260" x2="40" y2="260" stroke="#3b82f6" strokeWidth="1" opacity="0.35" />
+              <line x1="212" y1="370" x2="65" y2="370" stroke="#3b82f6" strokeWidth="1" opacity="0.30" />
+              <line x1="212" y1="455" x2="90" y2="455" stroke="#3b82f6" strokeWidth="1" opacity="0.25" />
+              {[{ cx: 212, cy: 40 }, { cx: 212, cy: 80 }, { cx: 212, cy: 150 }, { cx: 212, cy: 260 }, { cx: 212, cy: 370 },
+              { cx: 180, cy: 80 }, { cx: 180, cy: 150 }, { cx: 180, cy: 260 },
+              { cx: 145, cy: 115 }, { cx: 145, cy: 220 }
+              ].map((n, i) => (
+                <circle key={i} cx={n.cx} cy={n.cy} r="2.5" fill="#3b82f6" opacity="0.5" />
               ))}
               <circle r="2.5" fill="#93c5fd" opacity="0.8">
-                <animateMotion dur="4.5s" repeatCount="indefinite" begin="0.5s" path="M 212 0 L 212 500"/>
+                <animateMotion dur="4.5s" repeatCount="indefinite" begin="0.5s" path="M 212 0 L 212 500" />
               </circle>
             </svg>
           </div>
@@ -210,54 +210,54 @@ export default function Footer() {
         {/* Twinkling stars — CSS only, no Framer Motion */}
         <div className="absolute inset-0 pointer-events-none">
           {[
-            {top:'3%',  left:'5%',  d:2.5,o:0.9, dur:2.5, color:'#fff'},
-            {top:'5%',  left:'22%', d:1.5,o:0.7, dur:3.1, color:'#c4b5fd'},
-            {top:'2%',  left:'40%', d:2,  o:0.8, dur:2.0, color:'#fde68a'},
-            {top:'6%',  left:'58%', d:3,  o:0.95,dur:1.8, color:'#fff'},
-            {top:'4%',  left:'75%', d:1.5,o:0.7, dur:3.4, color:'#93c5fd'},
-            {top:'7%',  left:'90%', d:2,  o:0.8, dur:2.6, color:'#fde68a'},
-            {top:'12%', left:'8%',  d:2,  o:0.75,dur:3.0, color:'#c4b5fd'},
-            {top:'10%', left:'32%', d:1.5,o:0.6, dur:3.7, color:'#fff'},
-            {top:'14%', left:'50%', d:2,  o:0.85,dur:2.3, color:'#fff'},
-            {top:'11%', left:'68%', d:1.5,o:0.65,dur:4.0, color:'#c4b5fd'},
-            {top:'15%', left:'85%', d:2,  o:0.7, dur:2.9, color:'#fde68a'},
-            {top:'20%', left:'15%', d:1.5,o:0.6, dur:3.5, color:'#93c5fd'},
-            {top:'22%', left:'38%', d:2.5,o:0.8, dur:2.1, color:'#fff'},
-            {top:'18%', left:'60%', d:2,  o:0.7, dur:3.3, color:'#fff'},
-            {top:'24%', left:'80%', d:1.5,o:0.65,dur:3.9, color:'#c4b5fd'},
-            {top:'19%', left:'96%', d:2,  o:0.7, dur:2.7, color:'#fde68a'},
-            {top:'30%', left:'3%',  d:2,  o:0.75,dur:3.2, color:'#fff'},
-            {top:'28%', left:'28%', d:1.5,o:0.6, dur:4.2, color:'#93c5fd'},
-            {top:'32%', left:'52%', d:2,  o:0.8, dur:2.8, color:'#fff'},
-            {top:'29%', left:'73%', d:3,  o:0.9, dur:2.4, color:'#fde68a'},
-            {top:'33%', left:'92%', d:1.5,o:0.65,dur:3.6, color:'#c4b5fd'},
-            {top:'40%', left:'12%', d:2,  o:0.7, dur:2.5, color:'#fff'},
-            {top:'42%', left:'35%', d:1.5,o:0.55,dur:3.8, color:'#fde68a'},
-            {top:'38%', left:'60%', d:2,  o:0.75,dur:3.1, color:'#93c5fd'},
-            {top:'44%', left:'82%', d:2.5,o:0.85,dur:2.2, color:'#fff'},
-            {top:'50%', left:'6%',  d:1.5,o:0.65,dur:3.5, color:'#c4b5fd'},
-            {top:'52%', left:'25%', d:2,  o:0.7, dur:2.9, color:'#fff'},
-            {top:'48%', left:'48%', d:2,  o:0.8, dur:3.3, color:'#fde68a'},
-            {top:'54%', left:'70%', d:1.5,o:0.6, dur:4.1, color:'#fff'},
-            {top:'50%', left:'90%', d:2,  o:0.75,dur:2.7, color:'#93c5fd'},
-            {top:'60%', left:'18%', d:2,  o:0.7, dur:3.0, color:'#fff'},
-            {top:'62%', left:'42%', d:1.5,o:0.6, dur:2.5, color:'#c4b5fd'},
-            {top:'58%', left:'65%', d:2.5,o:0.8, dur:3.7, color:'#fff'},
-            {top:'64%', left:'88%', d:1.5,o:0.65,dur:2.3, color:'#fde68a'},
-            {top:'70%', left:'5%',  d:2,  o:0.75,dur:3.4, color:'#93c5fd'},
-            {top:'72%', left:'30%', d:3,  o:0.9, dur:2.0, color:'#fff'},
-            {top:'68%', left:'55%', d:1.5,o:0.6, dur:3.9, color:'#c4b5fd'},
-            {top:'74%', left:'78%', d:2,  o:0.7, dur:2.8, color:'#fde68a'},
-            {top:'80%', left:'15%', d:1.5,o:0.65,dur:3.2, color:'#fff'},
-            {top:'82%', left:'40%', d:2,  o:0.75,dur:2.6, color:'#93c5fd'},
-            {top:'78%', left:'65%', d:2,  o:0.7, dur:4.0, color:'#fff'},
-            {top:'84%', left:'88%', d:2.5,o:0.85,dur:2.4, color:'#c4b5fd'},
-            {top:'90%', left:'8%',  d:2,  o:0.7, dur:3.1, color:'#fde68a'},
-            {top:'88%', left:'32%', d:1.5,o:0.6, dur:2.9, color:'#fff'},
-            {top:'92%', left:'55%', d:2,  o:0.8, dur:3.6, color:'#93c5fd'},
-            {top:'89%', left:'78%', d:1.5,o:0.65,dur:2.2, color:'#fff'},
-            {top:'94%', left:'95%', d:2,  o:0.75,dur:3.8, color:'#c4b5fd'},
-          ].map((s,i) => (
+            { top: '3%', left: '5%', d: 2.5, o: 0.9, dur: 2.5, color: '#fff' },
+            { top: '5%', left: '22%', d: 1.5, o: 0.7, dur: 3.1, color: '#c4b5fd' },
+            { top: '2%', left: '40%', d: 2, o: 0.8, dur: 2.0, color: '#fde68a' },
+            { top: '6%', left: '58%', d: 3, o: 0.95, dur: 1.8, color: '#fff' },
+            { top: '4%', left: '75%', d: 1.5, o: 0.7, dur: 3.4, color: '#93c5fd' },
+            { top: '7%', left: '90%', d: 2, o: 0.8, dur: 2.6, color: '#fde68a' },
+            { top: '12%', left: '8%', d: 2, o: 0.75, dur: 3.0, color: '#c4b5fd' },
+            { top: '10%', left: '32%', d: 1.5, o: 0.6, dur: 3.7, color: '#fff' },
+            { top: '14%', left: '50%', d: 2, o: 0.85, dur: 2.3, color: '#fff' },
+            { top: '11%', left: '68%', d: 1.5, o: 0.65, dur: 4.0, color: '#c4b5fd' },
+            { top: '15%', left: '85%', d: 2, o: 0.7, dur: 2.9, color: '#fde68a' },
+            { top: '20%', left: '15%', d: 1.5, o: 0.6, dur: 3.5, color: '#93c5fd' },
+            { top: '22%', left: '38%', d: 2.5, o: 0.8, dur: 2.1, color: '#fff' },
+            { top: '18%', left: '60%', d: 2, o: 0.7, dur: 3.3, color: '#fff' },
+            { top: '24%', left: '80%', d: 1.5, o: 0.65, dur: 3.9, color: '#c4b5fd' },
+            { top: '19%', left: '96%', d: 2, o: 0.7, dur: 2.7, color: '#fde68a' },
+            { top: '30%', left: '3%', d: 2, o: 0.75, dur: 3.2, color: '#fff' },
+            { top: '28%', left: '28%', d: 1.5, o: 0.6, dur: 4.2, color: '#93c5fd' },
+            { top: '32%', left: '52%', d: 2, o: 0.8, dur: 2.8, color: '#fff' },
+            { top: '29%', left: '73%', d: 3, o: 0.9, dur: 2.4, color: '#fde68a' },
+            { top: '33%', left: '92%', d: 1.5, o: 0.65, dur: 3.6, color: '#c4b5fd' },
+            { top: '40%', left: '12%', d: 2, o: 0.7, dur: 2.5, color: '#fff' },
+            { top: '42%', left: '35%', d: 1.5, o: 0.55, dur: 3.8, color: '#fde68a' },
+            { top: '38%', left: '60%', d: 2, o: 0.75, dur: 3.1, color: '#93c5fd' },
+            { top: '44%', left: '82%', d: 2.5, o: 0.85, dur: 2.2, color: '#fff' },
+            { top: '50%', left: '6%', d: 1.5, o: 0.65, dur: 3.5, color: '#c4b5fd' },
+            { top: '52%', left: '25%', d: 2, o: 0.7, dur: 2.9, color: '#fff' },
+            { top: '48%', left: '48%', d: 2, o: 0.8, dur: 3.3, color: '#fde68a' },
+            { top: '54%', left: '70%', d: 1.5, o: 0.6, dur: 4.1, color: '#fff' },
+            { top: '50%', left: '90%', d: 2, o: 0.75, dur: 2.7, color: '#93c5fd' },
+            { top: '60%', left: '18%', d: 2, o: 0.7, dur: 3.0, color: '#fff' },
+            { top: '62%', left: '42%', d: 1.5, o: 0.6, dur: 2.5, color: '#c4b5fd' },
+            { top: '58%', left: '65%', d: 2.5, o: 0.8, dur: 3.7, color: '#fff' },
+            { top: '64%', left: '88%', d: 1.5, o: 0.65, dur: 2.3, color: '#fde68a' },
+            { top: '70%', left: '5%', d: 2, o: 0.75, dur: 3.4, color: '#93c5fd' },
+            { top: '72%', left: '30%', d: 3, o: 0.9, dur: 2.0, color: '#fff' },
+            { top: '68%', left: '55%', d: 1.5, o: 0.6, dur: 3.9, color: '#c4b5fd' },
+            { top: '74%', left: '78%', d: 2, o: 0.7, dur: 2.8, color: '#fde68a' },
+            { top: '80%', left: '15%', d: 1.5, o: 0.65, dur: 3.2, color: '#fff' },
+            { top: '82%', left: '40%', d: 2, o: 0.75, dur: 2.6, color: '#93c5fd' },
+            { top: '78%', left: '65%', d: 2, o: 0.7, dur: 4.0, color: '#fff' },
+            { top: '84%', left: '88%', d: 2.5, o: 0.85, dur: 2.4, color: '#c4b5fd' },
+            { top: '90%', left: '8%', d: 2, o: 0.7, dur: 3.1, color: '#fde68a' },
+            { top: '88%', left: '32%', d: 1.5, o: 0.6, dur: 2.9, color: '#fff' },
+            { top: '92%', left: '55%', d: 2, o: 0.8, dur: 3.6, color: '#93c5fd' },
+            { top: '89%', left: '78%', d: 1.5, o: 0.65, dur: 2.2, color: '#fff' },
+            { top: '94%', left: '95%', d: 2, o: 0.75, dur: 3.8, color: '#c4b5fd' },
+          ].map((s, i) => (
             <div key={i}
               className="absolute rounded-full"
               style={{
@@ -283,14 +283,14 @@ export default function Footer() {
             className="text-center mb-6"
           >
             <div className="flex items-center gap-4 justify-center mb-8">
-              <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-400/50"/>
-              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,1)]"/>
-              <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-400/50"/>
+              <div className="h-px w-16 bg-gradient-to-r from-transparent to-amber-400/50" />
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,1)]" />
+              <div className="h-px w-16 bg-gradient-to-l from-transparent to-amber-400/50" />
             </div>
 
             <h2 className="text-4xl md:text-6xl font-bold font-heading tracking-tight leading-tight mb-5">
               <span className="text-white">Built by those who </span>
-              <br className="hidden md:block"/>
+              <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 drop-shadow-[0_0_30px_rgba(251,191,36,0.4)]">
                 refuse to trust blindly.
               </span>
@@ -314,7 +314,7 @@ export default function Footer() {
           >
             <div className="relative px-10 py-5 rounded-2xl border-4 border-red-400/90 bg-[#1a0000]/80 backdrop-blur-md shadow-[0_0_40px_rgba(239,68,68,0.3),inset_0_0_20px_rgba(239,68,68,0.05)]">
               <div className="absolute inset-0 rounded-xl opacity-10 pointer-events-none"
-                style={{ backgroundImage: 'radial-gradient(circle, rgba(239,68,68,0.8) 1px, transparent 1px)', backgroundSize: '8px 8px' }}/>
+                style={{ backgroundImage: 'radial-gradient(circle, rgba(239,68,68,0.8) 1px, transparent 1px)', backgroundSize: '8px 8px' }} />
 
               <AnimatePresence mode="wait">
                 {showBubble && (
@@ -350,22 +350,22 @@ export default function Footer() {
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full"
           >
-            <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-amber-500/20 via-transparent to-violet-500/20 blur-sm pointer-events-none"/>
-            <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-amber-400/30 via-transparent via-50% to-blue-500/20 pointer-events-none"/>
+            <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-amber-500/20 via-transparent to-violet-500/20 blur-sm pointer-events-none" />
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-amber-400/30 via-transparent via-50% to-blue-500/20 pointer-events-none" />
 
             <div className="relative rounded-2xl overflow-hidden shadow-[0_0_120px_rgba(251,191,36,0.08),0_0_60px_rgba(120,80,255,0.08),0_40px_80px_rgba(0,0,0,0.9)] border border-amber-400/10">
               <div className="flex items-center gap-2 px-5 py-3.5 bg-[#0a0800]/95 backdrop-blur-xl border-b border-amber-400/10">
-                <div className="w-3 h-3 rounded-full bg-red-500/90 shadow-[0_0_8px_rgba(239,68,68,0.8)]"/>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/90 shadow-[0_0_8px_rgba(234,179,8,0.8)]"/>
-                <div className="w-3 h-3 rounded-full bg-green-500/90 shadow-[0_0_8px_rgba(34,197,94,0.8)]"/>
+                <div className="w-3 h-3 rounded-full bg-red-500/90 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/90 shadow-[0_0_8px_rgba(234,179,8,0.8)]" />
+                <div className="w-3 h-3 rounded-full bg-green-500/90 shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
                 <div className="ml-4 flex-1 text-center">
                   <span className="text-xs font-mono text-amber-600/70 tracking-widest">syntrox@neural-core — bash — 80×24</span>
                 </div>
               </div>
 
               <div className="relative bg-[#020608]/98 backdrop-blur-xl">
-                <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(251,191,36,0.008)_2px,rgba(251,191,36,0.008)_4px)] pointer-events-none z-10"/>
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.6))] pointer-events-none z-10"/>
+                <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(251,191,36,0.008)_2px,rgba(251,191,36,0.008)_4px)] pointer-events-none z-10" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.6))] pointer-events-none z-10" />
 
                 <div className="relative h-[420px] z-20">
                   <iframe
@@ -402,7 +402,7 @@ export default function Footer() {
           <div className="flex gap-8 text-sm text-slate-500 hover:text-slate-300 transition-colors">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="mailto:founders@syntrox.ai" className="hover:text-white transition-colors">Contact</a>
+            <a href="mailto:sai.praneeth@syntrox.io" className="hover:text-white transition-colors">Contact</a>
           </div>
 
           <div className="text-sm text-slate-500">
